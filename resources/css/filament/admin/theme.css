@@ -1,0 +1,48 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+
+@layer components {
+    nav {
+        @apply bg-[#002849] !important;
+    }
+
+    .fi-sidebar-header {
+        @apply bg-[#002849] !important;
+    }
+
+    .fi-sidebar-nav {
+        @apply bg-gray-200 !important;
+    }
+
+    .fi-panel-admin {
+        @apply bg-blue-950 !important;
+    }
+
+    .fi-breadcrumbs-list {
+        @apply bg-white !important;
+    }
+
+    .fi-simple-main-ctn {
+        @apply bg-blue-950 !important;
+    }
+
+    .fi-simple-main {
+        @apply bg-yellow-500 !important;
+    }
+
+    .fi-pagination {
+        @apply bg-white !important;
+    }
+
+    .fi-input-wrp-input {
+        @apply w-1/2 !important;
+    }
+
+    .fi-fo-rich-editor-toolbar {
+        @apply border border-solid border-gray-300 rounded-t-lg !important;
+    }
+
+
+}

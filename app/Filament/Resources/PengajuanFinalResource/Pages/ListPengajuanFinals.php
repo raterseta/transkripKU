@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Filament\Resources\PengajuanFinalResource\Pages;
+
+use App\Filament\Resources\PengajuanFinalResource;
+use Filament\Actions;
+use Filament\Resources\Pages\ListRecords;
+use App\Filament\Widgets\StatusPengajuanFinalOverview;
+
+class ListPengajuanFinals extends ListRecords
+{
+    protected static string $resource = PengajuanFinalResource::class;
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            StatusPengajuanFinalOverview::class,
+        ];
+    }
+}
