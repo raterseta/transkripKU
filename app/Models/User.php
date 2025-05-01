@@ -47,11 +47,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function studyProgram()
-    {
-        return $this->belongsTo(StudyProgram::class, 'study_program_id');
-    }
-
     public function notes()
     {
         return $this->hasMany(RequestNote::class);

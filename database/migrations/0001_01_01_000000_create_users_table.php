@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('nip')->unique();
-            $table->uuid('study_program_id');
             $table->rememberToken();
             $table->timestamps();
         });
