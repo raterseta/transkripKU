@@ -2,6 +2,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\RequestNote;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function studyProgram()
     {
         return $this->belongsTo(StudyProgram::class, 'study_program_id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(RequestNote::class);
     }
 }
