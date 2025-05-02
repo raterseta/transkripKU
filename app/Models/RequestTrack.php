@@ -20,7 +20,7 @@ class RequestTrack extends Model
     ];
 
     protected $casts = [
-        'status' => 'RequestStatus::class',
+        'status' => RequestStatus::class,
     ];
 
     public function academicRequest(): BelongsTo

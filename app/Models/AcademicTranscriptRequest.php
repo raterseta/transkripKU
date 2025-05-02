@@ -20,6 +20,7 @@ class AcademicTranscriptRequest extends Model
         'student_name',
         'student_email',
         'needs',
+        'language',
         'signature_type',
         'transcript_url',
         'retrieval_notes',

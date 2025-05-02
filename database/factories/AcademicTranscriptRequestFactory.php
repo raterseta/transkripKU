@@ -32,6 +32,7 @@ class AcademicTranscriptRequestFactory extends Factory
             'student_name'    => $this->faker->name(),
             'student_email'   => $this->faker->safeEmail(),
             'needs'           => $this->faker->randomElement(['Job Application', 'Scholarship', 'Further Study', 'Personal Records']),
+            'language'        => $this->faker->randomElement(['inggris', 'indonesia']),
             'signature_type'  => $this->faker->randomElement($signatureTypes),
             'transcript_url'  => $this->faker->randomElement([null, 'transcripts/academic_' . Str::random(10) . '.pdf']),
             'retrieval_notes' => $this->faker->optional(0.7)->sentence(),

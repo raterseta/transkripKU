@@ -15,8 +15,8 @@ enum RequestStatus: string implements HasLabel {
     public function getColor(): string
     {
         return match ($this) {
-            self::PROSESOPERATOR => 'yellow',
-            self::PROSESKAPRODI => 'yellow',
+            self::PROSESOPERATOR => 'info',
+            self::PROSESKAPRODI => 'info',
             self::DIKEMBALIKANKEKAPRODI => 'warning',
             self::DIKEMBALIKANKEOPERATOR => 'warning',
             self::DITOLAK => 'danger',
