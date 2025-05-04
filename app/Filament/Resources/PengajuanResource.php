@@ -36,7 +36,7 @@ class PengajuanResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('status', 'Baru')->count();
+        return static::getModel()::where('status', 'diproses_operator')->count();
     }
 
     protected static ?string $navigationBadgeTooltip = 'Pengajuan Baru';
