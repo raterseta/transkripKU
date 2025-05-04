@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('language');
             $table->enum('signature_type', array_column(SignatureType::cases(), 'value'));
             $table->string('transcript_url')->nullable();
+            $table->string('student_notes')->nullable();
+            $table->string('supporting_document_url')->nullable();
             $table->string('retrieval_notes')->nullable();
             $table->timestamps();
         });

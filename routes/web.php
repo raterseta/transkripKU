@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\AcademicRequestController;
 use App\Http\Controllers\PengajuanFinalController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrackController;
-
+use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,14 +21,11 @@ Route::get('/pengajuan', function () {
     return view('mahasiswa.pengajuan.pengajuan');
 });
 
-Route::post('/pengajuan', [PengajuanController::class, 'store']);
-
 Route::get('/pengajuan-final', function () {
     return view('mahasiswa.pengajuan.pengajuan-final');
 });
 
 Route::post('/pengajuan-final', [PengajuanFinalController::class, 'store']);
-
 
 // Tampilkan halaman input custom_id
 Route::get('/track', [TrackController::class, 'index'])->name('mahasiswa.tracking.track');
@@ -39,3 +35,6 @@ Route::post('/track', [TrackController::class, 'store'])->name('mahasiswa.tracki
 
 // Tampilkan data track setelah pilih custom_id
 Route::get('/track?id={customId}', [TrackController::class, 'show'])->name('mahasiswa.tracking.datatrack');
+
+// CLEAN
+Route::post('/academic-request', [AcademicRequestController::class, 'store']);

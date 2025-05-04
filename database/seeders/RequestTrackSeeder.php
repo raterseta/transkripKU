@@ -23,8 +23,9 @@ class RequestTrackSeeder extends Seeder
                 ->forAcademicRequest($request)
                 ->withStatus(RequestStatus::PROSESOPERATOR->value)
                 ->create([
-                    'created_at' => $request->created_at,
-                    'updated_at' => $request->created_at,
+                    'tracking_number' => $request->tracking_number,
+                    'created_at'      => $request->created_at,
+                    'updated_at'      => $request->created_at,
                 ]);
 
             // Generate subsequent tracks based on current status
@@ -40,8 +41,9 @@ class RequestTrackSeeder extends Seeder
                 ->forThesisRequest($request)
                 ->withStatus(RequestStatus::PROSESOPERATOR->value)
                 ->create([
-                    'created_at' => $request->created_at,
-                    'updated_at' => $request->created_at,
+                    'tracking_number' => $request->tracking_number,
+                    'created_at'      => $request->created_at,
+                    'updated_at'      => $request->created_at,
                 ]);
 
             // Generate subsequent tracks based on current status

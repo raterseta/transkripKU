@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('request_notes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('academic_request_id');
-            $table->uuid('thesis_request_id');
+            $table->uuid('academic_transcript_request_id');
+            $table->uuid('thesis_transcript_request_id');
             $table->uuid('sender_id');
             $table->string('receiver_email');
             $table->string('transcript_url');

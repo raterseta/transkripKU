@@ -14,8 +14,9 @@ return new class extends Migration
     {
         Schema::create('request_tracks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('academic_request_id')->nullable();
-            $table->uuid('thesis_request_id')->nullable();
+            $table->string('tracking_number');
+            $table->uuid('academic_transcript_request_id')->nullable();
+            $table->uuid('thesis_transcript_request_id')->nullable();
             $table->string('action_notes');
             $table->string('action_desc');
             $table->enum('status', array_column(RequestStatus::cases(), 'value'));

@@ -24,6 +24,8 @@ class AcademicTranscriptRequest extends Model
         'signature_type',
         'transcript_url',
         'retrieval_notes',
+        'student_notes',
+        'supporting_document_url',
     ];
 
     protected $casts = [

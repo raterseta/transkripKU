@@ -10,11 +10,11 @@ class RequestNote extends Model
 
     public function academicRequest()
     {
-        return $this->belongsTo(AcademicTranscriptRequest::class, 'academic_request_id');
+        return $this->belongsTo(AcademicTranscriptRequest::class, 'academic_transcript_request_id');
     }
 
     public function thesisRequest()
     {
-        return $this->belongsTo(ThesisTranscriptRequest::class, 'thesis_request_id');
+        return $this->belongsTo(ThesisTranscriptRequest::class, 'thesis_transcript_request_id');
     }
 }

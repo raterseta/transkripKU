@@ -25,11 +25,11 @@ class RequestTrackFactory extends Factory
         $statuses = array_column(RequestStatus::cases(), 'value');
 
         return [
-            'id'                  => Str::uuid(),
-            'academic_request_id' => null,
-            'thesis_request_id'   => null,
-            'action_notes'        => $this->faker->sentence(),
-            'action_desc'         => $this->faker->randomElement([
+            'id'                             => Str::uuid(),
+            'academic_transcript_request_id' => null,
+            'thesis_transcript_request_id'   => null,
+            'action_notes'                   => $this->faker->sentence(),
+            'action_desc'                    => $this->faker->randomElement([
                 'Permintaan diterima',
                 'Dokumen diperiksa',
                 'Diteruskan ke Kaprodi',
@@ -40,9 +40,9 @@ class RequestTrackFactory extends Factory
                 'Transkrip dikirim',
                 'Permintaan ditolak',
             ]),
-            'status'              => $this->faker->randomElement($statuses),
-            'created_at'          => $this->faker->dateTimeBetween('-3 months', 'now'),
-            'updated_at'          => function (array $attributes) {
+            'status'                         => $this->faker->randomElement($statuses),
+            'created_at'                     => $this->faker->dateTimeBetween('-3 months', 'now'),
+            'updated_at'                     => function (array $attributes) {
                 return $this->faker->dateTimeBetween($attributes['created_at'], 'now');
             },
         ];
@@ -60,8 +60,8 @@ class RequestTrackFactory extends Factory
 
         return $this->state(function (array $attributes) use ($requestId) {
             return [
-                'academic_request_id' => $requestId,
-                'thesis_request_id'   => null,
+                'academic_transcript_request_id' => $requestId,
+                'thesis_transcript_request_id'   => null,
             ];
         });
     }
@@ -78,8 +78,8 @@ class RequestTrackFactory extends Factory
 
         return $this->state(function (array $attributes) use ($requestId) {
             return [
-                'academic_request_id' => null,
-                'thesis_request_id'   => $requestId,
+                'academic_transcript_request_id' => null,
+                'thesis_transcript_request_id'   => $requestId,
             ];
         });
     }

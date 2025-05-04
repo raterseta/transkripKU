@@ -12,8 +12,9 @@ class RequestTrack extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'academic_request_id',
-        'thesis_request_id',
+        'tracking_number',
+        'academic_transcript_request_id',
+        'thesis_transcript_request_id',
         'action_notes',
         'action_desc',
         'status',
@@ -25,12 +26,12 @@ class RequestTrack extends Model
 
     public function academicRequest(): BelongsTo
     {
-        return $this->belongsTo(AcademicTranscriptRequest::class, 'academic_request_id');
+        return $this->belongsTo(AcademicTranscriptRequest::class, 'academic_transcript_request_id');
     }
 
     public function thesisRequest(): BelongsTo
     {
-        return $this->belongsTo(ThesisTranscriptRequest::class, 'thesis_request_id');
+        return $this->belongsTo(ThesisTranscriptRequest::class, 'thesis_transcript_request_id');
     }
 
     public function getStatusLabelAttribute(): string
@@ -47,12 +48,12 @@ class RequestTrack extends Model
 
     public function isAcademicRequest(): bool
     {
-        return ! is_null($this->academic_request_id);
+        return ! is_null($this->academic_transcript_request_id);
     }
 
     public function isThesisRequest(): bool
     {
-        return ! is_null($this->thesis_request_id);
+        return ! is_null($this->thesis_transcript_request_id);
     }
 
     public function getRequest()
