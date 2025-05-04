@@ -60,7 +60,7 @@
 <?php unset($__componentOriginala591787d01fe92c5706972626cdf7231); ?>
 <?php endif; ?>
       <?php endif; ?>
-    <main class="flex items-center justify-center px-4 mt-10 sm:px-6 lg:px-8">
+    <main class="flex items-center justify-center px-4 mt-10 sm:px-6 lg:px-8 min-h-[90dvh]">
       <div class="flex flex-col w-full max-w-3xl pb-24 space-y-6">
 
         <!-- Navigasi dan judul -->
@@ -197,16 +197,16 @@
               </div>
 
             </div>
-            
+
 
           </div>
         </form>
       </div>
 
-      
+
       </div>
     </main>
-    
+
   </div>
   <?php if (isset($component)) { $__componentOriginalae25fe17d93ff9f3b32915f9d9addc74 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalae25fe17d93ff9f3b32915f9d9addc74 = $attributes; } ?>
@@ -256,6 +256,4 @@
 </body>
 
 </html>
-
-
 <?php /**PATH /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/resources/views/mahasiswa/pengajuan/pengajuan.blade.php ENDPATH**/ ?>

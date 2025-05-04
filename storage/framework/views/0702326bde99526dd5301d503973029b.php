@@ -56,8 +56,8 @@
 <?php unset($__componentOriginala591787d01fe92c5706972626cdf7231); ?>
 <?php endif; ?>
         <?php endif; ?>
-        
-        <main class="justify-center flex items-center bg-[url('/public/images/filkom-50.png')] bg-[center_30%] h-full">
+
+        <main class="justify-center flex items-center bg-[url('/public/images/filkom-50.png')] bg-cover h-[93dvh]">
             <div class="flex flex-col items-center text-center py-36 space-y-3">
                 <!-- Text Halaman -->
                 <p class="font-poppins text-xl">Selamat Datang di Website</p>
@@ -96,5 +96,4 @@
 <?php endif; ?>
 </body>
 </html>
-
 <?php /**PATH /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/resources/views/home.blade.php ENDPATH**/ ?>

@@ -21,7 +21,7 @@
     @guest
       <x-navbar />
     @endguest
-    <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10">
+    <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10 min-h-[90dvh]">
       <div class="flex flex-col w-full max-w-3xl space-y-6 pb-24">
 
         <!-- Navigasi dan judul -->
@@ -40,7 +40,7 @@
           <div class="w-full bg-white shadow-xl shadow-black/50 rounded-2xl px-6 py-8 space-y-4">
             <!-- Input Group -->
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="nama">Nama Lengkap  <span class="text-red-500">*</span></label> 
+              <label class="font-semibold font-poppins" for="nama">Nama Lengkap  <span class="text-red-500">*</span></label>
               <input id="nama" name="nama" required type="text" placeholder="Nama lengkap" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
@@ -53,7 +53,7 @@
             </div>
             <div class="space-y-2 text-left">
               <label class="font-semibold font-poppins" for="keterangan">Keterangan Konsultasi</label>
-              <Textarea 
+              <Textarea
                 id="keterangan"
                 name="keterangan"
                 contenteditable="true"
@@ -66,10 +66,10 @@
               <!-- Upload Transkrip Akademik -->
               <label class="block">
                 <span class="font-semibold font-poppins">Upload Dokumen Pendukung</span>
-                <input 
+                <input
                   id="file_pendukung"
                   name="file_pendukung"
-                  type="file" 
+                  type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   class="block w-full text-sm text-gray-500
                         file:mr-4 file:py-2 file:px-4
@@ -81,7 +81,7 @@
                         mt-1"
                 />
               </label>
-              
+
 
               <!-- Tombol Submit -->
               <button
@@ -109,7 +109,7 @@
         </form>
       </div>
 
-      
+
     </main>
   </div>
   <x-navbar-footer></x-navbar-footer>

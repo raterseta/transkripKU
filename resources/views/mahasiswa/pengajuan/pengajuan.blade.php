@@ -22,7 +22,7 @@
       @guest
         <x-navbar />
       @endguest
-    <main class="flex items-center justify-center px-4 mt-10 sm:px-6 lg:px-8">
+    <main class="flex items-center justify-center px-4 mt-10 sm:px-6 lg:px-8 min-h-[90dvh]">
       <div class="flex flex-col w-full max-w-3xl pb-24 space-y-6">
 
         <!-- Navigasi dan judul -->
@@ -159,16 +159,16 @@
               </div>
 
             </div>
-            
+
 
           </div>
         </form>
       </div>
 
-      
+
       </div>
     </main>
-    
+
   </div>
   <x-navbar-footer></x-navbar-footer>
   <script>
@@ -200,5 +200,3 @@
 </body>
 
 </html>
-
-
