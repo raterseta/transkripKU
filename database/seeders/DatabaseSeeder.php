@@ -8,10 +8,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserSeeder::class,
             AcademicTranscriptRequestSeeder::class,
             ThesisTranscriptRequestSeeder::class,
             RequestTrackSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
