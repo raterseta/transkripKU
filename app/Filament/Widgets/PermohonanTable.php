@@ -1,57 +1,26 @@
 <?php
-namespace App\Filament\Pages;
+namespace App\Filament\Widgets;
 
 use App\Models\AcademicTranscriptRequest;
 use App\Models\ThesisTranscriptRequest;
-use Filament\Pages\Page;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Concerns\InteractsWithTable;
-use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Filament\Widgets\TableWidget as BaseWidget;
 use Illuminate\Support\Facades\DB;
 
-class PermohonanPages extends Page implements HasTable
+class PermohonanTable extends BaseWidget
 {
-    use InteractsWithTable;
+    protected static ?string $heading = 'Daftar Permohonan';
 
-    protected static ?string $navigationIcon  = 'heroicon-o-document';
-    protected static ?string $navigationLabel = 'Daftar Permohonan';
-    protected static ?string $navigationGroup = 'Permohonan';
-    protected static ?string $slug            = 'daftar-permohonan';
-    protected static ?string $label           = 'Daftar Permohonan';
+    protected int|string|array $columnSpan = 'full';
 
-    public static function getNavigationBadge(): ?string
+    protected static ?int $sort = 2;
+
+    public static function canView(): bool
     {
-        $academicCount = AcademicTranscriptRequest::where('status', 'diproses_operator')->count();
-        $thesisCount   = ThesisTranscriptRequest::where('status', 'diproses_operator')->count();
-
-        return $academicCount + $thesisCount;
-    }
-
-    protected static ?string $navigationBadgeTooltip = 'Total Pengajuan Baru';
-
-    public function getTitle(): string
-    {
-        return 'Daftar Permohonan';
-    }
-
-    protected static string $view = 'filament.pages.permohonan';
-
-    public function getBreadcrumbs(): array
-    {
-        return [
-            '/daftar-permohonan' => 'Daftar Permohonan',
-            ''                   => 'Daftar',
-        ];
-    }
-
-    protected static function getWidgets(): array
-    {
-        return [
-            \App\Filament\Widgets\StatusPermohonanOverview::class,
-        ];
+        return request()->routeIs('filament.admin.pages.dashboard');
     }
 
     public function table(Table $table): Table
