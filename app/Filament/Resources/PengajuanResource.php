@@ -21,30 +21,21 @@ use Filament\Tables\Table;
 
 class PengajuanResource extends Resource
 {
-    protected static ?string $model = AcademicTranscriptRequest::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-document';
-
+    protected static ?string $model           = AcademicTranscriptRequest::class;
+    protected static ?string $navigationIcon  = 'heroicon-o-document';
     protected static ?string $navigationLabel = 'Transkrip Akademik';
-
     protected static ?string $navigationGroup = 'Permohonan';
-
-    protected static ?string $slug = 'transkrip-akademik';
-
-    protected static ?string $label = 'Transkrip Akademik';
-
+    protected static ?string $slug            = 'transkrip-akademik';
+    protected static ?string $label           = 'Transkrip Akademik';
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::where('status', 'diproses_operator')->count();
     }
-
     protected static ?string $navigationBadgeTooltip = 'Pengajuan Baru';
-
     public static function getNavigationBadgeColor(): ?string
     {
         return static::getModel()::count() > 1 ? 'warning' : 'warning';
     }
-
     public static function form(Form $form): Form
     {
         return $form
@@ -53,20 +44,16 @@ class PengajuanResource extends Resource
                     ->schema([
                         Section::make('Detail Pengajuan')
                             ->schema([
-
                                 TextInput::make('student_name')
                                     ->label('Nama')
                                     ->required(),
-
                                 TextInput::make('student_email')
                                     ->label('Email')
                                     ->email()
                                     ->required(),
-
                                 TextInput::make('student_nim')
                                     ->label('NIM')
                                     ->required(),
-
                                 Select::make('keperluan')
                                     ->label('Keperluan Pengajuan')
                                     ->options([
@@ -76,7 +63,6 @@ class PengajuanResource extends Resource
                                     ])
                                     ->default('Skripsi')
                                     ->selectablePlaceholder(false),
-
                                 Select::make('language')
                                     ->label('Bahasa')
                                     ->options([
@@ -85,17 +71,15 @@ class PengajuanResource extends Resource
                                     ])
                                     ->default('Inggris')
                                     ->selectablePlaceholder(false),
-
                                 Select::make('signature_type')
                                     ->label('Tanda Tangan')
                                     ->options(SignatureType::class)
                                     ->default('Basah')
                                     ->selectablePlaceholder(false),
-
                                 RichEditor::make('student_notes')
                                     ->label('Catatan Tambahan')
+                                    ->disabled()
                                     ->columnSpanFull(),
-
                                 FileUpload::make('supporting_document_url')
                                     ->label('File Pendukung')
                                     ->disk('public')
@@ -109,33 +93,91 @@ class PengajuanResource extends Resource
                             ])
                             ->columns(2)
                             ->columnSpan(2),
-
-                        Section::make('Informasi')
+                        Grid::make(1)
                             ->schema([
-                                Placeholder::make('created_at')
-                                    ->label('Created at')
-                                    ->content(fn($record) => $record->created_at?->format('d M Y H:i')),
+                                Section::make('Informasi')
+                                    ->schema([
+                                        Placeholder::make('created_at')
+                                            ->label('Created at')
+                                            ->content(fn($record) => $record->created_at?->format('d M Y H:i')),
+                                        Placeholder::make('updated_at')
+                                            ->label('Last modified at')
+                                            ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
+                                    ])
+                                    ->columnSpan(1),
+                                // track notes
+                                Section::make()
+                                    ->schema([
+                                        RichEditor::make('request_notes')
+                                            ->label(function ($record) {
+                                                if ($record && $record->status === RequestStatus::PROSESKAPRODI) {
+                                                    return 'Catatan Operator';
+                                                } elseif ($record && ($record->status === RequestStatus::DIKEMBALIKANKEOPERATOR ||
+                                                    $record->status === RequestStatus::DITERUSKANKEOPERATOR)) {
+                                                    return 'Catatan Kaprodi';
+                                                }
+                                                return 'Catatan';
+                                            })
+                                            ->disabled()
+                                            ->afterStateHydrated(function (RichEditor $component, ?AcademicTranscriptRequest $record) {
+                                                $notes = null;
 
-                                Placeholder::make('updated_at')
-                                    ->label('Last modified at')
-                                    ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
+                                                if ($record && method_exists($record, 'track')) {
+                                                    $notes = $record->track()->latest()->first()?->request_notes;
+                                                }
+
+                                                $component->state($notes);
+                                            })
+                                            ->dehydrated(false)
+                                            ->columnSpanFull(),
+                                        FileUpload::make('request_transcript_url')
+                                            ->label('Transkrip Mahasiswa')
+                                            ->disk('public')
+                                            ->directory('academic_transcript')
+                                            ->preserveFilenames()
+                                            ->openable()
+                                            ->disabled()
+                                            ->downloadable()
+                                            ->afterStateHydrated(function (FileUpload $component, ?AcademicTranscriptRequest $record) {
+                                                $url = null;
+
+                                                if ($record && method_exists($record, 'track')) {
+                                                    $url = $record->track()->latest()->first()?->request_transcript_url;
+                                                }
+
+                                                if ($url) {
+                                                    $component->state([$url]);
+                                                }
+                                            })
+                                            ->dehydrated(false)
+                                            ->previewable(true)
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->columnSpan(1)
+                                    ->hidden(function ($record) {
+                                        if (! $record) {
+                                            return true;
+                                        }
+
+                                        $trackCount = $record->track()->count();
+                                        return $trackCount <= 1;
+                                    }),
                             ])
+                            ->extraAttributes(['class' => 'sticky top-24'])
                             ->columnSpan(1),
-
                         Section::make('Upload Transkrip')
                             ->schema([
-                                FileUpload::make('file_transkrip')
+                                FileUpload::make('transcript_url')
                                     ->label('')
-                                    ->directory('transkrip-akademik')
+                                    ->directory('academic_transcript')
                                     ->preserveFilenames()
                                     ->maxSize(2048),
                             ])
                             ->columnSpan(2)
                             ->collapsible(),
-
                         Section::make('Notes')
                             ->schema([
-                                RichEditor::make('notes')
+                                RichEditor::make('request')
                                     ->label(''),
                             ])
                             ->columnSpan(2)
@@ -143,7 +185,6 @@ class PengajuanResource extends Resource
                     ]),
             ]);
     }
-
     public static function table(Table $table): Table
     {
         return $table
@@ -168,30 +209,57 @@ class PengajuanResource extends Resource
                     ->attribute('status'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->visible(function ($record) {
+                        return static::hasAccess($record);
+                    }),
                 Tables\Actions\Action::make('kirimEmail')
                     ->label('Kirim Email')
                     ->icon('heroicon-o-paper-airplane')
                     ->action(function ($record) {
-                        \Mail::to($record->email)->send(new \App\Mail\PengajuanNotificationMail($record));
+                        \Mail::to($record->student_email)->send(new \App\Mail\PengajuanNotificationMail($record));
                     })
                     ->requiresConfirmation()
                     ->color('success'),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->recordUrl(function ($record) {
+                if (static::hasAccess($record)) {
+                    return static::getUrl('edit', ['record' => $record]);
+                } else {
+                    return;
+                }
+            });
     }
-
+    public static function hasAccess($record): bool
+    {
+        $userRole = auth()->user()->roles->pluck('name')->first();
+        if ($userRole === 'super_admin') {
+            return in_array($record->status->value, [
+                RequestStatus::PROSESOPERATOR->value,
+                RequestStatus::DITERUSKANKEOPERATOR->value,
+            ]);
+        } elseif ($userRole === 'kaprod') {
+            return $record->status->value === RequestStatus::PROSESKAPRODI->value;
+        }
+        return false;
+    }
+    public static function isOperator($record): bool
+    {
+        $userRole = auth()->user()->roles->pluck('name')->first();
+        if ($userRole === 'super_admin') {
+            return in_array($record->status->value, [
+                RequestStatus::PROSESOPERATOR->value,
+                RequestStatus::DITERUSKANKEOPERATOR->value,
+            ]);
+        }
+        return false;
+    }
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-
     public static function getPages(): array
     {
         return [

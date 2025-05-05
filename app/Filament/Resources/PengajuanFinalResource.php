@@ -102,16 +102,7 @@ class PengajuanFinalResource extends Resource
 
                         Section::make('Upload Transkrip')
                             ->schema([
-                                // TextInput::make('file_transkrip'),
-                                // ViewField::make('file_transkrip')
-                                //     ->label('Upload Transkrip')
-                                //     ->view('components.custom-upload')  // Ini merujuk ke file Blade yang sudah kamu buat
-                                //     ->columnSpan(2),
                                 FileUpload::make('file_transkrip'),
-                                //                 PdfUpload::make('file_transkrip')
-                                // ->label('Upload Dokumen (PDF)')
-                                // ->helperText('Upload PDF baru untuk menggantikan file lama otomatis.')
-
                             ])
                             ->columnSpan(2)
                             ->collapsible(),

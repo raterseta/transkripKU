@@ -17,6 +17,8 @@ class RequestTrack extends Model
         'thesis_transcript_request_id',
         'action_notes',
         'action_desc',
+        'request_notes',
+        'request_transcript_url',
         'status',
     ];
 

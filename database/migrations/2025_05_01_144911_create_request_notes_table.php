@@ -17,7 +17,6 @@ return new class extends Migration
             $table->uuid('thesis_transcript_request_id');
             $table->uuid('sender_id');
             $table->string('receiver_email');
-            $table->string('transcript_url');
             $table->string('public_notes');
             $table->string('private_notes');
             $table->timestamps();
