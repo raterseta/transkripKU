@@ -21,7 +21,7 @@
     @guest
       <x-navbar />
     @endguest
-    <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10">
+    <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10 min-h-[90dvh]">
       <div class="flex flex-col w-full max-w-3xl space-y-6 pb-24">
 
         <!-- Navigasi dan judul -->
@@ -34,31 +34,31 @@
 
         <form
           id="formPengajuanFinal"
-          method="POST" action="/pengajuan-final" enctype="multipart/form-data">
+          method="POST" action="/thesis-request" enctype="multipart/form-data">
           @csrf
           <!-- Form Box -->
           <div class="w-full bg-white shadow-xl shadow-black/50 rounded-2xl px-6 py-8 space-y-4">
             <!-- Input Group -->
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="nama">Nama Lengkap  <span class="text-red-500">*</span></label> 
-              <input id="nama" name="nama" required type="text" placeholder="Nama lengkap" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
+              <label class="font-semibold font-poppins" for="student_name">Nama Lengkap  <span class="text-red-500">*</span></label>
+              <input id="student_name" name="student_name" required type="text" placeholder="Nama lengkap" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="nim">NIM <span class="text-red-500">*</span></label>
-              <input id="nim" name="nim" required type="number" placeholder="NIM" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
+              <label class="font-semibold font-poppins" for="student_nim">NIM <span class="text-red-500">*</span></label>
+              <input id="student_nim" name="student_nim" required type="number" placeholder="NIM" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="email">Email Aktif <span class="text-red-500">*</span></label>
-              <input id="email" name="email" required type="email" placeholder="Email" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
+              <label class="font-semibold font-poppins" for="student_email">Email Aktif <span class="text-red-500">*</span></label>
+              <input id="student_email" name="student_email" required type="email" placeholder="Email" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="keterangan">Keterangan Konsultasi</label>
-              <Textarea 
-                id="keterangan"
-                name="keterangan"
+              <label class="font-semibold font-poppins" for="keterangan">Catatan Tambahan</label>
+              <Textarea
+                id="student_notes"
+                name="student_notes"
                 contenteditable="true"
                 class="font-poppins w-full h-40 p-3 border-solid border border-gray-300 font-mono text-sm rounded-md focus:outline-none resize-none"
-                placeholder="Masukkan Keterangan Konsultasi..."></Textarea>
+                placeholder="Masukkan catatan tambahan"></Textarea>
             </div>
 
             <!-- Upload Transkrip + Tombol Submit -->
@@ -66,10 +66,10 @@
               <!-- Upload Transkrip Akademik -->
               <label class="block">
                 <span class="font-semibold font-poppins">Upload Dokumen Pendukung</span>
-                <input 
-                  id="file_pendukung"
-                  name="file_pendukung"
-                  type="file" 
+                <input
+                  id="supporting_document_url"
+                  name="supporting_document_url"
+                  type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   class="block w-full text-sm text-gray-500
                         file:mr-4 file:py-2 file:px-4
@@ -81,7 +81,7 @@
                         mt-1"
                 />
               </label>
-              
+
 
               <!-- Tombol Submit -->
               <button
@@ -109,29 +109,27 @@
         </form>
       </div>
 
-      
+
     </main>
   </div>
   <x-navbar-footer></x-navbar-footer>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const submitButton = document.getElementById('submitBtn'); // ubah ini
+      const submitButton = document.getElementById('submitBtn');
       const form = document.getElementById('formPengajuanFinal');
 
       submitButton.addEventListener('click', function () {
         if (form.checkValidity()) {
-          // Kalau semua field required sudah diisi, tampilkan modal
           const modal = new bootstrap.Modal(document.getElementById('successModal'));
           modal.show();
         } else {
-          // Kalau belum lengkap, munculin browser validation message
           form.reportValidity();
         }
       });
 
       const confirmSubmitButton = document.getElementById('confirmSubmit');
       confirmSubmitButton.addEventListener('click', function () {
-        form.submit(); // Baru submit ke server
+        form.submit();
       });
     });
 
@@ -139,5 +137,3 @@
 </body>
 
 </html>
-
-<!-- tambahkan label "Upload Transkrip Akademik" yang isinya upload file. Label ini ditaruh sebaris dengan button (nanti pake justtify-between antara label upload dan button) -->

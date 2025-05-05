@@ -11,12 +11,12 @@
 </head>
 <body class="h-full">
     <div>
-    
+
         <nav class="bg-blue-950" x-data="{ isMobileOpen: false, isLaptopOpen: false }">
             <div class="mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
                 <!-- <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    
+
                 </div> -->
                 <!--Tab Nav 1-->
                 <div class="flex flex-1 items-center sm:items-stretch">
@@ -40,7 +40,7 @@
                                 </a>
                             </button>
                         </div>
-                    
+
                     </div>
                 </div>
                 </div>
@@ -66,4 +66,3 @@
     </div>
 </body>
 </html>
-
