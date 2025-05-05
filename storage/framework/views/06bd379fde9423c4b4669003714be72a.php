@@ -72,28 +72,28 @@
 
         <form
           id="formPengajuanFinal"
-          method="POST" action="/pengajuan-final" enctype="multipart/form-data">
+          method="POST" action="/thesis-request" enctype="multipart/form-data">
           <?php echo csrf_field(); ?>
           <!-- Form Box -->
           <div class="w-full bg-white shadow-xl shadow-black/50 rounded-2xl px-6 py-8 space-y-4">
             <!-- Input Group -->
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="nama">Nama Lengkap  <span class="text-red-500">*</span></label>
-              <input id="nama" name="nama" required type="text" placeholder="Nama lengkap" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
+              <label class="font-semibold font-poppins" for="student_name">Nama Lengkap  <span class="text-red-500">*</span></label>
+              <input id="student_name" name="student_name" required type="text" placeholder="Nama lengkap" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="nim">NIM <span class="text-red-500">*</span></label>
-              <input id="nim" name="nim" required type="number" placeholder="NIM" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
+              <label class="font-semibold font-poppins" for="student_nim">NIM <span class="text-red-500">*</span></label>
+              <input id="student_nim" name="student_nim" required type="number" placeholder="NIM" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="email">Email Aktif <span class="text-red-500">*</span></label>
-              <input id="email" name="email" required type="email" placeholder="Email" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
+              <label class="font-semibold font-poppins" for="student_email">Email Aktif <span class="text-red-500">*</span></label>
+              <input id="student_email" name="student_email" required type="email" placeholder="Email" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
               <label class="font-semibold font-poppins" for="keterangan">Keterangan Konsultasi</label>
               <Textarea
-                id="keterangan"
-                name="keterangan"
+                id="student_notes"
+                name="student_notes"
                 contenteditable="true"
                 class="font-poppins w-full h-40 p-3 border-solid border border-gray-300 font-mono text-sm rounded-md focus:outline-none resize-none"
                 placeholder="Masukkan Keterangan Konsultasi..."></Textarea>

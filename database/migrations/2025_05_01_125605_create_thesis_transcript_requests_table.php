@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('student_nim');
             $table->string('student_name');
             $table->string('student_email');
+            $table->string('student_notes')->nullable();
             $table->string('transcript_url')->nullable();
+            $table->string('supporting_document_url')->nullable();
             $table->string('consultation_notes')->nullable();
             $table->timestamps();
         });

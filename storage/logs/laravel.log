@@ -13076,3 +13076,156 @@ Content-Transfer-Encoding: quoted-printable
 </body>
 </html>
   
+[2025-05-05 01:52:07] local.ERROR: SQLSTATE[HY000]: General error: 1364 Field 'student_notes' doesn't have a default value (Connection: mysql, SQL: insert into `thesis_transcript_requests` (`id`, `tracking_number`, `status`, `student_nim`, `student_name`, `student_email`, `transcript_url`, `consultation_notes`, `created_at`, `updated_at`) values (82e9bc9f-c69c-4ec2-8711-d50451a4f5f5, TTR-NTYE83AG, selesai, 262062469, Dr. Zackery Stark Sr., vivianne.bruen@example.net, transcripts/thesis_cI7ydnuRfV.pdf, Ad delectus ea deserunt. Architecto et quibusdam voluptatem accusantium dolores. Reiciendis architecto quo dolores consequatur quibusdam rerum. Libero qui earum aut voluptas cupiditate deleniti., 2025-03-18 07:17:14, 2025-04-29 04:24:42)) {"exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'student_notes' doesn't have a default value (Connection: mysql, SQL: insert into `thesis_transcript_requests` (`id`, `tracking_number`, `status`, `student_nim`, `student_name`, `student_email`, `transcript_url`, `consultation_notes`, `created_at`, `updated_at`) values (82e9bc9f-c69c-4ec2-8711-d50451a4f5f5, TTR-NTYE83AG, selesai, 262062469, Dr. Zackery Stark Sr., vivianne.bruen@example.net, transcripts/thesis_cI7ydnuRfV.pdf, Ad delectus ea deserunt. Architecto et quibusdam voluptatem accusantium dolores. Reiciendis architecto quo dolores consequatur quibusdam rerum. Libero qui earum aut voluptas cupiditate deleniti., 2025-03-18 07:17:14, 2025-04-29 04:24:42)) at /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Connection.php:822)
+[stacktrace]
+#0 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Connection.php(776): Illuminate\\Database\\Connection->runQueryCallback('insert into `th...', Array, Object(Closure))
+#1 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php(42): Illuminate\\Database\\Connection->run('insert into `th...', Array, Object(Closure))
+#2 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3720): Illuminate\\Database\\MySqlConnection->insert('insert into `th...', Array)
+#3 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(2208): Illuminate\\Database\\Query\\Builder->insert(Array)
+#4 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1384): Illuminate\\Database\\Eloquent\\Builder->__call('insert', Array)
+#5 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1212): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#6 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php(351): Illuminate\\Database\\Eloquent\\Model->save()
+#7 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php(274): Illuminate\\Database\\Eloquent\\Factories\\Factory->{closure:Illuminate\\Database\\Eloquent\\Factories\\Factory::store():346}(Object(App\\Models\\ThesisTranscriptRequest), 0)
+#8 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php(346): Illuminate\\Support\\Collection->each(Object(Closure))
+#9 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php(306): Illuminate\\Database\\Eloquent\\Factories\\Factory->store(Object(Illuminate\\Database\\Eloquent\\Collection))
+#10 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/database/seeders/ThesisTranscriptRequestSeeder.php(14): Illuminate\\Database\\Eloquent\\Factories\\Factory->create()
+#11 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Database\\Seeders\\ThesisTranscriptRequestSeeder->run()
+#12 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#13 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#14 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#15 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#16 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(188): Illuminate\\Container\\Container->call(Array, Array)
+#17 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(197): Illuminate\\Database\\Seeder->{closure:Illuminate\\Database\\Seeder::__invoke():187}()
+#18 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(61): Illuminate\\Database\\Seeder->__invoke(Array)
+#19 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/database/seeders/DatabaseSeeder.php(10): Illuminate\\Database\\Seeder->call('Database\\\\Seeder...')
+#20 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#21 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#22 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#23 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#24 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#25 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(188): Illuminate\\Container\\Container->call(Array, Array)
+#26 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(197): Illuminate\\Database\\Seeder->{closure:Illuminate\\Database\\Seeder::__invoke():187}()
+#27 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php(71): Illuminate\\Database\\Seeder->__invoke()
+#28 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->{closure:Illuminate\\Database\\Console\\Seeds\\SeedCommand::handle():70}()
+#29 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php(70): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#30 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#31 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#32 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#33 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#34 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#35 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate\\Container\\Container->call(Array)
+#36 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Command/Command.php(279): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#37 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#38 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php(68): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#39 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php(29): Illuminate\\Console\\Command->runCommand('db:seed', Array, Object(Illuminate\\Console\\OutputStyle))
+#40 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/FreshCommand.php(121): Illuminate\\Console\\Command->call('db:seed', Array)
+#41 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/FreshCommand.php(97): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder(NULL)
+#42 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#43 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#44 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#45 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#46 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#47 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate\\Container\\Container->call(Array)
+#48 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Command/Command.php(279): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#49 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#50 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Application.php(1094): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#51 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\FreshCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#52 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Application.php(193): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#53 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#54 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#55 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#56 {main}
+
+[previous exception] [object] (PDOException(code: HY000): SQLSTATE[HY000]: General error: 1364 Field 'student_notes' doesn't have a default value at /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php:53)
+[stacktrace]
+#0 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php(53): PDOStatement->execute()
+#1 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Connection.php(809): Illuminate\\Database\\MySqlConnection->{closure:Illuminate\\Database\\MySqlConnection::insert():42}('insert into `th...', Array)
+#2 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Connection.php(776): Illuminate\\Database\\Connection->runQueryCallback('insert into `th...', Array, Object(Closure))
+#3 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/MySqlConnection.php(42): Illuminate\\Database\\Connection->run('insert into `th...', Array, Object(Closure))
+#4 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3720): Illuminate\\Database\\MySqlConnection->insert('insert into `th...', Array)
+#5 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(2208): Illuminate\\Database\\Query\\Builder->insert(Array)
+#6 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1384): Illuminate\\Database\\Eloquent\\Builder->__call('insert', Array)
+#7 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1212): Illuminate\\Database\\Eloquent\\Model->performInsert(Object(Illuminate\\Database\\Eloquent\\Builder))
+#8 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php(351): Illuminate\\Database\\Eloquent\\Model->save()
+#9 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Collections/Traits/EnumeratesValues.php(274): Illuminate\\Database\\Eloquent\\Factories\\Factory->{closure:Illuminate\\Database\\Eloquent\\Factories\\Factory::store():346}(Object(App\\Models\\ThesisTranscriptRequest), 0)
+#10 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php(346): Illuminate\\Support\\Collection->each(Object(Closure))
+#11 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Factories/Factory.php(306): Illuminate\\Database\\Eloquent\\Factories\\Factory->store(Object(Illuminate\\Database\\Eloquent\\Collection))
+#12 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/database/seeders/ThesisTranscriptRequestSeeder.php(14): Illuminate\\Database\\Eloquent\\Factories\\Factory->create()
+#13 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Database\\Seeders\\ThesisTranscriptRequestSeeder->run()
+#14 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#15 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#16 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#17 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#18 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(188): Illuminate\\Container\\Container->call(Array, Array)
+#19 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(197): Illuminate\\Database\\Seeder->{closure:Illuminate\\Database\\Seeder::__invoke():187}()
+#20 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(61): Illuminate\\Database\\Seeder->__invoke(Array)
+#21 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/database/seeders/DatabaseSeeder.php(10): Illuminate\\Database\\Seeder->call('Database\\\\Seeder...')
+#22 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#23 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#24 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#25 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#26 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#27 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(188): Illuminate\\Container\\Container->call(Array, Array)
+#28 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Seeder.php(197): Illuminate\\Database\\Seeder->{closure:Illuminate\\Database\\Seeder::__invoke():187}()
+#29 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php(71): Illuminate\\Database\\Seeder->__invoke()
+#30 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->{closure:Illuminate\\Database\\Console\\Seeds\\SeedCommand::handle():70}()
+#31 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php(70): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#32 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#33 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#34 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#35 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#36 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#37 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate\\Container\\Container->call(Array)
+#38 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Command/Command.php(279): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#39 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#40 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php(68): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#41 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Concerns/CallsCommands.php(29): Illuminate\\Console\\Command->runCommand('db:seed', Array, Object(Illuminate\\Console\\OutputStyle))
+#42 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/FreshCommand.php(121): Illuminate\\Console\\Command->call('db:seed', Array)
+#43 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/FreshCommand.php(97): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder(NULL)
+#44 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#45 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#46 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#47 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#48 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Container.php(754): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#49 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate\\Container\\Container->call(Array)
+#50 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Command/Command.php(279): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#51 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#52 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Application.php(1094): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#53 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\FreshCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#54 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/symfony/console/Application.php(193): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#55 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#56 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1234): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#57 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#58 {main}
+"} 
+[2025-05-05 01:56:15] local.DEBUG: From: Laravel <hello@example.com>
+To: agustianto.d19@gmail.com
+Subject: Konfirmasi Pengajuan Anda
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 01:56:15 +0000
+Message-ID: <438ffb55f4c934a12ebd81bbf2917d62@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifikasi Pengajuan</title>
+</head>
+<body>
+    <h2>Halo, !</h2>
+    <p>Terima kasih telah melakukan pengajuan.</p>
+    <p><strong>Detail Pengajuan:</strong></p>
+    <ul>
+        <li><strong>Nama:</strong> </li>
+        <li><strong>NIM:</strong> </li>
+        <li><strong>Nomor Tracking:</strong> </li>
+    </ul>
+    <p>Nomor tracking ini akan digunakan untuk memantau status pengajuan Anda.</p>
+    <p>Pengajuan bisa cek di : http://taruh-urlnya-manual/track</p>
+    <br>
+    <p>Terima kasih.</p>
+</body>
+</html>
+  

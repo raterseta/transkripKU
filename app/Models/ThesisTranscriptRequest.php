@@ -18,8 +18,10 @@ class ThesisTranscriptRequest extends Model
         'student_nim',
         'student_name',
         'student_email',
+        'student_notes',
         'transcript_url',
         'consultation_notes',
+        'supporting_document_url',
     ];
 
     protected $casts = [

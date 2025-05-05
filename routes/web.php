@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicRequestController;
-use App\Http\Controllers\PengajuanFinalController;
+use App\Http\Controllers\ThesisRequestController;
 use App\Http\Controllers\TrackController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +25,6 @@ Route::get('/pengajuan-final', function () {
     return view('mahasiswa.pengajuan.pengajuan-final');
 });
 
-Route::post('/pengajuan-final', [PengajuanFinalController::class, 'store']);
-
 // Tampilkan halaman input custom_id
 Route::get('/track', [TrackController::class, 'index'])->name('mahasiswa.tracking.track');
 
@@ -38,3 +36,4 @@ Route::get('/track?id={customId}', [TrackController::class, 'show'])->name('maha
 
 // CLEAN
 Route::post('/academic-request', [AcademicRequestController::class, 'store']);
+Route::post('/thesis-request', [ThesisRequestController::class, 'store']);
