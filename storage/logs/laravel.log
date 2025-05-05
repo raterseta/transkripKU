@@ -13229,3 +13229,514 @@ Content-Transfer-Encoding: quoted-printable
 </body>
 </html>
   
+[2025-05-05 06:30:30] local.ERROR: Unhandled match case App\Enums\RequestStatus::DITERUSKANKEOPERATOR {"userId":1,"exception":"[object] (UnhandledMatchError(code: 0): Unhandled match case App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR at /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/app/Enums/RequestStatus.php:38)
+[stacktrace]
+#0 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(46): App\\Enums\\RequestStatus->getLabel()
+#1 [internal function]: Filament\\Tables\\Filters\\SelectFilter->{closure:Filament\\Tables\\Filters\\Concerns\\HasOptions::getOptions():45}(Array, App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR)
+#2 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(45): array_reduce(Array, Object(Closure), Array)
+#3 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/SelectFilter.php(281): Filament\\Tables\\Filters\\SelectFilter->getOptions()
+#4 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasFormSchema.php(47): Filament\\Tables\\Filters\\SelectFilter->getFormField()
+#5 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Table/Concerns/HasFilters.php(186): Filament\\Tables\\Filters\\BaseFilter->getFormSchema()
+#6 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/HasFilters.php(32): Filament\\Tables\\Table->getFiltersFormSchema()
+#7 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/InteractsWithTable.php(60): Filament\\Resources\\Pages\\ListRecords->getTableFiltersForm()
+#8 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\ListRecords->bootedInteractsWithTable()
+#9 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#10 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#11 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#12 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#13 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(144): Livewire\\Wrapped->__call('bootedInteracts...', Array)
+#14 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(24): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callTraitHook('booted')
+#15 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount(Array, false)
+#16 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount(Array, false)
+#17 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::{closure:Livewire\\ComponentHookRegistry::boot():39}(Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#18 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#19 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#20 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('App\\\\Filament\\\\Re...', Array, NULL)
+#21 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(17): Livewire\\LivewireManager->mount('App\\\\Filament\\\\Re...', Array)
+#22 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/SupportPageComponents.php(117): Livewire\\Component->{closure:Livewire\\Features\\SupportPageComponents\\HandlesPageComponents::__invoke():14}()
+#23 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(14): Livewire\\Features\\SupportPageComponents\\SupportPageComponents::interceptTheRenderOfTheComponentAndRetreiveTheLayoutConfiguration(Object(Closure))
+#24 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): Livewire\\Component->__invoke()
+#25 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), '__invoke')
+#26 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()
+#27 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#28 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():807}(Object(Illuminate\\Http\\Request))
+#29 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DispatchServingFilamentEvent.php(15): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#30 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DispatchServingFilamentEvent->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DisableBladeIconComponents.php(14): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#32 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DisableBladeIconComponents->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#34 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#36 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(66): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#38 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(63): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#40 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#42 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#44 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#45 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#47 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#49 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/SetUpPanel.php(19): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#51 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\SetUpPanel->handle(Object(Illuminate\\Http\\Request), Object(Closure), Object(Filament\\Panel))
+#52 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#53 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#55 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#56 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#57 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#58 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))
+#59 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#60 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#62 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#65 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#68 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#69 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#70 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#72 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#74 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#76 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#77 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#78 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#79 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#80 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#81 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#82 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1219): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#83 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/public/index.php(20): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#84 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/pais/Doc...')
+#85 {main}
+"} 
+[2025-05-05 06:43:27] local.ERROR: Unhandled match case App\Enums\RequestStatus::DITERUSKANKEOPERATOR {"userId":1,"exception":"[object] (UnhandledMatchError(code: 0): Unhandled match case App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR at /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/app/Enums/RequestStatus.php:38)
+[stacktrace]
+#0 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(46): App\\Enums\\RequestStatus->getLabel()
+#1 [internal function]: Filament\\Tables\\Filters\\SelectFilter->{closure:Filament\\Tables\\Filters\\Concerns\\HasOptions::getOptions():45}(Array, App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR)
+#2 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(45): array_reduce(Array, Object(Closure), Array)
+#3 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/SelectFilter.php(281): Filament\\Tables\\Filters\\SelectFilter->getOptions()
+#4 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasFormSchema.php(47): Filament\\Tables\\Filters\\SelectFilter->getFormField()
+#5 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Table/Concerns/HasFilters.php(186): Filament\\Tables\\Filters\\BaseFilter->getFormSchema()
+#6 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/HasFilters.php(32): Filament\\Tables\\Table->getFiltersFormSchema()
+#7 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/InteractsWithTable.php(60): Filament\\Resources\\Pages\\ListRecords->getTableFiltersForm()
+#8 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\ListRecords->bootedInteractsWithTable()
+#9 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#10 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#11 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#12 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#13 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(144): Livewire\\Wrapped->__call('bootedInteracts...', Array)
+#14 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(24): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callTraitHook('booted')
+#15 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount(Array, false)
+#16 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount(Array, false)
+#17 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::{closure:Livewire\\ComponentHookRegistry::boot():39}(Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#18 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#19 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#20 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('App\\\\Filament\\\\Re...', Array, NULL)
+#21 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(17): Livewire\\LivewireManager->mount('App\\\\Filament\\\\Re...', Array)
+#22 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/SupportPageComponents.php(117): Livewire\\Component->{closure:Livewire\\Features\\SupportPageComponents\\HandlesPageComponents::__invoke():14}()
+#23 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(14): Livewire\\Features\\SupportPageComponents\\SupportPageComponents::interceptTheRenderOfTheComponentAndRetreiveTheLayoutConfiguration(Object(Closure))
+#24 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): Livewire\\Component->__invoke()
+#25 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), '__invoke')
+#26 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()
+#27 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#28 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():807}(Object(Illuminate\\Http\\Request))
+#29 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DispatchServingFilamentEvent.php(15): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#30 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DispatchServingFilamentEvent->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DisableBladeIconComponents.php(14): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#32 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DisableBladeIconComponents->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#34 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#36 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(66): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#38 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(63): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#40 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#42 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#44 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#45 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#47 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#49 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/SetUpPanel.php(19): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#51 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\SetUpPanel->handle(Object(Illuminate\\Http\\Request), Object(Closure), Object(Filament\\Panel))
+#52 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#53 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#55 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#56 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#57 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#58 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))
+#59 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#60 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#62 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#65 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#68 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#69 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#70 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#72 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#74 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#76 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#77 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#78 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#79 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#80 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#81 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#82 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1219): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#83 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/public/index.php(20): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#84 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/pais/Doc...')
+#85 {main}
+"} 
+[2025-05-05 06:57:14] local.ERROR: Unhandled match case App\Enums\RequestStatus::DITERUSKANKEOPERATOR {"userId":1,"exception":"[object] (UnhandledMatchError(code: 0): Unhandled match case App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR at /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/app/Enums/RequestStatus.php:38)
+[stacktrace]
+#0 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(46): App\\Enums\\RequestStatus->getLabel()
+#1 [internal function]: Filament\\Tables\\Filters\\SelectFilter->{closure:Filament\\Tables\\Filters\\Concerns\\HasOptions::getOptions():45}(Array, App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR)
+#2 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(45): array_reduce(Array, Object(Closure), Array)
+#3 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/SelectFilter.php(281): Filament\\Tables\\Filters\\SelectFilter->getOptions()
+#4 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasFormSchema.php(47): Filament\\Tables\\Filters\\SelectFilter->getFormField()
+#5 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Table/Concerns/HasFilters.php(186): Filament\\Tables\\Filters\\BaseFilter->getFormSchema()
+#6 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/HasFilters.php(32): Filament\\Tables\\Table->getFiltersFormSchema()
+#7 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/InteractsWithTable.php(60): Filament\\Resources\\Pages\\ListRecords->getTableFiltersForm()
+#8 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\ListRecords->bootedInteractsWithTable()
+#9 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#10 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#11 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#12 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#13 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(144): Livewire\\Wrapped->__call('bootedInteracts...', Array)
+#14 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(24): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callTraitHook('booted')
+#15 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount(Array, false)
+#16 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount(Array, false)
+#17 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::{closure:Livewire\\ComponentHookRegistry::boot():39}(Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#18 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#19 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#20 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('App\\\\Filament\\\\Re...', Array, NULL)
+#21 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(17): Livewire\\LivewireManager->mount('App\\\\Filament\\\\Re...', Array)
+#22 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/SupportPageComponents.php(117): Livewire\\Component->{closure:Livewire\\Features\\SupportPageComponents\\HandlesPageComponents::__invoke():14}()
+#23 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(14): Livewire\\Features\\SupportPageComponents\\SupportPageComponents::interceptTheRenderOfTheComponentAndRetreiveTheLayoutConfiguration(Object(Closure))
+#24 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): Livewire\\Component->__invoke()
+#25 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), '__invoke')
+#26 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()
+#27 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#28 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():807}(Object(Illuminate\\Http\\Request))
+#29 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DispatchServingFilamentEvent.php(15): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#30 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DispatchServingFilamentEvent->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DisableBladeIconComponents.php(14): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#32 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DisableBladeIconComponents->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#34 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#36 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(66): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#38 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(63): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#40 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#42 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#44 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#45 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#47 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#49 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/SetUpPanel.php(19): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#51 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\SetUpPanel->handle(Object(Illuminate\\Http\\Request), Object(Closure), Object(Filament\\Panel))
+#52 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#53 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#55 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#56 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#57 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#58 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))
+#59 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#60 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#62 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#65 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#68 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#69 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#70 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#72 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#74 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#76 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#77 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#78 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#79 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#80 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#81 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#82 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1219): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#83 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/public/index.php(20): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#84 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/pais/Doc...')
+#85 {main}
+"} 
+[2025-05-05 07:45:34] local.ERROR: Unhandled match case App\Enums\RequestStatus::DITERUSKANKEOPERATOR {"userId":1,"exception":"[object] (UnhandledMatchError(code: 0): Unhandled match case App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR at /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/app/Enums/RequestStatus.php:38)
+[stacktrace]
+#0 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(46): App\\Enums\\RequestStatus->getLabel()
+#1 [internal function]: Filament\\Tables\\Filters\\SelectFilter->{closure:Filament\\Tables\\Filters\\Concerns\\HasOptions::getOptions():45}(Array, App\\Enums\\RequestStatus::DITERUSKANKEOPERATOR)
+#2 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasOptions.php(45): array_reduce(Array, Object(Closure), Array)
+#3 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/SelectFilter.php(281): Filament\\Tables\\Filters\\SelectFilter->getOptions()
+#4 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Filters/Concerns/HasFormSchema.php(47): Filament\\Tables\\Filters\\SelectFilter->getFormField()
+#5 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Table/Concerns/HasFilters.php(186): Filament\\Tables\\Filters\\BaseFilter->getFormSchema()
+#6 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/HasFilters.php(32): Filament\\Tables\\Table->getFiltersFormSchema()
+#7 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/tables/src/Concerns/InteractsWithTable.php(60): Filament\\Resources\\Pages\\ListRecords->getTableFiltersForm()
+#8 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\\Resources\\Pages\\ListRecords->bootedInteractsWithTable()
+#9 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate\\Container\\BoundMethod::{closure:Illuminate\\Container\\BoundMethod::call():35}()
+#10 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#11 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#12 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array)
+#13 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(144): Livewire\\Wrapped->__call('bootedInteracts...', Array)
+#14 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(24): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->callTraitHook('booted')
+#15 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\\Features\\SupportLifecycleHooks\\SupportLifecycleHooks->mount(Array, false)
+#16 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\\ComponentHook->callMount(Array, false)
+#17 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/EventBus.php(60): Livewire\\ComponentHookRegistry::{closure:Livewire\\ComponentHookRegistry::boot():39}(Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#18 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/helpers.php(98): Livewire\\EventBus->trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#19 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(50): Livewire\\trigger('mount', Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), Array, NULL, false)
+#20 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/LivewireManager.php(73): Livewire\\Mechanisms\\HandleComponents\\HandleComponents->mount('App\\\\Filament\\\\Re...', Array, NULL)
+#21 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(17): Livewire\\LivewireManager->mount('App\\\\Filament\\\\Re...', Array)
+#22 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/SupportPageComponents.php(117): Livewire\\Component->{closure:Livewire\\Features\\SupportPageComponents\\HandlesPageComponents::__invoke():14}()
+#23 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(14): Livewire\\Features\\SupportPageComponents\\SupportPageComponents::interceptTheRenderOfTheComponentAndRetreiveTheLayoutConfiguration(Object(Closure))
+#24 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): Livewire\\Component->__invoke()
+#25 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(265): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Filament\\Resources\\PengajuanResource\\Pages\\ListPengajuans), '__invoke')
+#26 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Route.php(211): Illuminate\\Routing\\Route->runController()
+#27 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate\\Routing\\Route->run()
+#28 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Routing\\Router->{closure:Illuminate\\Routing\\Router::runRouteWithinStack():807}(Object(Illuminate\\Http\\Request))
+#29 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DispatchServingFilamentEvent.php(15): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#30 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DispatchServingFilamentEvent->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/DisableBladeIconComponents.php(14): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#32 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\DisableBladeIconComponents->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#34 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(87): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#36 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(66): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#38 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(63): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#40 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#42 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(120): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#44 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(63): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#45 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(36): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#47 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(74): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#49 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/filament/filament/src/Http/Middleware/SetUpPanel.php(19): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#51 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Filament\\Http\\Middleware\\SetUpPanel->handle(Object(Illuminate\\Http\\Request), Object(Closure), Object(Filament\\Panel))
+#52 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#53 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#54 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#55 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#56 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#57 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#58 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(169): Illuminate\\Foundation\\Http\\Kernel->{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}(Object(Illuminate\\Http\\Request))
+#59 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():167}(Object(Illuminate\\Http\\Request))
+#60 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#62 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#63 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#65 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#67 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#68 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#69 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#70 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#72 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#73 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#74 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#75 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#76 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#77 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#78 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(208): Illuminate\\Http\\Middleware\\ValidatePathEncoding->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#79 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(126): Illuminate\\Pipeline\\Pipeline->{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():183}:184}(Object(Illuminate\\Http\\Request))
+#80 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#81 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#82 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1219): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#83 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/public/index.php(20): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#84 /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/pais/Doc...')
+#85 {main}
+"} 
+[2025-05-05 07:46:32] local.DEBUG: From: Laravel <hello@example.com>
+To: agustianto.d19@gmail.com
+Subject: Konfirmasi Pengajuan Anda
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 07:46:32 +0000
+Message-ID: <dc70b5a72eacf34ed8e9d8eadeec9e2f@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifikasi Pengajuan</title>
+</head>
+<body>
+    <h2>Halo, !</h2>
+    <p>Terima kasih telah melakukan pengajuan.</p>
+    <p><strong>Detail Pengajuan:</strong></p>
+    <ul>
+        <li><strong>Nama:</strong> </li>
+        <li><strong>NIM:</strong> </li>
+        <li><strong>Nomor Tracking:</strong> </li>
+    </ul>
+    <p>Nomor tracking ini akan digunakan untuk memantau status pengajuan Anda.</p>
+    <p>Pengajuan bisa cek di : http://taruh-urlnya-manual/track</p>
+    <br>
+    <p>Terima kasih.</p>
+</body>
+</html>
+  
+[2025-05-05 07:51:20] local.DEBUG: From: Laravel <hello@example.com>
+To: ahmdpais@student.ub.ac.id
+Subject: Konfirmasi Pengajuan Anda
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 07:51:20 +0000
+Message-ID: <5514a8ea6169d8b118d3122e94868ac3@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifikasi Pengajuan</title>
+</head>
+<body>
+    <h2>Halo, !</h2>
+    <p>Terima kasih telah melakukan pengajuan.</p>
+    <p><strong>Detail Pengajuan:</strong></p>
+    <ul>
+        <li><strong>Nama:</strong> </li>
+        <li><strong>NIM:</strong> </li>
+        <li><strong>Nomor Tracking:</strong> </li>
+    </ul>
+    <p>Nomor tracking ini akan digunakan untuk memantau status pengajuan Anda.</p>
+    <p>Pengajuan bisa cek di : http://taruh-urlnya-manual/track</p>
+    <br>
+    <p>Terima kasih.</p>
+</body>
+</html>
+  
+[2025-05-05 07:56:54] local.DEBUG: From: Laravel <hello@example.com>
+To: agustianto.d19@gmail.com
+Subject: Konfirmasi Pengajuan Anda
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 07:56:54 +0000
+Message-ID: <89d621739dea58feda1f9c6fe77f494d@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifikasi Pengajuan</title>
+</head>
+<body>
+    <h2>Halo, !</h2>
+    <p>Terima kasih telah melakukan pengajuan.</p>
+    <p><strong>Detail Pengajuan:</strong></p>
+    <ul>
+        <li><strong>Nama:</strong> </li>
+        <li><strong>NIM:</strong> </li>
+        <li><strong>Nomor Tracking:</strong> </li>
+    </ul>
+    <p>Nomor tracking ini akan digunakan untuk memantau status pengajuan Anda.</p>
+    <p>Pengajuan bisa cek di : http://taruh-urlnya-manual/track</p>
+    <br>
+    <p>Terima kasih.</p>
+</body>
+</html>
+  
+[2025-05-05 11:23:41] local.DEBUG: From: Laravel <hello@example.com>
+To: agustianto.d19@gmail.com
+Subject: Konfirmasi Pengajuan Anda
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 11:23:41 +0000
+Message-ID: <34ed6f130ed885f1b2001675c8acad81@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifikasi Pengajuan</title>
+</head>
+<body>
+    <h2>Halo, !</h2>
+    <p>Terima kasih telah melakukan pengajuan.</p>
+    <p><strong>Detail Pengajuan:</strong></p>
+    <ul>
+        <li><strong>Nama:</strong> </li>
+        <li><strong>NIM:</strong> </li>
+        <li><strong>Nomor Tracking:</strong> </li>
+    </ul>
+    <p>Nomor tracking ini akan digunakan untuk memantau status pengajuan Anda.</p>
+    <p>Pengajuan bisa cek di : http://taruh-urlnya-manual/track</p>
+    <br>
+    <p>Terima kasih.</p>
+</body>
+</html>
+  
+[2025-05-05 11:25:53] local.DEBUG: From: Laravel <hello@example.com>
+To: agustianto.d19@gmail.com
+Subject: Konfirmasi Pengajuan Anda
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 11:25:53 +0000
+Message-ID: <4895394431df1eaed7914703ab99d362@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notifikasi Pengajuan</title>
+</head>
+<body>
+    <h2>Halo, !</h2>
+    <p>Terima kasih telah melakukan pengajuan.</p>
+    <p><strong>Detail Pengajuan:</strong></p>
+    <ul>
+        <li><strong>Nama:</strong> </li>
+        <li><strong>NIM:</strong> </li>
+        <li><strong>Nomor Tracking:</strong> </li>
+    </ul>
+    <p>Nomor tracking ini akan digunakan untuk memantau status pengajuan Anda.</p>
+    <p>Pengajuan bisa cek di : http://taruh-urlnya-manual/track</p>
+    <br>
+    <p>Terima kasih.</p>
+</body>
+</html>
+  

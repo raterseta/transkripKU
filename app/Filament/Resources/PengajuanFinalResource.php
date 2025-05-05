@@ -9,7 +9,6 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -74,9 +73,15 @@ class PengajuanFinalResource extends Resource
                                     ->disabled()
                                     ->columnSpanFull(),
 
-                                ViewField::make('file_pendukung')
-                                    ->label('Preview File')
-                                    ->view('components.preview-file')
+                                FileUpload::make('supporting_document_url')
+                                    ->label('File Pendukung')
+                                    ->disk('public')
+                                    ->directory('thesis_supporting_documents')
+                                    ->preserveFilenames()
+                                    ->openable()
+                                    ->disabled()
+                                    ->downloadable()
+                                    ->previewable('true')
                                     ->columnSpanFull(),
 
                             ])

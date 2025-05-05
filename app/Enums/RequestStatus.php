@@ -9,6 +9,7 @@ enum RequestStatus: string implements HasLabel {
     case PROSESKAPRODI          = 'diproses_kaprodi';
     case DIKEMBALIKANKEOPERATOR = 'dikembalikan_ke_operator';
     case DIKEMBALIKANKEKAPRODI  = 'dikembalikan_ke_kaprodi';
+    case DITERUSKANKEOPERATOR   = 'diteruskan_ke_operator';
     case DITOLAK                = 'ditolak';
     case SELESAI                = 'selesai';
 
@@ -19,6 +20,7 @@ enum RequestStatus: string implements HasLabel {
             self::PROSESKAPRODI => 'info',
             self::DIKEMBALIKANKEKAPRODI => 'warning',
             self::DIKEMBALIKANKEOPERATOR => 'warning',
+            self::DITERUSKANKEOPERATOR => 'info',
             self::DITOLAK => 'danger',
             self::SELESAI => 'success'
         };
@@ -31,8 +33,22 @@ enum RequestStatus: string implements HasLabel {
             self::PROSESKAPRODI => 'Diproses Kaprodi',
             self::DIKEMBALIKANKEOPERATOR => 'Dikembalikan Ke Operator',
             self::DIKEMBALIKANKEKAPRODI => 'Dikembalikan ke Kaprodi',
+            self::DITERUSKANKEOPERATOR => 'Diteruskan ke Operator',
             self::DITOLAK => 'Ditolak',
             self::SELESAI => 'Selesai'
+        };
+    }
+
+    public function getStatusStep(): int
+    {
+        return match ($this) {
+            self::PROSESOPERATOR => 1,
+            self::PROSESKAPRODI => 2,
+            self::DIKEMBALIKANKEOPERATOR => 3,
+            self::DIKEMBALIKANKEKAPRODI => 4,
+            self::DITERUSKANKEOPERATOR => 5,
+            self::DITOLAK => 6,
+            self::SELESAI => 7
         };
     }
 }

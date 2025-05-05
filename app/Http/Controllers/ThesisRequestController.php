@@ -12,16 +12,18 @@ class ThesisRequestController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'student_nim'        => 'required|string',
-            'student_name'       => 'required|string',
-            'student_email'      => 'required|email',
-            'consultation_notes' => 'nullable|string',
-            'transcript_url'     => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'student_nim'             => 'required|string',
+            'student_name'            => 'required|string',
+            'student_email'           => 'required|email',
+            'student_notes'           => 'nullable|string',
+            'consultation_notes'      => 'nullable|string',
+            'supporting_document_url' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'transcript_url'          => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
         ]);
 
-        if ($request->hasFile('transcript_url')) {
-            $path                        = $request->file('transcript_url')->store('thesis_transcripts', 'public');
-            $validated['transcript_url'] = $path;
+        if ($request->hasFile('supporting_document_url')) {
+            $path                                 = $request->file('supporting_document_url')->store('thesis_supporting_documents', 'public');
+            $validated['supporting_document_url'] = $path;
         }
 
         $lastRequest = ThesisTranscriptRequest::orderBy('created_at', 'desc')->first();

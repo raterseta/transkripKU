@@ -90,13 +90,13 @@
               <input id="student_email" name="student_email" required type="email" placeholder="Email" class="border-solid w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm font-poppins" />
             </div>
             <div class="space-y-2 text-left">
-              <label class="font-semibold font-poppins" for="keterangan">Keterangan Konsultasi</label>
+              <label class="font-semibold font-poppins" for="keterangan">Catatan Tambahan</label>
               <Textarea
                 id="student_notes"
                 name="student_notes"
                 contenteditable="true"
                 class="font-poppins w-full h-40 p-3 border-solid border border-gray-300 font-mono text-sm rounded-md focus:outline-none resize-none"
-                placeholder="Masukkan Keterangan Konsultasi..."></Textarea>
+                placeholder="Masukkan catatan tambahan"></Textarea>
             </div>
 
             <!-- Upload Transkrip + Tombol Submit -->
@@ -105,8 +105,8 @@
               <label class="block">
                 <span class="font-semibold font-poppins">Upload Dokumen Pendukung</span>
                 <input
-                  id="file_pendukung"
-                  name="file_pendukung"
+                  id="supporting_document_url"
+                  name="supporting_document_url"
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   class="block w-full text-sm text-gray-500
@@ -171,23 +171,21 @@
 <?php endif; ?>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const submitButton = document.getElementById('submitBtn'); // ubah ini
+      const submitButton = document.getElementById('submitBtn');
       const form = document.getElementById('formPengajuanFinal');
 
       submitButton.addEventListener('click', function () {
         if (form.checkValidity()) {
-          // Kalau semua field required sudah diisi, tampilkan modal
           const modal = new bootstrap.Modal(document.getElementById('successModal'));
           modal.show();
         } else {
-          // Kalau belum lengkap, munculin browser validation message
           form.reportValidity();
         }
       });
 
       const confirmSubmitButton = document.getElementById('confirmSubmit');
       confirmSubmitButton.addEventListener('click', function () {
-        form.submit(); // Baru submit ke server
+        form.submit();
       });
     });
 
@@ -195,6 +193,4 @@
 </body>
 
 </html>
-
-<!-- tambahkan label "Upload Transkrip Akademik" yang isinya upload file. Label ini ditaruh sebaris dengan button (nanti pake justtify-between antara label upload dan button) -->
 <?php /**PATH /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/resources/views/mahasiswa/pengajuan/pengajuan-final.blade.php ENDPATH**/ ?>

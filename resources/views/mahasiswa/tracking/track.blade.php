@@ -16,9 +16,9 @@
       @guest
         <x-navbar-notrack />
       @endguest
-    <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10">
+    <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10 h-[90dvh]">
       <div class="flex flex-col w-full max-w-3xl pb-48">
-        
+
         <!-- Navigasi dan judul -->
         <div class="flex flex-row items-center pb-16">
           <a href="{{ url('/') }}" class="flex items-center space-x-2 transition">
@@ -34,11 +34,11 @@
           <form method="GET" action="{{ url('/track') }}">
             <div class="space-y-2 text-left font-poppins">
               <label for="tracking" class="font-semibold">Masukkan Nomor Tracking Kamu</label>
-              <input 
+              <input
                 id="tracking"
                 name="id"
-                type="text" 
-                placeholder="Nomor Tracking" 
+                type="text"
+                placeholder="Nomor Tracking"
                 class="text-sm bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300"
               />
             </div>

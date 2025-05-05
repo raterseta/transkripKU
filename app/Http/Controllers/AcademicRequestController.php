@@ -12,19 +12,21 @@ class AcademicRequestController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'student_nim'     => 'required|string',
-            'student_name'    => 'required|string',
-            'student_email'   => 'required|email',
-            'needs'           => 'required|string',
-            'language'        => 'required|string',
-            'signature_type'  => 'required|string|in:digital,basah',
-            'transcript_url'  => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
-            'retrieval_notes' => 'nullable|string',
+            'student_nim'             => 'required|string',
+            'student_name'            => 'required|string',
+            'student_email'           => 'required|email',
+            'student_notes'           => 'required|string',
+            'needs'                   => 'required|string',
+            'language'                => 'required|string',
+            'signature_type'          => 'required|string|in:digital,basah',
+            'supporting_document_url' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'transcript_url'          => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10240',
+            'retrieval_notes'         => 'nullable|string',
         ]);
 
-        if ($request->hasFile('transcript_url')) {
-            $path                        = $request->file('transcript_url')->store('transcripts', 'public');
-            $validated['transcript_url'] = $path;
+        if ($request->hasFile('supporting_document_url')) {
+            $path                                 = $request->file('supporting_document_url')->store('academic_supporting_documents', 'public');
+            $validated['supporting_document_url'] = $path;
         }
 
         $lastRequest = AcademicTranscriptRequest::orderBy('created_at', 'desc')->first();
