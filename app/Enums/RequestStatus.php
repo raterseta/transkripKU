@@ -44,11 +44,11 @@ enum RequestStatus: string implements HasLabel {
         return match ($this) {
             self::PROSESOPERATOR => 1,
             self::PROSESKAPRODI => 2,
-            self::DIKEMBALIKANKEOPERATOR => 3,
-            self::DIKEMBALIKANKEKAPRODI => 4,
-            self::DITERUSKANKEOPERATOR => 5,
-            self::DITOLAK => 6,
-            self::SELESAI => 7
+            self::DIKEMBALIKANKEOPERATOR => -1,
+            self::DIKEMBALIKANKEKAPRODI => -1,
+            self::DITERUSKANKEOPERATOR => 3,
+            self::DITOLAK => 0,
+            self::SELESAI => 4
         };
     }
 }

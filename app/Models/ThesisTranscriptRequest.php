@@ -22,6 +22,7 @@ class ThesisTranscriptRequest extends Model
         'transcript_url',
         'consultation_notes',
         'supporting_document_url',
+        'retrieval_date',
     ];
 
     protected $casts = [
