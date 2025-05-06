@@ -23,7 +23,7 @@ class EditPengajuan extends EditRecord
         if ($userRole === 'super_admin') {
             if ($this->record->status === RequestStatus::DITERUSKANKEOPERATOR) {
                 $actions[] = Actions\Action::make('kembalikan_ke_kaprodi')
-                    ->label('Kembalikan ke Kaprodi')
+                    ->label('Ke6mbalikan ke Kaprodi')
                     ->color('warning')
                     ->icon('heroicon-o-arrow-uturn-left')
                     ->requiresConfirmation()
@@ -49,7 +49,7 @@ class EditPengajuan extends EditRecord
                                 'tracking_number'                => $this->record->tracking_number,
                                 'academic_transcript_request_id' => $this->record->id,
                                 'status'                         => RequestStatus::DIKEMBALIKANKEKAPRODI,
-                                'action_desc'                    => "Pengajuan dikembalikan ke Kaprodi oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                                'action_desc'                    => "Pengajuan dikembalikan ke Kaprodi oleh Operator",
                                 'action_notes'                   => $data['action_notes'],
                                 'request_transcript_url'         => $this->record->transcript_url,
                             ]);
@@ -86,7 +86,7 @@ class EditPengajuan extends EditRecord
                             'tracking_number'                => $this->record->tracking_number,
                             'academic_transcript_request_id' => $this->record->id,
                             'status'                         => RequestStatus::DITOLAK,
-                            'action_desc'                    => "Pengajuan ditolak oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                            'action_desc'                    => "Pengajuan ditolak oleh Operator Akademik, alasan: {$data['action_notes']}",
                             'action_notes'                   => $data['action_notes'],
                             'request_transcript_url'         => $this->record->transcript_url,
                             'request_notes'                  => $this->record->notes,
@@ -127,7 +127,7 @@ class EditPengajuan extends EditRecord
                                 'tracking_number'                => $this->record->tracking_number,
                                 'academic_transcript_request_id' => $this->record->id,
                                 'status'                         => RequestStatus::DIKEMBALIKANKEOPERATOR,
-                                'action_desc'                    => "Pengajuan dikembalikan ke Operator oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                                'action_desc'                    => "Pengajuan dikembalikan ke Operator Akademik oleh Kaprodi",
                                 'action_notes'                   => $data['action_notes'],
                                 'request_transcript_url'         => $this->record->transcript_url,
                             ]);
@@ -165,7 +165,7 @@ class EditPengajuan extends EditRecord
                                 'tracking_number'                => $this->record->tracking_number,
                                 'academic_transcript_request_id' => $this->record->id,
                                 'status'                         => RequestStatus::DIKEMBALIKANKEOPERATOR,
-                                'action_desc'                    => "Pengajuan dikembalikan ke Operator oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                                'action_desc'                    => "Pengajuan dikembalikan ke Operator Akademik oleh Kaprodi",
                                 'action_notes'                   => $data['action_notes'],
                                 'request_transcript_url'         => $this->record->transcript_url,
                             ]);
@@ -215,22 +215,45 @@ class EditPengajuan extends EditRecord
     protected function handleRecordUpdate(Model $record, array $data): Model
     {
         return DB::transaction(function () use ($record, $data) {
-            $oldStatus = $record->status;
+            $oldStatus = $record->status instanceof RequestStatus ? $record->status->value : $record->status;
 
             $notesContent = $data['notes'] ?? null;
 
             $record->update($data);
 
-            if ($oldStatus !== $record->status) {
-                $user = auth()->user();
-                RequestTrack::create([
-                    'tracking_number'                => $record->tracking_number,
-                    'academic_transcript_request_id' => $record->id,
-                    'status'                         => $record->status,
-                    'action_desc'                    => "Status diperbarui ke: " . $record->status->getLabel(),
-                    'action_notes'                   => $notesContent,
-                    'request_transcript_url'         => $record->transcript_url,
-                ]);
+            $newStatus = $record->status instanceof RequestStatus ? $record->status->value : $record->status;
+
+            if ($oldStatus != $newStatus) {
+                \Log::info("Status changed from {$oldStatus} to {$newStatus}");
+
+                if ($newStatus === RequestStatus::SELESAI->value) {
+                    RequestTrack::create([
+                        'tracking_number'                => $record->tracking_number,
+                        'academic_transcript_request_id' => $record->id,
+                        'status'                         => $newStatus,
+                        'action_desc'                    => "Transkrip akademik selesai diproses dan dikirim kepada {$record->student_email}",
+                        'action_notes'                   => $notesContent,
+                        'request_transcript_url'         => $record->transcript_url,
+                    ]);
+                } else if ($newStatus === RequestStatus::PROSESKAPRODI->value) {
+                    RequestTrack::create([
+                        'tracking_number'                => $record->tracking_number,
+                        'academic_transcript_request_id' => $record->id,
+                        'status'                         => $newStatus,
+                        'action_desc'                    => "Pengajuan dikirim kepada kaprodi untuk tanda tangan",
+                        'action_notes'                   => $notesContent,
+                        'request_transcript_url'         => $record->transcript_url,
+                    ]);
+                } else if ($newStatus === RequestStatus::DITERUSKANKEOPERATOR->value) {
+                    RequestTrack::create([
+                        'tracking_number'                => $record->tracking_number,
+                        'academic_transcript_request_id' => $record->id,
+                        'status'                         => $newStatus,
+                        'action_desc'                    => "Pengajuan selesai ditanda tangani dan diteruskan kepada operator akademik",
+                        'action_notes'                   => $notesContent,
+                        'request_transcript_url'         => $record->transcript_url,
+                    ]);
+                }
             }
 
             return $record;
