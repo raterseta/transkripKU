@@ -47,10 +47,11 @@ class AcademicRequestController extends Controller
         $transcriptRequest = AcademicTranscriptRequest::create($validated);
 
         $transcriptRequest->track()->create([
-            'status'          => RequestStatus::PROSESOPERATOR,
-            'tracking_number' => $newTrackingNumber,
-            'action_notes'    => 'Pengajuan baru',
-            'action_desc'     => 'Pengajuan transkrip akademik diterima dan sedang diproses oleh operator',
+            'status'                         => RequestStatus::PROSESOPERATOR,
+            'tracking_number'                => $newTrackingNumber,
+            'academic_transcript_request_id' => $transcriptRequest->id,
+            'action_notes'                   => 'Pengajuan baru',
+            'action_desc'                    => 'Pengajuan transkrip akademik diterima dan sedang diproses oleh operator',
         ]);
 
         Mail::to($validated['student_email'])->send(
