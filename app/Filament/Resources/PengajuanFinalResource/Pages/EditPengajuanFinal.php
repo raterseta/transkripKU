@@ -244,7 +244,7 @@ class EditPengajuanFinal extends EditRecord
         if ($userRole === 'super_admin') {
             $label = $record->status === RequestStatus::DITERUSKANKEOPERATOR ? 'Kirim ke mahasiswa' : 'Kirim ke kaprodi';
         } elseif ($userRole === 'kaprod') {
-            $label = 'Selesai tanda tangan';
+            $label = 'Kirim jadwal konsultasi';
         }
 
         return parent::getSaveFormAction()

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 use App\Enums\RequestStatus;
 use App\Filament\Resources\PengajuanFinalResource\Pages;
 use App\Models\ThesisTranscriptRequest;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
@@ -125,7 +126,7 @@ class PengajuanFinalResource extends Resource
                                             })
                                             ->dehydrated(false)
                                             ->columnSpanFull(),
-                                        FileUpload::make('request_transcript_url')
+                                        FileUpload::make('request_ transcript_url')
                                             ->label('Transkrip Mahasiswa')
                                             ->disk('public')
                                             ->directory('thesis_transcript')
@@ -161,13 +162,22 @@ class PengajuanFinalResource extends Resource
                             ->extraAttributes(['class' => 'sticky top-24'])
                             ->columnSpan(1),
 
-                        Section::make('Upload Transkrip')
+                        Section::make('Detail Transkrip')
                             ->schema([
+                                DateTimePicker::make('retrieval_date')
+                                    ->label('Jadwal Konsultasi')
+                                    ->seconds(false)
+                                    ->visible(function ($record) {
+                                        return $record && $record->status === RequestStatus::PROSESKAPRODI;
+                                    }),
                                 FileUpload::make('transcript_url')
                                     ->disk('public')
                                     ->directory('thesis_transcript')
                                     ->preserveFilenames()
-                                    ->openable(),
+                                    ->openable()
+                                    ->visible(function ($record) {
+                                        return $record && $record->status !== RequestStatus::PROSESKAPRODI;
+                                    }),
                             ])
                             ->columnSpan(2)
                             ->collapsible(),
