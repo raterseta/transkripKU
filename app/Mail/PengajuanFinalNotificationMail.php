@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -20,15 +19,15 @@ class PengajuanFinalNotificationMail extends Mailable
     public function build()
     {
         return $this->subject('Informasi Pengajuan Final Anda')
-                    ->markdown('emails.Pengajuan-final')
-                    ->with([
-                        'nama' => $this->record->nama,
-                        'keterangan' => $this->record->keterangan,
-                        'file_transkrip' => $this->record->file_transkrip,
-                    ])
-                    ->attach(public_path('storage/' . $this->record->file_transkrip), [
-                        'as' => 'Transkrip-Akhir.pdf', // nama file di email
-                        'mime' => 'application/pdf',
-                    ]);
+            ->markdown('emails.Pengajuan-final')
+            ->with([
+                'nama'           => $this->record->nama,
+                'keterangan'     => $this->record->keterangan,
+                'file_transkrip' => $this->record->file_transkrip,
+            ])
+            ->attach(public_path('storage/' . $this->record->file_transkrip), [
+                'as'   => 'Transkrip-Akhir.pdf',
+                'mime' => 'application/pdf',
+            ]);
     }
 }
