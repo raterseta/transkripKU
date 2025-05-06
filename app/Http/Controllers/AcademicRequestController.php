@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RequestStatus;
-use App\Mail\NotifikasiKodeTrack;
+use App\Mail\AcademicRequestMail;
 use App\Models\AcademicTranscriptRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -54,10 +54,8 @@ class AcademicRequestController extends Controller
             'action_desc'                    => 'Pengajuan transkrip akademik diterima dan sedang diproses oleh operator',
         ]);
 
-        Mail::to($validated['student_email'])->send(
-            new NotifikasiKodeTrack($transcriptRequest)
-        );
+        Mail::to($validated['student_email'])->send(new AcademicRequestMail($transcriptRequest));
 
-        return redirect('/')->with('success', 'Pengajuan Final berhasil dikirim');
+        return redirect('/')->with('success', 'Pengajuan Final berhasil dikirim. Mohon cek email Anda untuk informasi tracking number.');
     }
 }

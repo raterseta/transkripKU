@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -22,9 +21,9 @@ class NotifikasiKodeTrack extends Mailable
         return $this->subject('Konfirmasi Pengajuan Anda')
             ->view('emails.notifikasi-pengajuan')
             ->with([
-                'nama' => $this->record->nama,
-                'nim' => $this->record->nim,
-                'custom_id' => $this->record->custom_id,
+                'nama'      => $this->record->student_name,
+                'nim'       => $this->record->student_nim,
+                'custom_id' => $this->record->tracking_number,
             ]);
     }
 }

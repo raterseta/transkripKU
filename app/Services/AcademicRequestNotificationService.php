@@ -1,0 +1,106 @@
+<?php
+namespace App\Services;
+
+use App\Enums\RequestStatus;
+use App\Mail\AcademicRequestCompletedMail;
+use App\Mail\AcademicRequestRejectedMail;
+use App\Mail\AcademicRequestStaffNotificationMail;
+use App\Models\AcademicTranscriptRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+
+class AcademicRequestNotificationService
+{
+    public function sendStatusChangeNotification(
+        AcademicTranscriptRequest $request,
+        string $oldStatus,
+        string $newStatus,
+        ?string $notes = null
+    ): void {
+        switch ($newStatus) {
+            case RequestStatus::PROSESKAPRODI->value:
+                $this->notifyKaprodi($request, $oldStatus, $newStatus, $notes);
+                break;
+
+            case RequestStatus::DITERUSKANKEOPERATOR->value:
+                $this->notifyOperator($request, $oldStatus, $newStatus, $notes);
+                break;
+
+            case RequestStatus::DIKEMBALIKANKEOPERATOR->value:
+                $this->notifyOperator($request, $oldStatus, $newStatus, $notes);
+                break;
+
+            case RequestStatus::DIKEMBALIKANKEKAPRODI->value:
+                $this->notifyKaprodi($request, $oldStatus, $newStatus, $notes);
+                break;
+
+            case RequestStatus::SELESAI->value:
+                $this->notifyStudent($request, $newStatus);
+                break;
+
+            case RequestStatus::DITOLAK->value:
+                $this->notifyStudent($request, $newStatus, $notes);
+                break;
+        }
+    }
+
+    protected function notifyKaprodi(
+        AcademicTranscriptRequest $request,
+        string $oldStatus,
+        string $newStatus,
+        ?string $notes = null
+    ): void {
+        $kaprodiUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'kaprod');
+        })->get();
+
+        foreach ($kaprodiUsers as $kaprodi) {
+            Mail::to($kaprodi->email)->send(
+                new AcademicRequestStaffNotificationMail(
+                    $request,
+                    $oldStatus,
+                    $newStatus,
+                    $notes,
+                    'kaprodi'
+                )
+            );
+        }
+    }
+
+    protected function notifyOperator(
+        AcademicTranscriptRequest $request,
+        string $oldStatus,
+        string $newStatus,
+        ?string $notes = null
+    ): void {
+        // Get Operator users
+        $operatorUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'super_admin');
+        })->get();
+
+        foreach ($operatorUsers as $operator) {
+            Mail::to($operator->email)->send(
+                new AcademicRequestStaffNotificationMail(
+                    $request,
+                    $oldStatus,
+                    $newStatus,
+                    $notes,
+                    'operator'
+                )
+            );
+        }
+    }
+
+    protected function notifyStudent(AcademicTranscriptRequest $request, string $status, ?string $notes = null): void
+    {
+        switch ($status) {
+            case RequestStatus::SELESAI->value:
+                Mail::to($request->student_email)->send(new AcademicRequestCompletedMail($request));
+                break;
+
+            case RequestStatus::DITOLAK->value:
+                Mail::to($request->student_email)->send(new AcademicRequestRejectedMail($request, $notes));
+                break;
+        }
+    }
+}
