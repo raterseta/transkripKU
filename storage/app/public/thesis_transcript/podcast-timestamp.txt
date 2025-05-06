@@ -1,0 +1,12 @@
+Video Timestamp:
+Splash Screen 00:28
+On Boarding 03:19
+Register 07:31
+Login 13:33
+Home 15:40
+History 32:04
+Profile 43:15
+Friend 44:10
+Folder Structure 50:48
+Database Config 53:28
+

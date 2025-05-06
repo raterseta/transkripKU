@@ -105,7 +105,6 @@ class PengajuanResource extends Resource
                                             ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
                                     ])
                                     ->columnSpan(1),
-                                // track notes
                                 Section::make()
                                     ->schema([
                                         RichEditor::make('request_notes')
@@ -177,7 +176,7 @@ class PengajuanResource extends Resource
                             ->collapsible(),
                         Section::make('Notes')
                             ->schema([
-                                RichEditor::make('request')
+                                RichEditor::make('notes')
                                     ->label(''),
                             ])
                             ->columnSpan(2)

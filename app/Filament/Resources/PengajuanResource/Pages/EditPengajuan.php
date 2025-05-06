@@ -32,7 +32,7 @@ class EditPengajuan extends EditRecord
                 ->modalHeading('Tolak Pengajuan')
                 ->modalDescription('Pengajuan akan ditolak. Masukkan alasan penolakan.')
                 ->form([
-                    Textarea::make('action_desc')
+                    Textarea::make('action_notes')
                         ->label('Alasan')
                         ->required()
                         ->minLength(5)
@@ -51,8 +51,8 @@ class EditPengajuan extends EditRecord
                             'tracking_number'                => $this->record->tracking_number,
                             'academic_transcript_request_id' => $this->record->id,
                             'status'                         => RequestStatus::DITOLAK,
-                            'action_desc'                    => $data['action_desc'],
-                            'action_notes'                   => "Pengajuan ditolak oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                            'action_desc'                    => "Pengajuan ditolak oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                            'action_notes'                   => $data['action_notes'],
                             'request_transcript_url'         => $this->record->transcript_url,
                             'request_notes'                  => $this->record->notes,
                         ]);
@@ -64,6 +64,15 @@ class EditPengajuan extends EditRecord
         }
 
         return $actions;
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        if ($data['status'] !== RequestStatus::DITERUSKANKEOPERATOR->value) {
+            $data['transcript_url'] = null;
+        }
+
+        return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
@@ -83,7 +92,7 @@ class EditPengajuan extends EditRecord
             } else {
                 $data['status'] = $data['status'] === RequestStatus::DITERUSKANKEOPERATOR ? RequestStatus::SELESAI : RequestStatus::PROSESKAPRODI;
             }
-        } elseif ($userRole === 'kaprodi') {
+        } elseif ($userRole === 'kaprod') {
             $data['status'] = RequestStatus::DITERUSKANKEOPERATOR->value;
         }
 
@@ -122,7 +131,7 @@ class EditPengajuan extends EditRecord
 
         if ($userRole === 'super_admin') {
             $label = $record->status === RequestStatus::DITERUSKANKEOPERATOR ? 'Kirim ke mahasiswa' : 'Kirim ke kaprodi';
-        } elseif ($userRole === 'kaprodi') {
+        } elseif ($userRole === 'kaprod') {
             $label = 'Selesai tanda tangan';
         }
 

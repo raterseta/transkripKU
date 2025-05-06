@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources;
 
+use App\Enums\RequestStatus;
 use App\Filament\Resources\PengajuanFinalResource\Pages;
 use App\Models\ThesisTranscriptRequest;
 use Filament\Forms\Components\FileUpload;
@@ -68,8 +69,8 @@ class PengajuanFinalResource extends Resource
                                     ->disabled()
                                     ->columnSpanFull(),
 
-                                RichEditor::make('keterangan')
-                                    ->label('Keterangan Konsultasi')
+                                RichEditor::make('student_notes')
+                                    ->label('Catatan Tambahan')
                                     ->disabled()
                                     ->columnSpanFull(),
 
@@ -81,33 +82,97 @@ class PengajuanFinalResource extends Resource
                                     ->openable()
                                     ->disabled()
                                     ->downloadable()
-                                    ->previewable('true')
+                                    ->previewable(true)
                                     ->columnSpanFull(),
 
                             ])
                             ->columns(2)
                             ->columnSpan(2),
 
-                        Section::make('Informasi')
+                        Grid::make(1)
                             ->schema([
-                                Placeholder::make('created_at')
-                                    ->label('Created at')
-                                    ->content(fn($record) => $record->created_at?->format('d M Y H:i')),
+                                Section::make('Informasi')
+                                    ->schema([
+                                        Placeholder::make('created_at')
+                                            ->label('Created at')
+                                            ->content(fn($record) => $record->created_at?->format('d M Y H:i')),
+                                        Placeholder::make('updated_at')
+                                            ->label('Last modified at')
+                                            ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
+                                    ])
+                                    ->columnSpan(1),
+                                Section::make()
+                                    ->schema([
+                                        RichEditor::make('request_notes')
+                                            ->label(function ($record) {
+                                                if ($record && $record->status === RequestStatus::PROSESKAPRODI || $record && $record->status === RequestStatus::DIKEMBALIKANKEKAPRODI) {
+                                                    return 'Catatan Operator';
+                                                } elseif ($record && ($record->status === RequestStatus::DIKEMBALIKANKEOPERATOR ||
+                                                    $record->status === RequestStatus::DITERUSKANKEOPERATOR)) {
+                                                    return 'Catatan Kaprodi';
+                                                }
+                                                return 'Catatan';
+                                            })
+                                            ->disabled()
+                                            ->afterStateHydrated(function (RichEditor $component, ?ThesisTranscriptRequest $record) {
+                                                $notes = null;
 
-                                Placeholder::make('updated_at')
-                                    ->label('Last modified at')
-                                    ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
+                                                if ($record && method_exists($record, 'track')) {
+                                                    $notes = $record->track()->latest()->first()?->action_notes;
+                                                }
+
+                                                $component->state($notes);
+                                            })
+                                            ->dehydrated(false)
+                                            ->columnSpanFull(),
+                                        FileUpload::make('request_transcript_url')
+                                            ->label('Transkrip Mahasiswa')
+                                            ->disk('public')
+                                            ->directory('thesis_transcript')
+                                            ->preserveFilenames()
+                                            ->openable()
+                                            ->disabled()
+                                            ->downloadable()
+                                            ->afterStateHydrated(function (FileUpload $component, ?ThesisTranscriptRequest $record) {
+                                                $url = null;
+
+                                                if ($record && method_exists($record, 'track')) {
+                                                    $url = $record->track()->latest()->first()?->request_transcript_url;
+                                                }
+
+                                                if ($url) {
+                                                    $component->state([$url]);
+                                                }
+                                            })
+                                            ->dehydrated(false)
+                                            ->previewable(true)
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->columnSpan(1)
+                                    ->hidden(function ($record) {
+                                        if (! $record) {
+                                            return true;
+                                        }
+
+                                        $trackCount = $record->track()->count();
+                                        return $trackCount <= 1;
+                                    }),
                             ])
+                            ->extraAttributes(['class' => 'sticky top-24'])
                             ->columnSpan(1),
 
                         Section::make('Upload Transkrip')
                             ->schema([
-                                FileUpload::make('file_transkrip'),
+                                FileUpload::make('transcript_url')
+                                    ->disk('public')
+                                    ->directory('thesis_transcript')
+                                    ->preserveFilenames()
+                                    ->openable(),
                             ])
                             ->columnSpan(2)
                             ->collapsible(),
 
-                        Section::make('Notes')
+                        Section::make('Catatan')
                             ->schema([
                                 RichEditor::make('notes')
                                     ->label(''),
@@ -146,24 +211,52 @@ class PengajuanFinalResource extends Resource
                     ->attribute('status'),
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->visible(function ($record) {
+                        return static::hasAccess($record);
+                    }),
                 Tables\Actions\Action::make('kirimEmail')
                     ->label('Kirim Email')
                     ->icon('heroicon-o-paper-airplane')
                     ->action(function ($record) {
-                        \Mail::to($record->email)->send(new \App\Mail\PengajuanFinalNotificationMail($record));
+                        \Mail::to($record->student_email)->send(new \App\Mail\PengajuanNotificationMail($record));
                     })
                     ->requiresConfirmation()
                     ->color('success'),
-
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+            ->recordUrl(function ($record) {
+                if (static::hasAccess($record)) {
+                    return static::getUrl('edit', ['record' => $record]);
+                } else {
+                    return;
+                }
+            });
+    }
+
+    public static function hasAccess($record): bool
+    {
+        $userRole = auth()->user()->roles->pluck('name')->first();
+        if ($userRole === 'super_admin') {
+            return in_array($record->status->value, [
+                RequestStatus::PROSESOPERATOR->value,
+                RequestStatus::DITERUSKANKEOPERATOR->value,
+                RequestStatus::DIKEMBALIKANKEOPERATOR->value,
             ]);
+        } elseif ($userRole === 'kaprod') {
+            return $record->status->value === RequestStatus::PROSESKAPRODI->value || $record->status->value === RequestStatus::DIKEMBALIKANKEKAPRODI->value;
+        }
+        return false;
+    }
+    public static function isOperator($record): bool
+    {
+        $userRole = auth()->user()->roles->pluck('name')->first();
+        if ($userRole === 'super_admin') {
+            return in_array($record->status->value, [
+                RequestStatus::PROSESOPERATOR->value,
+                RequestStatus::DITERUSKANKEOPERATOR->value,
+            ]);
+        }
+        return false;
     }
 
     public static function getRelations(): array
