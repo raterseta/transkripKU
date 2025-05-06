@@ -18,12 +18,47 @@ class EditPengajuan extends EditRecord
     {
 
         $userRole = auth()->user()->roles->pluck('name')->first();
-
-        $userRole = auth()->user()->roles->pluck('name')->first();
-
-        $actions = [];
+        $actions  = [];
 
         if ($userRole === 'super_admin') {
+            if ($this->record->status === RequestStatus::DITERUSKANKEOPERATOR) {
+                $actions[] = Actions\Action::make('kembalikan_ke_kaprodi')
+                    ->label('Kembalikan ke Kaprodi')
+                    ->color('warning')
+                    ->icon('heroicon-o-arrow-uturn-left')
+                    ->requiresConfirmation()
+                    ->modalHeading('Kembalikan Pengajuan ke Kaprodi')
+                    ->modalDescription('Pengajuan akan dikembalikan ke Kaprodi. Masukkan alasan pengembalian.')
+                    ->form([
+                        Textarea::make('action_notes')
+                            ->label('Alasan')
+                            ->required()
+                            ->minLength(5)
+                            ->maxLength(255),
+                    ])
+                    ->action(function (array $data): void {
+                        DB::transaction(function () use ($data) {
+                            $oldStatus = $this->record->status;
+
+                            $this->record->update([
+                                'status' => RequestStatus::DIKEMBALIKANKEKAPRODI,
+                            ]);
+
+                            $user = auth()->user();
+                            RequestTrack::create([
+                                'tracking_number'                => $this->record->tracking_number,
+                                'academic_transcript_request_id' => $this->record->id,
+                                'status'                         => RequestStatus::DIKEMBALIKANKEKAPRODI,
+                                'action_desc'                    => "Pengajuan dikembalikan ke Kaprodi oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                                'action_notes'                   => $data['action_notes'],
+                                'request_transcript_url'         => $this->record->transcript_url,
+                            ]);
+
+                            $this->redirect(PengajuanResource::getUrl('index'));
+                        });
+                    });
+            }
+
             $actions[] = Actions\Action::make('tolak')
                 ->label('Tolak')
                 ->color('danger')
@@ -61,6 +96,84 @@ class EditPengajuan extends EditRecord
                         $this->redirect(PengajuanResource::getUrl('index'));
                     });
                 });
+        }
+
+        if ($userRole === 'kaprod') {
+            if ($this->record->status === RequestStatus::PROSESKAPRODI) {
+                $actions[] = Actions\Action::make('kembalikan_ke_operator')
+                    ->label('Kembalikan ke Operator')
+                    ->color('warning')
+                    ->icon('heroicon-o-arrow-uturn-left')
+                    ->requiresConfirmation()
+                    ->modalHeading('Kembalikan Pengajuan ke Operator')
+                    ->modalDescription('Pengajuan akan dikembalikan ke Operator. Masukkan alasan pengembalian.')
+                    ->form([
+                        Textarea::make('action_notes')
+                            ->label('Alasan')
+                            ->required()
+                            ->minLength(5)
+                            ->maxLength(255),
+                    ])
+                    ->action(function (array $data): void {
+                        DB::transaction(function () use ($data) {
+                            $oldStatus = $this->record->status;
+
+                            $this->record->update([
+                                'status' => RequestStatus::DIKEMBALIKANKEOPERATOR,
+                            ]);
+
+                            $user = auth()->user();
+                            RequestTrack::create([
+                                'tracking_number'                => $this->record->tracking_number,
+                                'academic_transcript_request_id' => $this->record->id,
+                                'status'                         => RequestStatus::DIKEMBALIKANKEOPERATOR,
+                                'action_desc'                    => "Pengajuan dikembalikan ke Operator oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                                'action_notes'                   => $data['action_notes'],
+                                'request_transcript_url'         => $this->record->transcript_url,
+                            ]);
+
+                            $this->redirect(PengajuanResource::getUrl('index'));
+                        });
+                    });
+            }
+
+            if ($this->record->status === RequestStatus::DIKEMBALIKANKEKAPRODI) {
+                $actions[] = Actions\Action::make('kembalikan_ke_operator_from_returned')
+                    ->label('Kembalikan ke Operator')
+                    ->color('warning')
+                    ->icon('heroicon-o-arrow-uturn-left')
+                    ->requiresConfirmation()
+                    ->modalHeading('Kembalikan Pengajuan ke Operator')
+                    ->modalDescription('Pengajuan akan dikembalikan ke Operator. Masukkan alasan pengembalian.')
+                    ->form([
+                        Textarea::make('action_notes')
+                            ->label('Alasan')
+                            ->required()
+                            ->minLength(5)
+                            ->maxLength(255),
+                    ])
+                    ->action(function (array $data): void {
+                        DB::transaction(function () use ($data) {
+                            $oldStatus = $this->record->status;
+
+                            $this->record->update([
+                                'status' => RequestStatus::DIKEMBALIKANKEOPERATOR,
+                            ]);
+
+                            $user = auth()->user();
+                            RequestTrack::create([
+                                'tracking_number'                => $this->record->tracking_number,
+                                'academic_transcript_request_id' => $this->record->id,
+                                'status'                         => RequestStatus::DIKEMBALIKANKEOPERATOR,
+                                'action_desc'                    => "Pengajuan dikembalikan ke Operator oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                                'action_notes'                   => $data['action_notes'],
+                                'request_transcript_url'         => $this->record->transcript_url,
+                            ]);
+
+                            $this->redirect(PengajuanResource::getUrl('index'));
+                        });
+                    });
+            }
         }
 
         return $actions;
@@ -103,6 +216,9 @@ class EditPengajuan extends EditRecord
     {
         return DB::transaction(function () use ($record, $data) {
             $oldStatus = $record->status;
+
+            $notesContent = $data['notes'] ?? null;
+
             $record->update($data);
 
             if ($oldStatus !== $record->status) {
@@ -112,9 +228,8 @@ class EditPengajuan extends EditRecord
                     'academic_transcript_request_id' => $record->id,
                     'status'                         => $record->status,
                     'action_desc'                    => "Status diperbarui ke: " . $record->status->getLabel(),
-                    'action_notes'                   => "Diperbarui oleh: {$user->name} ({$user->roles->pluck('name')->first()})",
+                    'action_notes'                   => $notesContent,
                     'request_transcript_url'         => $record->transcript_url,
-                    'request_notes'                  => $record->notes,
                 ]);
             }
 

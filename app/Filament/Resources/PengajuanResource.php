@@ -46,13 +46,16 @@ class PengajuanResource extends Resource
                             ->schema([
                                 TextInput::make('student_name')
                                     ->label('Nama')
+                                    ->disabled()
                                     ->required(),
                                 TextInput::make('student_email')
                                     ->label('Email')
+                                    ->disabled()
                                     ->email()
                                     ->required(),
                                 TextInput::make('student_nim')
                                     ->label('NIM')
+                                    ->disabled()
                                     ->required(),
                                 Select::make('keperluan')
                                     ->label('Keperluan Pengajuan')
@@ -61,7 +64,7 @@ class PengajuanResource extends Resource
                                         'Beasiswa'     => 'Beasiswa',
                                         'Skripsi'      => 'Skripsi',
                                     ])
-                                    ->default('Skripsi')
+                                    ->disabled()
                                     ->selectablePlaceholder(false),
                                 Select::make('language')
                                     ->label('Bahasa')
@@ -69,12 +72,12 @@ class PengajuanResource extends Resource
                                         'inggris'   => 'Inggris',
                                         'indonesia' => 'Indonesia',
                                     ])
-                                    ->default('Inggris')
+                                    ->disabled()
                                     ->selectablePlaceholder(false),
                                 Select::make('signature_type')
                                     ->label('Tanda Tangan')
                                     ->options(SignatureType::class)
-                                    ->default('Basah')
+                                    ->disabled()
                                     ->selectablePlaceholder(false),
                                 RichEditor::make('student_notes')
                                     ->label('Catatan Tambahan')
@@ -88,7 +91,7 @@ class PengajuanResource extends Resource
                                     ->openable()
                                     ->disabled()
                                     ->downloadable()
-                                    ->previewable('true')
+                                    ->previewable(true)
                                     ->columnSpanFull(),
                             ])
                             ->columns(2)
@@ -109,10 +112,13 @@ class PengajuanResource extends Resource
                                     ->schema([
                                         RichEditor::make('request_notes')
                                             ->label(function ($record) {
-                                                if ($record && $record->status === RequestStatus::PROSESKAPRODI) {
+
+                                                if ($record && $record->status === RequestStatus::PROSESKAPRODI || $record && $record->status === RequestStatus::DIKEMBALIKANKEKAPRODI) {
                                                     return 'Catatan Operator';
                                                 } elseif ($record && ($record->status === RequestStatus::DIKEMBALIKANKEOPERATOR ||
+
                                                     $record->status === RequestStatus::DITERUSKANKEOPERATOR)) {
+
                                                     return 'Catatan Kaprodi';
                                                 }
                                                 return 'Catatan';
@@ -122,7 +128,7 @@ class PengajuanResource extends Resource
                                                 $notes = null;
 
                                                 if ($record && method_exists($record, 'track')) {
-                                                    $notes = $record->track()->latest()->first()?->request_notes;
+                                                    $notes = $record->track()->latest()->first()?->action_notes;
                                                 }
 
                                                 $component->state($notes);
@@ -236,9 +242,10 @@ class PengajuanResource extends Resource
             return in_array($record->status->value, [
                 RequestStatus::PROSESOPERATOR->value,
                 RequestStatus::DITERUSKANKEOPERATOR->value,
+                RequestStatus::DIKEMBALIKANKEOPERATOR->value,
             ]);
         } elseif ($userRole === 'kaprod') {
-            return $record->status->value === RequestStatus::PROSESKAPRODI->value;
+            return $record->status->value === RequestStatus::PROSESKAPRODI->value || $record->status->value === RequestStatus::DIKEMBALIKANKEKAPRODI->value;
         }
         return false;
     }
