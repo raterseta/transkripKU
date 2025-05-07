@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RequestStatus;
-use App\Mail\NotifikasiKodeTrack;
+use App\Mail\ThesisRequestMail;
 use App\Models\ThesisTranscriptRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -49,9 +49,7 @@ class ThesisRequestController extends Controller
             'thesis_transcript_request_id' => $thesisRequest->id,
         ]);
 
-        Mail::to($validated['student_email'])->send(
-            new NotifikasiKodeTrack($thesisRequest)
-        );
+        Mail::to($validated['student_email'])->send(new ThesisRequestMail($thesisRequest));
 
         return redirect('/')->with('success', 'Pengajuan transkrip skripsi berhasil dikirim');
     }
