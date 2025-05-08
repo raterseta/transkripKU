@@ -218,14 +218,6 @@ class PengajuanResource extends Resource
                     ->visible(function ($record) {
                         return static::hasAccess($record);
                     }),
-                Tables\Actions\Action::make('kirimEmail')
-                    ->label('Kirim Email')
-                    ->icon('heroicon-o-paper-airplane')
-                    ->action(function ($record) {
-                        \Mail::to($record->student_email)->send(new \App\Mail\PengajuanNotificationMail($record));
-                    })
-                    ->requiresConfirmation()
-                    ->color('success'),
             ])
             ->recordUrl(function ($record) {
                 if (static::hasAccess($record)) {

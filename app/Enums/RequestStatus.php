@@ -38,17 +38,4 @@ enum RequestStatus: string implements HasLabel {
             self::SELESAI => 'Selesai'
         };
     }
-
-    public function getStatusStep(): int
-    {
-        return match ($this) {
-            self::PROSESOPERATOR => 1,
-            self::PROSESKAPRODI => 2,
-            self::DIKEMBALIKANKEOPERATOR => -1,
-            self::DIKEMBALIKANKEKAPRODI => -1,
-            self::DITERUSKANKEOPERATOR => 3,
-            self::DITOLAK => 0,
-            self::SELESAI => 4
-        };
-    }
 }

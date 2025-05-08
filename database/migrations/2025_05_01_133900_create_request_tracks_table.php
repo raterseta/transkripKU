@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('tracking_number');
             $table->uuid('academic_transcript_request_id')->nullable();
             $table->uuid('thesis_transcript_request_id')->nullable();
-            $table->integer('step')->default(1);
             $table->string('action_notes')->nullable();
             $table->string('action_desc');
             $table->string('request_notes')->nullable();
