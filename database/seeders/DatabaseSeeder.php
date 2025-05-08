@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
             ThesisTranscriptRequestSeeder::class,
             RequestTrackSeeder::class,
             UserSeeder::class,
-            LogSeeder::class,
         ]);
     }
 }

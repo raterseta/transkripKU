@@ -86,7 +86,7 @@
         .btn {
             display: inline-block;
             background-color: #ff8c42;
-            color: white;
+            color: white !important;
             padding: 12px 30px;
             text-decoration: none;
             border-radius: 50px;

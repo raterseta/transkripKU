@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RequestStatus;
+use App\Helpers\TrackingNumberGenerator;
 use App\Mail\AcademicRequestMail;
 use App\Models\AcademicTranscriptRequest;
 use Illuminate\Http\Request;
@@ -29,17 +30,7 @@ class AcademicRequestController extends Controller
             $validated['supporting_document_url'] = $path;
         }
 
-        $lastRequest = AcademicTranscriptRequest::orderBy('created_at', 'desc')->first();
-        $lastNumber  = 0;
-
-        if ($lastRequest && $lastRequest->tracking_number) {
-            $matches = [];
-            if (preg_match('/TR-(\d+)/', $lastRequest->tracking_number, $matches)) {
-                $lastNumber = (int) $matches[1];
-            }
-        }
-
-        $newTrackingNumber = 'TR-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+        $newTrackingNumber = TrackingNumberGenerator::generate('TR', 'tracking_number', AcademicTranscriptRequest::class);
 
         $validated['status']          = RequestStatus::PROSESOPERATOR->value;
         $validated['tracking_number'] = $newTrackingNumber;

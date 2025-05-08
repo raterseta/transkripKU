@@ -1,12 +1,12 @@
 <?php
 namespace App\Filament\Widgets;
 
-use App\Models\PengajuanFinalModel;
-use Filament\Widgets\Widget;
+use App\Models\ThesisTranscriptRequest;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class StatusPengajuanFinalOverview extends Widget
+class StatusPengajuanFinalOverview extends BaseWidget
 {
-    protected static string $view = 'filament.widgets.status-pengajuan-final-overview';
 
     protected int|string|array $columnSpan = 'full';
 
@@ -17,13 +17,24 @@ class StatusPengajuanFinalOverview extends Widget
         return ! request()->routeIs('filament.admin.pages.dashboard');
     }
 
-    public function getData(): array
+    protected function getStats(): array
     {
+        $thesisNew        = ThesisTranscriptRequest::where('status', 'diproses_operator')->count();
+        $thesisProcessing = ThesisTranscriptRequest::where('status', 'diproses_kaprodi')->count();
+        $thesisCompleted  = ThesisTranscriptRequest::where('status', 'selesai')->count();
+        $thesisRejected   = ThesisTranscriptRequest::where('status', 'ditolak')->count();
+
         return [
-            'baru'     => PengajuanFinalModel::where('status', 'Baru')->count(),
-            'diproses' => PengajuanFinalModel::where('status', 'Diproses')->count(),
-            'revisi'   => PengajuanFinalModel::where('status', 'Revisi')->count(),
-            'selesai'  => PengajuanFinalModel::where('status', 'Selesai')->count(),
+            Stat::make('Pengajuan Baru', $thesisNew)
+                ->color('primary'),
+
+            Stat::make('Sedang Diproses', $thesisProcessing)
+                ->color('warning'),
+
+            Stat::make('Selesai', $thesisCompleted)
+                ->color('success'),
+
+            Stat::make('Ditolak', $thesisRejected),
         ];
     }
 }

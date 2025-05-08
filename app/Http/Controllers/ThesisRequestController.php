@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\RequestStatus;
+use App\Helpers\TrackingNumberGenerator;
 use App\Mail\ThesisRequestMail;
 use App\Models\ThesisTranscriptRequest;
 use Illuminate\Http\Request;
@@ -26,15 +27,7 @@ class ThesisRequestController extends Controller
             $validated['supporting_document_url'] = $path;
         }
 
-        $lastRequest = ThesisTranscriptRequest::orderBy('created_at', 'desc')->first();
-        $lastNumber  = 0;
-        if ($lastRequest && $lastRequest->tracking_number) {
-            $matches = [];
-            if (preg_match('/TH-(\d+)/', $lastRequest->tracking_number, $matches)) {
-                $lastNumber = (int) $matches[1];
-            }
-        }
-        $newTrackingNumber = 'TH-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+        $newTrackingNumber = TrackingNumberGenerator::generate('TH', 'tracking_number', ThesisTranscriptRequest::class);
 
         $validated['status']          = RequestStatus::PROSESOPERATOR->value;
         $validated['tracking_number'] = $newTrackingNumber;
