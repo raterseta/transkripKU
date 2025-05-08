@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PengajuanFinalResource\Pages;
 use App\Enums\RequestStatus;
 use App\Filament\Resources\PengajuanFinalResource;
 use App\Models\RequestTrack;
+use App\Services\ThesisRequestNotificationService;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Resources\Pages\EditRecord;
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\DB;
 class EditPengajuanFinal extends EditRecord
 {
     protected static string $resource = PengajuanFinalResource::class;
+
+    protected $notificationService;
+
+    protected function getNotificationService()
+    {
+        if ($this->notificationService === null) {
+            $this->notificationService = new ThesisRequestNotificationService();
+        }
+        return $this->notificationService;
+    }
 
     protected function getHeaderActions(): array
     {
@@ -53,6 +64,13 @@ class EditPengajuanFinal extends EditRecord
                                 'request_transcript_url'       => $this->record->transcript_url,
                             ]);
 
+                            $this->getNotificationService()->sendStatusChangeNotification(
+                                $this->record,
+                                $oldStatus->value,
+                                RequestStatus::DIKEMBALIKANKEKAPRODI->value,
+                                $data['action_notes']
+                            );
+
                             $this->redirect(PengajuanFinalResource::getUrl('index'));
                         });
                     });
@@ -89,6 +107,13 @@ class EditPengajuanFinal extends EditRecord
                             'action_notes'                 => $data['action_notes'],
                             'request_transcript_url'       => $this->record->transcript_url,
                         ]);
+
+                        $this->getNotificationService()->sendStatusChangeNotification(
+                            $this->record,
+                            $oldStatus->value,
+                            RequestStatus::DITOLAK->value,
+                            $data['action_notes']
+                        );
 
                         $this->redirect(PengajuanFinalResource::getUrl('index'));
                     });
@@ -129,6 +154,13 @@ class EditPengajuanFinal extends EditRecord
                                 'request_transcript_url'       => $this->record->transcript_url,
                             ]);
 
+                            $this->getNotificationService()->sendStatusChangeNotification(
+                                $this->record,
+                                $oldStatus->value,
+                                RequestStatus::DIKEMBALIKANKEOPERATOR->value,
+                                $data['action_notes']
+                            );
+
                             $this->redirect(PengajuanFinalResource::getUrl('index'));
                         });
                     });
@@ -166,6 +198,13 @@ class EditPengajuanFinal extends EditRecord
                                 'action_notes'                 => $data['action_notes'],
                                 'request_transcript_url'       => $this->record->transcript_url,
                             ]);
+
+                            $this->getNotificationService()->sendStatusChangeNotification(
+                                $this->record,
+                                $oldStatus->value,
+                                RequestStatus::DIKEMBALIKANKEOPERATOR->value,
+                                $data['action_notes']
+                            );
 
                             $this->redirect(PengajuanFinalResource::getUrl('index'));
                         });
@@ -232,6 +271,13 @@ class EditPengajuanFinal extends EditRecord
                         'action_notes'                 => $notesContent,
                         'request_transcript_url'       => $record->transcript_url,
                     ]);
+
+                    $this->getNotificationService()->sendStatusChangeNotification(
+                        $this->record,
+                        $oldStatus,
+                        RequestStatus::SELESAI->value,
+                    );
+
                 } else if ($newStatus === RequestStatus::PROSESKAPRODI->value) {
                     RequestTrack::create([
                         'tracking_number'              => $record->tracking_number,
@@ -241,6 +287,13 @@ class EditPengajuanFinal extends EditRecord
                         'action_notes'                 => $notesContent,
                         'request_transcript_url'       => $record->transcript_url,
                     ]);
+
+                    $this->getNotificationService()->sendStatusChangeNotification(
+                        $this->record,
+                        $oldStatus,
+                        RequestStatus::PROSESKAPRODI->value,
+                    );
+
                 } else if ($newStatus === RequestStatus::DITERUSKANKEOPERATOR->value) {
                     RequestTrack::create([
                         'tracking_number'              => $record->tracking_number,
@@ -250,6 +303,13 @@ class EditPengajuanFinal extends EditRecord
                         'action_notes'                 => $notesContent,
                         'request_transcript_url'       => $record->transcript_url,
                     ]);
+
+                    $this->getNotificationService()->sendStatusChangeNotification(
+                        $this->record,
+                        $oldStatus,
+                        RequestStatus::DITERUSKANKEOPERATOR->value,
+                    );
+
                 }
             }
             return $record;

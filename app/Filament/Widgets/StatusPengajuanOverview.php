@@ -1,10 +1,11 @@
 <?php
 namespace App\Filament\Widgets;
 
-use App\Models\PengajuanModel;
-use Filament\Widgets\Widget;
+use App\Models\AcademicTranscriptRequest;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class StatusPengajuanOverview extends Widget
+class StatusPengajuanOverview extends BaseWidget
 {
     protected static string $view = 'filament.widgets.status-pengajuan-overview';
 
@@ -15,13 +16,24 @@ class StatusPengajuanOverview extends Widget
         return ! request()->routeIs('filament.admin.pages.dashboard');
     }
 
-    public function getData(): array
+    protected function getStats(): array
     {
+        $academicNew        = AcademicTranscriptRequest::where('status', 'diproses_operator')->count();
+        $academicProcessing = AcademicTranscriptRequest::where('status', 'diproses_kaprodi')->count();
+        $academicCompleted  = AcademicTranscriptRequest::where('status', 'selesai')->count();
+        $academicRejected   = AcademicTranscriptRequest::where('status', 'ditolak')->count();
+
         return [
-            'baru'     => PengajuanModel::where('status', 'Baru')->count(),
-            'diproses' => PengajuanModel::where('status', 'Diproses')->count(),
-            'revisi'   => PengajuanModel::where('status', 'Revisi')->count(),
-            'selesai'  => PengajuanModel::where('status', 'Selesai')->count(),
+            Stat::make('Pengajuan Baru', $academicNew)
+                ->color('primary'),
+
+            Stat::make('Sedang Diproses', $academicProcessing)
+                ->color('warning'),
+
+            Stat::make('Selesai', $academicCompleted)
+                ->color('success'),
+
+            Stat::make('Ditolak', $academicRejected),
         ];
     }
 }

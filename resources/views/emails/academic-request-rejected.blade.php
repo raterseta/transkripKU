@@ -86,7 +86,7 @@
         .btn {
             display: inline-block;
             background-color: #6b7280;
-            color: white;
+            color: white !important;
             padding: 12px 30px;
             text-decoration: none;
             border-radius: 50px;
@@ -192,7 +192,7 @@
 
 
             <div style="text-align: center;">
-                <a href="{{ url('/academic-requests/create') }}" class="btn">Buat Permintaan Baru</a>
+                <a href="{{ url('/pengajuan') }}" class="btn">Buat Permintaan Baru</a>
             </div>
         </div>
 

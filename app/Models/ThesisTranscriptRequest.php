@@ -2,7 +2,6 @@
 namespace App\Models;
 
 use App\Enums\RequestStatus;
-use App\Models\RequestNote;
 use App\Models\RequestTrack;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,10 +31,5 @@ class ThesisTranscriptRequest extends Model
     public function track()
     {
         return $this->hasMany(RequestTrack::class);
-    }
-
-    public function notes()
-    {
-        return $this->hasMany(RequestNote::class);
     }
 }

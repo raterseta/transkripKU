@@ -114,7 +114,7 @@
         .btn {
             display: inline-block;
             background-color: #2563eb;
-            color: white;
+            color: white !important;
             padding: 12px 30px;
             text-decoration: none;
             border-radius: 50px;

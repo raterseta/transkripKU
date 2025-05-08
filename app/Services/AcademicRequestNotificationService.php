@@ -73,7 +73,6 @@ class AcademicRequestNotificationService
         string $newStatus,
         ?string $notes = null
     ): void {
-        // Get Operator users
         $operatorUsers = User::whereHas('roles', function ($query) {
             $query->where('name', 'super_admin');
         })->get();
