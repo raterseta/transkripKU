@@ -8,25 +8,63 @@
 
 <!-- Bootstrap JS Bundle (sudah termasuk Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
-  @vite('resources/css/app.css')
+  <?php echo app('Illuminate\Foundation\Vite')('resources/css/app.css'); ?>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>TranskripKU</title>
 </head>
 <body class="h-full" x-data="{ showPopup: false }">
   <div>
-    @auth
-      <x-navbar-admin />
-    @endauth
+    <?php if(auth()->guard()->check()): ?>
+      <?php if (isset($component)) { $__componentOriginalf2d127ec02acb2fe16e0bd0cf86744e3 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf2d127ec02acb2fe16e0bd0cf86744e3 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.navbar-admin','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('navbar-admin'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf2d127ec02acb2fe16e0bd0cf86744e3)): ?>
+<?php $attributes = $__attributesOriginalf2d127ec02acb2fe16e0bd0cf86744e3; ?>
+<?php unset($__attributesOriginalf2d127ec02acb2fe16e0bd0cf86744e3); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf2d127ec02acb2fe16e0bd0cf86744e3)): ?>
+<?php $component = $__componentOriginalf2d127ec02acb2fe16e0bd0cf86744e3; ?>
+<?php unset($__componentOriginalf2d127ec02acb2fe16e0bd0cf86744e3); ?>
+<?php endif; ?>
+    <?php endif; ?>
 
-    @guest
-      <x-navbar />
-    @endguest
+    <?php if(auth()->guard()->guest()): ?>
+      <?php if (isset($component)) { $__componentOriginala591787d01fe92c5706972626cdf7231 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala591787d01fe92c5706972626cdf7231 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.navbar','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('navbar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala591787d01fe92c5706972626cdf7231)): ?>
+<?php $attributes = $__attributesOriginala591787d01fe92c5706972626cdf7231; ?>
+<?php unset($__attributesOriginala591787d01fe92c5706972626cdf7231); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala591787d01fe92c5706972626cdf7231)): ?>
+<?php $component = $__componentOriginala591787d01fe92c5706972626cdf7231; ?>
+<?php unset($__componentOriginala591787d01fe92c5706972626cdf7231); ?>
+<?php endif; ?>
+    <?php endif; ?>
     <main class="flex justify-center items-center px-4 sm:px-6 lg:px-8 mt-10 min-h-[90dvh]">
       <div class="flex flex-col w-full max-w-3xl space-y-6 pb-24">
 
         <!-- Navigasi dan judul -->
         <div class="flex flex-row items-center">
-          <a href="{{ url('/') }}" class="flex items-center space-x-2 transition">
+          <a href="<?php echo e(url('/')); ?>" class="flex items-center space-x-2 transition">
             <span class="text-4xl font-semibold">&larr;</span>
           </a>
             <p class="text-2xl text-center flex-1 pr-8 font-poppins">Daftar Permohonan Final</p>
@@ -35,7 +73,7 @@
         <form
           id="formPengajuanFinal"
           method="POST" action="/thesis-request" enctype="multipart/form-data">
-          @csrf
+          <?php echo csrf_field(); ?>
           <!-- Form Box -->
           <div class="w-full bg-white shadow-xl shadow-black/50 rounded-2xl px-6 py-8 space-y-4">
             <!-- Input Group -->
@@ -112,7 +150,25 @@
 
     </main>
   </div>
-  <x-navbar-footer></x-navbar-footer>
+  <?php if (isset($component)) { $__componentOriginalae25fe17d93ff9f3b32915f9d9addc74 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalae25fe17d93ff9f3b32915f9d9addc74 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.navbar-footer','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('navbar-footer'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?> <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalae25fe17d93ff9f3b32915f9d9addc74)): ?>
+<?php $attributes = $__attributesOriginalae25fe17d93ff9f3b32915f9d9addc74; ?>
+<?php unset($__attributesOriginalae25fe17d93ff9f3b32915f9d9addc74); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalae25fe17d93ff9f3b32915f9d9addc74)): ?>
+<?php $component = $__componentOriginalae25fe17d93ff9f3b32915f9d9addc74; ?>
+<?php unset($__componentOriginalae25fe17d93ff9f3b32915f9d9addc74); ?>
+<?php endif; ?>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const submitButton = document.getElementById('submitBtn');
@@ -154,3 +210,4 @@
 </body>
 
 </html>
+<?php /**PATH /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/resources/views/mahasiswa/pengajuan/pengajuan-final.blade.php ENDPATH**/ ?>
