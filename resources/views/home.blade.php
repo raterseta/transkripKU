@@ -27,11 +27,11 @@
 
                 <!-- Group Track dan Pengajuan -->
                 <div class="flex flex-row space-x-20 py-16">
-                    <a href="{{ url('/pengajuan-final') }}" class="shadow-md shadow-black/50 mx-auto box-content bg-orange-500 h-10 rounded-2xl flex items-center justify-center">
-                        <button class="px-2">Lakukan Pengajuan Final</button>
+                    <a href="{{ url('/pengajuan-final') }}" class="shadow-sm shadow-black/50 mx-auto box-content bg-orange-500 h-10 rounded-xl flex items-center justify-center text-white">
+                        <button class="px-4 py-2 min-w-[200px]">Lakukan Pengajuan Final</button>
                     </a>
-                    <a href="{{ url('/pengajuan') }}" class="text-lg mx-auto box-content bg-orange-500 h-10 flex rounded-2xl flex items-center justify-center shadow-md shadow-black/50">
-                        <button class="px-5">Lakukan Pengajuan</button>
+                    <a href="{{ url('/pengajuan') }}" class="text-lg mx-auto box-content bg-orange-500 h-10 flex rounded-xl items-center justify-center shadow-sm shadow-black/50 text-white">
+                        <button class="px-5 min-w-[200px]">Lakukan Pengajuan</button>
                     </a>
                 </div>
             </div>

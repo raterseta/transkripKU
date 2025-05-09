@@ -55,6 +55,11 @@ class AcademicRequestNotificationService
         })->get();
 
         foreach ($kaprodiUsers as $kaprodi) {
+
+            if ($kaprodi->email === 'operator@example.com') {
+                continue;
+            }
+
             Mail::to($kaprodi->email)->send(
                 new AcademicRequestStaffNotificationMail(
                     $request,
@@ -78,6 +83,11 @@ class AcademicRequestNotificationService
         })->get();
 
         foreach ($operatorUsers as $operator) {
+
+            if ($operator->email === 'operator@example.com') {
+                continue;
+            }
+
             Mail::to($operator->email)->send(
                 new AcademicRequestStaffNotificationMail(
                     $request,
