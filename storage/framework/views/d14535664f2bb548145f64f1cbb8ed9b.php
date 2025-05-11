@@ -111,14 +111,6 @@
             border-left: 4px solid #10b981;
         }
 
-        .notes-section {
-            background-color: #fffbeb;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #f59e0b;
-        }
-
         .btn {
             display: inline-block;
             background-color: #2563eb;
@@ -133,6 +125,45 @@
 
         .btn:hover {
             background-color: #1d4ed8;
+        }
+
+        .calendar-btn {
+            display: inline-block;
+            color: white !important;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .google-btn {
+            background-color: #4285F4;
+        }
+
+        .google-btn:hover {
+            background-color: #3367D6;
+        }
+
+        .outlook-btn {
+            background-color: #0078D4;
+        }
+
+        .outlook-btn:hover {
+            background-color: #106EBE;
+        }
+
+        .calendar-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calendar-note {
+            font-size: 14px;
+            color: #6B7280;
+            text-align: center;
+            margin-top: 10px;
         }
 
         .footer {
@@ -208,14 +239,23 @@
 
                     </div>
                 <?php endif; ?>
-            </div>
 
-            <?php if($notes): ?>
-            <div class="notes-section">
-                <h3>Catatan Tambahan:</h3>
-                <p><?php echo e($notes); ?></p>
+                <div class="calendar-buttons">
+                    <div>
+                        <a href="<?php echo e($googleCalendarUrl); ?>" class="calendar-btn google-btn" target="_blank">
+                            Tambahkan ke Google Calendar
+                        </a>
+                    </div>
+                    <div>
+                        <a href="<?php echo e($outlookCalendarUrl); ?>" class="calendar-btn outlook-btn" target="_blank">
+                            Tambahkan ke Outlook
+                        </a>
+                    </div>
+                    <p class="calendar-note">
+                        File .ics juga terlampir untuk aplikasi kalender lainnya
+                    </p>
+                </div>
             </div>
-            <?php endif; ?>
 
             <h3>Detail Permintaan:</h3>
 

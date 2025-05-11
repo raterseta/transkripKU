@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Mail;
 
 class ThesisRequestNotificationService
 {
+    protected $calendarEventService;
+
+    public function __construct(CalendarEventService $calendarEventService)
+    {
+        $this->calendarEventService = $calendarEventService;
+    }
+
     public function sendStatusChangeNotification(
         ThesisTranscriptRequest $request,
         string $oldStatus,
@@ -49,13 +56,20 @@ class ThesisRequestNotificationService
         string $newStatus,
         ?string $notes = null
     ): void {
+        $googleCalendarUrl  = $this->calendarEventService->generateGoogleCalendarUrl($request);
+        $outlookCalendarUrl = $this->calendarEventService->generateOutlookCalendarUrl($request);
+        $calendarIcs        = $this->calendarEventService->generateCalendarInvite($request);
+
         Mail::to($request->student_email)->send(
             new ConsultationScheduledMail(
                 $request,
                 $oldStatus,
                 $newStatus,
                 $notes,
-                'student'
+                'student',
+                $googleCalendarUrl,
+                $outlookCalendarUrl,
+                $calendarIcs
             )
         );
 
@@ -74,7 +88,10 @@ class ThesisRequestNotificationService
                     $oldStatus,
                     $newStatus,
                     $notes,
-                    'kaprodi'
+                    'kaprodi',
+                    $googleCalendarUrl,
+                    $outlookCalendarUrl,
+                    $calendarIcs
                 )
             );
         }

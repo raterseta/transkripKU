@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PengajuanFinalResource\Pages;
 use App\Enums\RequestStatus;
 use App\Filament\Resources\PengajuanFinalResource;
 use App\Models\RequestTrack;
+use App\Services\CalendarEventService;
 use App\Services\ThesisRequestNotificationService;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
@@ -20,7 +21,7 @@ class EditPengajuanFinal extends EditRecord
     protected function getNotificationService()
     {
         if ($this->notificationService === null) {
-            $this->notificationService = new ThesisRequestNotificationService();
+            $this->notificationService = new ThesisRequestNotificationService(new CalendarEventService());
         }
         return $this->notificationService;
     }

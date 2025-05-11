@@ -127,6 +127,45 @@
             background-color: #1d4ed8;
         }
 
+        .calendar-btn {
+            display: inline-block;
+            color: white !important;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .google-btn {
+            background-color: #4285F4;
+        }
+
+        .google-btn:hover {
+            background-color: #3367D6;
+        }
+
+        .outlook-btn {
+            background-color: #0078D4;
+        }
+
+        .outlook-btn:hover {
+            background-color: #106EBE;
+        }
+
+        .calendar-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calendar-note {
+            font-size: 14px;
+            color: #6B7280;
+            text-align: center;
+            margin-top: 10px;
+        }
+
         .footer {
             background-color: #f5f5f5;
             text-align: center;
@@ -197,6 +236,22 @@
                         {!! $request->consultation_notes !!}
                     </div>
                 @endif
+
+                <div class="calendar-buttons">
+                    <div>
+                        <a href="{{ $googleCalendarUrl }}" class="calendar-btn google-btn" target="_blank">
+                            Tambahkan ke Google Calendar
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{ $outlookCalendarUrl }}" class="calendar-btn outlook-btn" target="_blank">
+                            Tambahkan ke Outlook
+                        </a>
+                    </div>
+                    <p class="calendar-note">
+                        File .ics juga terlampir untuk aplikasi kalender lainnya
+                    </p>
+                </div>
             </div>
 
             <h3>Detail Permintaan:</h3>
