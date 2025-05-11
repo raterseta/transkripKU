@@ -39,7 +39,7 @@ class ThesisRequestStaffNotificationMail extends Mailable
     public function envelope(): Envelope
     {
         $subject = match ($this->newStatus) {
-            RequestStatus::PROSESKAPRODI->value => 'Pengajuan Transkrip Final Memerlukan Tanda Tangan',
+            RequestStatus::PROSESKAPRODI->value => 'Pengajuan Transkrip Final Memerlukan Tanggal Konsultasi',
             RequestStatus::DITERUSKANKEOPERATOR->value => 'Transkrip Final Telah Ditandatangani',
             RequestStatus::DIKEMBALIKANKEOPERATOR->value => 'Pengajuan Transkrip Final Dikembalikan',
             RequestStatus::DIKEMBALIKANKEKAPRODI->value => 'Pengajuan Transkrip Final Perlu Direvisi',

@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Enums\RequestStatus;
+use App\Mail\ConsultationScheduledMail;
 use App\Mail\ThesisRequestCompletedMail;
 use App\Mail\ThesisRequestRejectedMail;
 use App\Mail\ThesisRequestStaffNotificationMail;
@@ -21,26 +22,61 @@ class ThesisRequestNotificationService
             case RequestStatus::PROSESKAPRODI->value:
                 $this->notifyKaprodi($request, $oldStatus, $newStatus, $notes);
                 break;
-
+            case RequestStatus::MENUNGGUKONSULTASI->value:
+                $this->notifyConsultationScheduled($request, $oldStatus, $newStatus, $notes);
+                break;
             case RequestStatus::DITERUSKANKEOPERATOR->value:
                 $this->notifyOperator($request, $oldStatus, $newStatus, $notes);
                 break;
-
             case RequestStatus::DIKEMBALIKANKEOPERATOR->value:
                 $this->notifyOperator($request, $oldStatus, $newStatus, $notes);
                 break;
-
             case RequestStatus::DIKEMBALIKANKEKAPRODI->value:
                 $this->notifyKaprodi($request, $oldStatus, $newStatus, $notes);
                 break;
-
             case RequestStatus::SELESAI->value:
                 $this->notifyStudent($request, $newStatus);
                 break;
-
             case RequestStatus::DITOLAK->value:
                 $this->notifyStudent($request, $newStatus, $notes);
                 break;
+        }
+    }
+
+    protected function notifyConsultationScheduled(
+        ThesisTranscriptRequest $request,
+        string $oldStatus,
+        string $newStatus,
+        ?string $notes = null
+    ): void {
+        Mail::to($request->student_email)->send(
+            new ConsultationScheduledMail(
+                $request,
+                $oldStatus,
+                $newStatus,
+                $notes,
+                'student'
+            )
+        );
+
+        $kaprodiUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'kaprod');
+        })->get();
+
+        foreach ($kaprodiUsers as $kaprodi) {
+            if ($kaprodi->email === 'kaprod@example.com') {
+                continue;
+            }
+
+            Mail::to($kaprodi->email)->send(
+                new ConsultationScheduledMail(
+                    $request,
+                    $oldStatus,
+                    $newStatus,
+                    $notes,
+                    'kaprodi'
+                )
+            );
         }
     }
 
@@ -53,13 +89,10 @@ class ThesisRequestNotificationService
         $kaprodiUsers = User::whereHas('roles', function ($query) {
             $query->where('name', 'kaprod');
         })->get();
-
         foreach ($kaprodiUsers as $kaprodi) {
-
-            if ($kaprodi->email === 'operator@example.com') {
+            if ($kaprodi->email === 'kaprod@example.com') {
                 continue;
             }
-
             Mail::to($kaprodi->email)->send(
                 new ThesisRequestStaffNotificationMail(
                     $request,
@@ -81,13 +114,10 @@ class ThesisRequestNotificationService
         $operatorUsers = User::whereHas('roles', function ($query) {
             $query->where('name', 'super_admin');
         })->get();
-
         foreach ($operatorUsers as $operator) {
-
             if ($operator->email === 'operator@example.com') {
                 continue;
             }
-
             Mail::to($operator->email)->send(
                 new ThesisRequestStaffNotificationMail(
                     $request,
@@ -106,7 +136,6 @@ class ThesisRequestNotificationService
             case RequestStatus::SELESAI->value:
                 Mail::to($request->student_email)->send(new ThesisRequestCompletedMail($request));
                 break;
-
             case RequestStatus::DITOLAK->value:
                 Mail::to($request->student_email)->send(new ThesisRequestRejectedMail($request, $notes));
                 break;
