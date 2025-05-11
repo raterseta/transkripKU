@@ -229,26 +229,46 @@
 <?php endif; ?>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const submitButton = document.getElementById('submitBtn'); // ubah ini
+      const submitButton = document.getElementById('submitBtn');
       const form = document.getElementById('formPengajuan');
+      const confirmSubmitButton = document.getElementById('confirmSubmit');
+
+      // Function to disable submit button and show loading state
+      function setLoadingState(isLoading) {
+        if (isLoading) {
+          submitButton.disabled = true;
+          submitButton.classList.add('opacity-70', 'cursor-not-allowed');
+          submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Mengirim...';
+        } else {
+          submitButton.disabled = false;
+          submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
+          submitButton.innerHTML = 'Submit';
+        }
+      }
 
       submitButton.addEventListener('click', function () {
         if (form.checkValidity()) {
-          // Kalau semua field required sudah diisi, tampilkan modal
+          // Show modal with validation passed
           const modal = new bootstrap.Modal(document.getElementById('successModal'));
           modal.show();
         } else {
-          // Kalau belum lengkap, munculin browser validation message
+          // If not valid, trigger browser validation
           form.reportValidity();
         }
       });
 
-      const confirmSubmitButton = document.getElementById('confirmSubmit');
       confirmSubmitButton.addEventListener('click', function () {
-        form.submit(); // Baru submit ke server
+        // Set loading state when form is being submitted
+        setLoadingState(true);
+
+        // Submit the form
+        form.submit();
+
+        // For safety, we could also prevent double clicks on the confirm button
+        confirmSubmitButton.disabled = true;
+        confirmSubmitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Memproses...';
       });
     });
-
   </script>
 
 

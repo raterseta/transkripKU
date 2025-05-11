@@ -117,6 +117,19 @@
     document.addEventListener('DOMContentLoaded', function () {
       const submitButton = document.getElementById('submitBtn');
       const form = document.getElementById('formPengajuanFinal');
+      const confirmSubmitButton = document.getElementById('confirmSubmit');
+
+      function setLoadingState(isLoading) {
+        if (isLoading) {
+          submitButton.disabled = true;
+          submitButton.classList.add('opacity-70', 'cursor-not-allowed');
+          submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Mengirim...';
+        } else {
+          submitButton.disabled = false;
+          submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
+          submitButton.innerHTML = 'Submit';
+        }
+      }
 
       submitButton.addEventListener('click', function () {
         if (form.checkValidity()) {
@@ -127,9 +140,13 @@
         }
       });
 
-      const confirmSubmitButton = document.getElementById('confirmSubmit');
       confirmSubmitButton.addEventListener('click', function () {
+        setLoadingState(true);
+
         form.submit();
+
+        confirmSubmitButton.disabled = true;
+        confirmSubmitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Memproses...';
       });
     });
 

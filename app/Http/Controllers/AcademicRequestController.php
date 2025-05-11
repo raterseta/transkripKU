@@ -5,6 +5,7 @@ use App\Enums\RequestStatus;
 use App\Helpers\TrackingNumberGenerator;
 use App\Mail\AcademicRequestMail;
 use App\Models\AcademicTranscriptRequest;
+use App\Services\TranscriptRequestNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -46,6 +47,9 @@ class AcademicRequestController extends Controller
         ]);
 
         Mail::to($validated['student_email'])->send(new AcademicRequestMail($transcriptRequest));
+
+        $notificationService = new TranscriptRequestNotificationService();
+        $notificationService->notifyOperatorsAboutNewAcademicRequest($transcriptRequest);
 
         return redirect('/')->with('success', 'Pengajuan Final berhasil dikirim. Mohon cek email Anda untuk informasi tracking number.');
     }

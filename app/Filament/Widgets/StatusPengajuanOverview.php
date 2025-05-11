@@ -7,7 +7,6 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class StatusPengajuanOverview extends BaseWidget
 {
-    protected static string $view = 'filament.widgets.status-pengajuan-overview';
 
     protected int|string|array $columnSpan = 'full';
 

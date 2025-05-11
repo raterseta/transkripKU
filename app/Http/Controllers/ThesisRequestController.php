@@ -5,6 +5,7 @@ use App\Enums\RequestStatus;
 use App\Helpers\TrackingNumberGenerator;
 use App\Mail\ThesisRequestMail;
 use App\Models\ThesisTranscriptRequest;
+use App\Services\TranscriptRequestNotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -43,6 +44,9 @@ class ThesisRequestController extends Controller
         ]);
 
         Mail::to($validated['student_email'])->send(new ThesisRequestMail($thesisRequest));
+
+        $notificationService = new TranscriptRequestNotificationService();
+        $notificationService->notifyOperatorsAboutNewThesisRequest($thesisRequest);
 
         return redirect('/')->with('success', 'Pengajuan transkrip skripsi berhasil dikirim');
     }
