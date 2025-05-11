@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PengajuanFinalResource\Pages;
 use App\Enums\RequestStatus;
 use App\Filament\Resources\PengajuanFinalResource;
 use App\Models\RequestTrack;
+use App\Services\CalendarEventService;
 use App\Services\ThesisRequestNotificationService;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
@@ -20,7 +21,7 @@ class EditPengajuanFinal extends EditRecord
     protected function getNotificationService()
     {
         if ($this->notificationService === null) {
-            $this->notificationService = new ThesisRequestNotificationService();
+            $this->notificationService = new ThesisRequestNotificationService(new CalendarEventService());
         }
         return $this->notificationService;
     }
@@ -242,7 +243,17 @@ class EditPengajuanFinal extends EditRecord
                 $data['status'] = $data['status'] === RequestStatus::DITERUSKANKEOPERATOR ? RequestStatus::SELESAI : RequestStatus::PROSESKAPRODI;
             }
         } elseif ($userRole === 'kaprod') {
-            $data['status'] = RequestStatus::DITERUSKANKEOPERATOR->value;
+
+            if (! isset($data['status'])) {
+                $record        = $this->getRecord();
+                $currentStatus = $record->status;
+
+                if ($currentStatus === RequestStatus::PROSESKAPRODI) {
+                    $data['status'] = RequestStatus::MENUNGGUKONSULTASI->value;
+                } else {
+                    $data['status'] = RequestStatus::DITERUSKANKEOPERATOR->value;
+                }
+            }
         }
 
         return $data;
@@ -294,6 +305,23 @@ class EditPengajuanFinal extends EditRecord
                         RequestStatus::PROSESKAPRODI->value,
                     );
 
+                } else if ($newStatus === RequestStatus::MENUNGGUKONSULTASI->value) {
+                    RequestTrack::create([
+                        'tracking_number'              => $record->tracking_number,
+                        'thesis_transcript_request_id' => $record->id,
+                        'status'                       => $newStatus,
+                        'action_desc'                  => "Tanggal konsultasi ditentukan dan dikrimkan melalui email",
+                        'action_notes'                 => $notesContent,
+                        'request_transcript_url'       => $record->transcript_url,
+                    ]);
+
+                    $this->getNotificationService()->sendStatusChangeNotification(
+                        $this->record,
+                        $oldStatus,
+                        RequestStatus::MENUNGGUKONSULTASI->value,
+                        $notesContent
+                    );
+
                 } else if ($newStatus === RequestStatus::DITERUSKANKEOPERATOR->value) {
                     RequestTrack::create([
                         'tracking_number'              => $record->tracking_number,
@@ -309,7 +337,6 @@ class EditPengajuanFinal extends EditRecord
                         $oldStatus,
                         RequestStatus::DITERUSKANKEOPERATOR->value,
                     );
-
                 }
             }
             return $record;
@@ -324,9 +351,9 @@ class EditPengajuanFinal extends EditRecord
         $record = $this->getRecord();
 
         if ($userRole === 'super_admin') {
-            $label = $record->status === RequestStatus::DITERUSKANKEOPERATOR ? 'Kirim ke mahasiswa' : 'Kirim ke kaprodi';
+            $label = $record->status === RequestStatus::DITERUSKANKEOPERATOR ? 'Kirim ke mahasiswa' : 'Lanjutkan ke kaprodi';
         } elseif ($userRole === 'kaprod') {
-            $label = 'Kirim jadwal konsultasi';
+            $label = $record->status === RequestStatus::PROSESKAPRODI ? 'Kirim jadwal konsultasi' : 'Kirim ke operator';
         }
 
         return parent::getSaveFormAction()

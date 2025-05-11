@@ -21,11 +21,12 @@ class ThesisTranscriptRequest extends Model
         'transcript_url',
         'consultation_notes',
         'supporting_document_url',
-        'retrieval_date',
+        'consultation_date',
     ];
 
     protected $casts = [
-        'status' => RequestStatus::class,
+        'status'            => RequestStatus::class,
+        'consultation_date' => 'datetime',
     ];
 
     public function track()

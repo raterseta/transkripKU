@@ -7,6 +7,7 @@ enum RequestStatus: string implements HasLabel {
 
     case PROSESOPERATOR         = 'diproses_operator';
     case PROSESKAPRODI          = 'diproses_kaprodi';
+    case MENUNGGUKONSULTASI     = 'menunggu_konsultasi';
     case DIKEMBALIKANKEOPERATOR = 'dikembalikan_ke_operator';
     case DIKEMBALIKANKEKAPRODI  = 'dikembalikan_ke_kaprodi';
     case DITERUSKANKEOPERATOR   = 'diteruskan_ke_operator';
@@ -18,6 +19,7 @@ enum RequestStatus: string implements HasLabel {
         return match ($this) {
             self::PROSESOPERATOR => 'info',
             self::PROSESKAPRODI => 'info',
+            self::MENUNGGUKONSULTASI => 'info',
             self::DIKEMBALIKANKEKAPRODI => 'warning',
             self::DIKEMBALIKANKEOPERATOR => 'warning',
             self::DITERUSKANKEOPERATOR => 'info',
@@ -31,6 +33,7 @@ enum RequestStatus: string implements HasLabel {
         return match ($this) {
             self::PROSESOPERATOR => 'Diproses Operator',
             self::PROSESKAPRODI => 'Diproses Kaprodi',
+            self::MENUNGGUKONSULTASI => 'Menunggu Konsultasi',
             self::DIKEMBALIKANKEOPERATOR => 'Dikembalikan Ke Operator',
             self::DIKEMBALIKANKEKAPRODI => 'Dikembalikan ke Kaprodi',
             self::DITERUSKANKEOPERATOR => 'Diteruskan ke Operator',

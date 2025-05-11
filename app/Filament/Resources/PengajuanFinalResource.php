@@ -162,25 +162,33 @@ class PengajuanFinalResource extends Resource
                             ->extraAttributes(['class' => 'sticky top-24'])
                             ->columnSpan(1),
 
+                        Section::make('Jadwal Konsultasi')
+                            ->schema([
+                                DateTimePicker::make('consultation_date')
+                                    ->label('Jadwal Konsultasi')
+                                    ->seconds(false),
+                                RichEditor::make('consultation_notes')
+                                    ->label('Detail Konsultasi'),
+                            ])
+                            ->columnSpan(2)
+                            ->collapsible()
+                            ->visible(function ($record) {
+                                return $record && $record->status === RequestStatus::PROSESKAPRODI;
+                            }),
+
                         Section::make('Detail Transkrip')
                             ->schema([
-                                DateTimePicker::make('retrieval_date')
-                                    ->label('Jadwal Konsultasi')
-                                    ->seconds(false)
-                                    ->visible(function ($record) {
-                                        return $record && $record->status === RequestStatus::PROSESKAPRODI;
-                                    }),
                                 FileUpload::make('transcript_url')
                                     ->disk('public')
                                     ->directory('thesis_transcript')
                                     ->preserveFilenames()
-                                    ->openable()
-                                    ->visible(function ($record) {
-                                        return $record && $record->status !== RequestStatus::PROSESKAPRODI;
-                                    }),
+                                    ->openable(),
                             ])
                             ->columnSpan(2)
-                            ->collapsible(),
+                            ->collapsible()
+                            ->visible(function ($record) {
+                                return $record && $record->status !== RequestStatus::PROSESKAPRODI;
+                            }),
 
                         Section::make('Catatan')
                             ->schema([
@@ -245,7 +253,11 @@ class PengajuanFinalResource extends Resource
                 RequestStatus::DIKEMBALIKANKEOPERATOR->value,
             ]);
         } elseif ($userRole === 'kaprod') {
-            return $record->status->value === RequestStatus::PROSESKAPRODI->value || $record->status->value === RequestStatus::DIKEMBALIKANKEKAPRODI->value;
+            return in_array($record->status->value, [
+                RequestStatus::PROSESKAPRODI->value,
+                RequestStatus::DIKEMBALIKANKEKAPRODI->value,
+                RequestStatus::MENUNGGUKONSULTASI->value,
+            ]);
         }
         return false;
     }

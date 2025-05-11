@@ -149,7 +149,7 @@
         <div class="header">
             <h1>
                 <?php if($newStatus === \App\Enums\RequestStatus::PROSESKAPRODI->value): ?>
-                    Transkrip Final Memerlukan Tanda Tangan
+                    Transkrip Final Memerlukan Tanggal Konsultasi
                 <?php elseif($newStatus === \App\Enums\RequestStatus::DITERUSKANKEOPERATOR->value): ?>
                     Transkrip Final Telah Ditandatangani
                 <?php elseif($newStatus === \App\Enums\RequestStatus::DIKEMBALIKANKEOPERATOR->value): ?>
@@ -179,7 +179,7 @@
 
             <p>
                 <?php if($newStatus === \App\Enums\RequestStatus::PROSESKAPRODI->value): ?>
-                    Ada pengajuan transkrip final yang memerlukan tanda tangan Anda. Mohon segera ditindaklanjuti.
+                    Ada pengajuan transkrip final yang tanggal konsultasi anda. Mohon segera ditindaklanjuti.
                 <?php elseif($newStatus === \App\Enums\RequestStatus::DITERUSKANKEOPERATOR->value): ?>
                     Transkrip final telah selesai ditandatangani oleh Kaprodi dan siap untuk diproses lebih lanjut.
                 <?php elseif($newStatus === \App\Enums\RequestStatus::DIKEMBALIKANKEOPERATOR->value): ?>
