@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# Cross-platform script for Mac, Linux, and Windows (Git Bash/WSL)
-
 # Step 1: Fresh migrate
 php artisan migrate:fresh --seed
 if [ $? -ne 0 ]; then
