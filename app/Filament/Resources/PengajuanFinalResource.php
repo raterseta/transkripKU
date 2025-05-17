@@ -182,6 +182,8 @@ class PengajuanFinalResource extends Resource
                                     ->disk('public')
                                     ->directory('thesis_transcript')
                                     ->preserveFilenames()
+                                    ->acceptedFileTypes(['application/pdf'])
+                                    ->maxSize(2048)
                                     ->openable(),
                             ])
                             ->columnSpan(2)

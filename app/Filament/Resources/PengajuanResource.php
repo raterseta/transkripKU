@@ -176,6 +176,7 @@ class PengajuanResource extends Resource
                                     ->label('')
                                     ->directory('academic_transcript')
                                     ->preserveFilenames()
+                                    ->acceptedFileTypes(['application/pdf'])
                                     ->maxSize(2048),
                             ])
                             ->columnSpan(2)
