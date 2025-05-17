@@ -14,19 +14,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $operatorUser = User::factory()->create([
-            'name'     => 'Super Admin',
-            'email'    => 'operator@example.com',
-            'password' => Hash::make('password'),
-            'nip'      => '1234567',
-        ]);
+        $operatorUser = User::firstOrCreate(
+            ['email' => 'operator@example.com'],
+            [
+                'name'     => 'Super Admin',
+                'password' => Hash::make('password'),
+                'nip'      => '1234567',
+            ]
+        );
 
-        $kaprodUser = User::factory()->create([
-            'name'     => 'Kaprod User',
-            'email'    => 'kaprod@example.com',
-            'password' => Hash::make('password'),
-            'nip'      => '7654321',
-        ]);
+        $kaprodUser = User::firstOrCreate(
+            ['email' => 'kaprod@example.com'],
+            [
+                'name'     => 'Kaprod User',
+                'password' => Hash::make('password'),
+                'nip'      => '7654321',
+            ]
+        );
 
         $superAdminRole = Role::firstOrCreate(['name' => 'super_admin', 'guard_name' => 'web']);
 
