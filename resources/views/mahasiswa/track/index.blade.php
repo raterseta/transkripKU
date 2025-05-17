@@ -39,12 +39,12 @@
                 name="id"
                 type="text"
                 placeholder="Nomor Tracking"
-                class="text-sm bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                class="text-sm w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-300"
               />
             </div>
 
             <div class="pt-6 flex justify-center">
-              <button type="submit" class="w-1/6 bg-orange-500 hover:bg-orange-600 text-black py-2 rounded-md transition font-semibold">
+              <button type="submit" class="w-1/6 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md transition font-semibold">
                 Lacak
               </button>
             </div>
