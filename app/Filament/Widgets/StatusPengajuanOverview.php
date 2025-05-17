@@ -18,7 +18,7 @@ class StatusPengajuanOverview extends BaseWidget
     protected function getStats(): array
     {
         $academicNew        = AcademicTranscriptRequest::where('status', 'diproses_operator')->count();
-        $academicProcessing = AcademicTranscriptRequest::where('status', 'diproses_kaprodi')->count();
+        $academicProcessing = AcademicTranscriptRequest::whereIn('status', ['diproses_kaprodi', 'dikembalikan_ke_operator', 'dikembalikan_ke_kaprodi', 'diteruskan_ke_operator'])->count();
         $academicCompleted  = AcademicTranscriptRequest::where('status', 'selesai')->count();
         $academicRejected   = AcademicTranscriptRequest::where('status', 'ditolak')->count();
 

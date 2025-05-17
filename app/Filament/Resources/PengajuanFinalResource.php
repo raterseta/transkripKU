@@ -35,7 +35,25 @@ class PengajuanFinalResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('status', 'diproses_operator')->count();
+        $user = auth()->user();
+
+        if ($user->hasRole('super_admin')) {
+            return static::getModel()::whereIn('status', [
+                'diproses_operator',
+                'dikembalikan_ke_operator',
+                'diteruskan_ke_operator',
+            ])->count();
+        }
+
+        if ($user->hasRole('kaprod')) {
+            return static::getModel()::whereIn('status', [
+                'diproses_kaprodi',
+                'menunggu_konsultasi',
+                'dikembalikan_ke_kaprodi',
+            ])->count();
+        }
+
+        return null;
     }
 
     protected static ?string $navigationBadgeTooltip = 'PengajuanFinal Baru';
@@ -182,6 +200,8 @@ class PengajuanFinalResource extends Resource
                                     ->disk('public')
                                     ->directory('thesis_transcript')
                                     ->preserveFilenames()
+                                    ->acceptedFileTypes(['application/pdf'])
+                                    ->maxSize(2048)
                                     ->openable(),
                             ])
                             ->columnSpan(2)

@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Widgets;
 
+use App\Enums\RequestStatus;
 use App\Models\AcademicTranscriptRequest;
 use App\Models\ThesisTranscriptRequest;
 use Filament\Tables;
@@ -27,7 +28,6 @@ class PermohonanTable extends BaseWidget
     {
         return $table
             ->query(function () {
-                // Get academic transcript requests
                 $academicQuery = AcademicTranscriptRequest::query()
                     ->select([
                         'id',
@@ -39,7 +39,6 @@ class PermohonanTable extends BaseWidget
                         'created_at',
                     ]);
 
-                // Get thesis transcript requests
                 $thesisQuery = ThesisTranscriptRequest::query()
                     ->select([
                         'id',
@@ -51,7 +50,6 @@ class PermohonanTable extends BaseWidget
                         'created_at',
                     ]);
 
-                // Union the queries to get combined results
                 return $academicQuery->union($thesisQuery);
             })
             ->columns([
@@ -86,16 +84,62 @@ class PermohonanTable extends BaseWidget
                     ->sortable(),
             ])
             ->actions([
-                Tables\Actions\Action::make('view')
-                    ->label('Lihat')
+                Tables\Actions\EditAction::make('edit')
+                    ->label('Edit')
                     ->url(fn($record) =>
                         $record->source_table === 'thesis'
                         ? url("/admin/transkrip-final/{$record->id}/edit")
                         : url("/admin/transkrip-akademik/{$record->id}/edit")
                     )
-                    ->openUrlInNewTab()
-                    ->icon('heroicon-o-eye'),
+                    ->visible(function ($record) {
+                        $userRole = auth()->user()->roles->pluck('name')->first();
+
+                        if ($userRole === 'super_admin') {
+                            return in_array($record->status->value, [
+                                RequestStatus::PROSESOPERATOR->value,
+                                RequestStatus::DITERUSKANKEOPERATOR->value,
+                                RequestStatus::DIKEMBALIKANKEOPERATOR->value,
+                            ]);
+                        }
+
+                        if ($userRole === 'kaprod') {
+                            return in_array($record->status->value, [
+                                RequestStatus::PROSESKAPRODI->value,
+                                RequestStatus::DIKEMBALIKANKEKAPRODI->value,
+                                RequestStatus::MENUNGGUKONSULTASI->value,
+                            ]);
+                        }
+
+                        return false;
+                    }),
             ])
+            ->recordUrl(function ($record) {
+                $userRole = auth()->user()->roles->pluck('name')->first();
+
+                if ($userRole === 'super_admin') {
+                    $allowedStatuses = [
+                        RequestStatus::PROSESOPERATOR->value,
+                        RequestStatus::DITERUSKANKEOPERATOR->value,
+                        RequestStatus::DIKEMBALIKANKEOPERATOR->value,
+                    ];
+                } elseif ($userRole === 'kaprod') {
+                    $allowedStatuses = [
+                        RequestStatus::PROSESKAPRODI->value,
+                        RequestStatus::DIKEMBALIKANKEKAPRODI->value,
+                        RequestStatus::MENUNGGUKONSULTASI->value,
+                    ];
+                } else {
+                    return null;
+                }
+
+                if (in_array($record->status->value, $allowedStatuses)) {
+                    return $record->source_table === 'thesis'
+                    ? url("/admin/transkrip-final/{$record->id}/edit")
+                    : url("/admin/transkrip-akademik/{$record->id}/edit");
+                }
+
+                return null;
+            })
             ->filters([
                 SelectFilter::make('status')
                     ->options([

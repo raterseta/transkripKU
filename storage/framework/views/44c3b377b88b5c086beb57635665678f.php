@@ -21,4 +21,5 @@
                 </div>
                 </div>
             </div>
-        </nav><?php /**PATH /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/resources/views/components/navbar-admin-notrack.blade.php ENDPATH**/ ?>
+        </nav>
+<?php /**PATH /Users/pais/Documents/Kuliah/Semester 5/capstone/transkripKU/resources/views/components/navbar-admin-notrack.blade.php ENDPATH**/ ?>

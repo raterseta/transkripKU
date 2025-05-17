@@ -28,14 +28,10 @@ php artisan key:generate
 
 5. Configure your database in `.env` file
 
-6. Run migrations and seeders
+6. Run the setup script (migrate, seed, and generate permissions)
 ```bash
-php artisan migrate --seed
-```
-
-6. Generate Role Policy
-```bash
-php artisan shield:generate -all
+chmod +x setup.sh  
+./setup.sh
 ```
 
 7. Start the development server

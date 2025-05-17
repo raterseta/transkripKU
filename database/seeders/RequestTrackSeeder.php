@@ -14,11 +14,9 @@ class RequestTrackSeeder extends Seeder
      */
     public function run(): void
     {
-        // Generate tracks for academic transcript requests
         $academicRequests = AcademicTranscriptRequest::all();
 
         foreach ($academicRequests as $request) {
-            // First track entry is always created when request is submitted
             RequestTrack::factory()
                 ->forAcademicRequest($request)
                 ->withStatus(RequestStatus::PROSESOPERATOR->value)
@@ -28,15 +26,12 @@ class RequestTrackSeeder extends Seeder
                     'updated_at'      => $request->created_at,
                 ]);
 
-            // Generate subsequent tracks based on current status
             $this->generateTracksForRequest($request, 'academic');
         }
 
-        // Generate tracks for thesis transcript requests
         $thesisRequests = ThesisTranscriptRequest::all();
 
         foreach ($thesisRequests as $request) {
-            // First track entry is always created when request is submitted
             RequestTrack::factory()
                 ->forThesisRequest($request)
                 ->withStatus(RequestStatus::PROSESOPERATOR->value)
@@ -46,7 +41,6 @@ class RequestTrackSeeder extends Seeder
                     'updated_at'      => $request->created_at,
                 ]);
 
-            // Generate subsequent tracks based on current status
             $this->generateTracksForRequest($request, 'thesis');
         }
     }
@@ -67,115 +61,129 @@ class RequestTrackSeeder extends Seeder
         $endDate   = $request->updated_at;
         $daysDiff  = $startDate->diffInDays($endDate);
 
-        switch ($currentStatus) {
-            case RequestStatus::SELESAI->value:
+        // Always start with diproses_operator
+        $trackDates[] = [
+            'status'      => RequestStatus::PROSESOPERATOR->value,
+            'date'        => $startDate,
+            'action_desc' => 'Diproses Operator',
+        ];
 
-                $hadReturn = (rand(0, 100) > 20);
+        $willBeRejected = rand(1, 10) === 1; // 10% chance of rejection
+        $rejectionPoint = rand(2, 4);        // Can happen after operator, kaprodi, or during return
 
-                if ($daysDiff > 3) {
-                    $trackDates[] = [
-                        'status' => RequestStatus::PROSESKAPRODI->value,
-                        'date'   => $startDate->copy()->addDays(rand(1, max(1, $daysDiff - 2))),
-                    ];
+        $willBeReturned = ! $willBeRejected && rand(1, 3) === 1; // 33% chance of return if not rejected
 
-                    if ($hadReturn && $daysDiff > 5) {
-                        $returnDate = $trackDates[0]['date']->copy()->addDays(rand(1, 2));
+        $isFinalRequest = $type === 'thesis' && rand(1, 2) === 1; // 50% chance for thesis requests
 
-                        $trackDates[] = [
-                            'status' => RequestStatus::DIKEMBALIKANKEOPERATOR->value,
-                            'date'   => $returnDate,
-                        ];
+        $currentDate = $startDate->copy()->addDays(rand(1, 2));
 
-                        $trackDates[] = [
-                            'status' => RequestStatus::PROSESOPERATOR->value,
-                            'date'   => $returnDate->copy()->addDays(1),
-                        ];
+        $trackDates[] = [
+            'status'      => RequestStatus::PROSESKAPRODI->value,
+            'date'        => $currentDate,
+            'action_desc' => 'Diproses Kaprodi',
+        ];
 
-                        $trackDates[] = [
-                            'status' => RequestStatus::PROSESKAPRODI->value,
-                            'date'   => $returnDate->copy()->addDays(2),
-                        ];
-                    }
-
-                    $trackDates[] = [
-                        'status' => RequestStatus::SELESAI->value,
-                        'date'   => $endDate,
-                    ];
-                } else {
-                    $trackDates[] = [
-                        'status' => RequestStatus::PROSESKAPRODI->value,
-                        'date'   => $startDate->copy()->addHours(rand(2, 8)),
-                    ];
-
-                    $trackDates[] = [
-                        'status' => RequestStatus::SELESAI->value,
-                        'date'   => $endDate,
-                    ];
-                }
-                break;
-
-            case RequestStatus::DITOLAK->value:
-                $trackDates[] = [
-                    'status' => RequestStatus::PROSESKAPRODI->value,
-                    'date'   => $startDate->copy()->addDays(rand(1, max(1, $daysDiff - 1))),
-                ];
-
-                $trackDates[] = [
-                    'status' => RequestStatus::DITOLAK->value,
-                    'date'   => $endDate,
-                ];
-                break;
-
-            case RequestStatus::PROSESKAPRODI->value:
-                $trackDates[] = [
-                    'status' => RequestStatus::PROSESKAPRODI->value,
-                    'date'   => $endDate,
-                ];
-                break;
-
-            case RequestStatus::DIKEMBALIKANKEOPERATOR->value:
-                $trackDates[] = [
-                    'status' => RequestStatus::PROSESKAPRODI->value,
-                    'date'   => $startDate->copy()->addDays(rand(1, max(1, $daysDiff - 1))),
-                ];
-
-                $trackDates[] = [
-                    'status' => RequestStatus::DIKEMBALIKANKEOPERATOR->value,
-                    'date'   => $endDate,
-                ];
-                break;
-
-            case RequestStatus::DIKEMBALIKANKEKAPRODI->value:
-                $trackDates[] = [
-                    'status' => RequestStatus::PROSESKAPRODI->value,
-                    'date'   => $startDate->copy()->addDays(rand(1, max(1, $daysDiff - 2))),
-                ];
-
-                $trackDates[] = [
-                    'status' => RequestStatus::DIKEMBALIKANKEOPERATOR->value,
-                    'date'   => $startDate->copy()->addDays(rand(1, max(1, $daysDiff - 1))),
-                ];
-
-                $trackDates[] = [
-                    'status' => RequestStatus::DIKEMBALIKANKEKAPRODI->value,
-                    'date'   => $endDate,
-                ];
-                break;
+        if ($willBeRejected && $rejectionPoint === 2) {
+            $trackDates[] = [
+                'status'      => RequestStatus::DITOLAK->value,
+                'date'        => $currentDate->copy()->addDays(1),
+                'action_desc' => 'Ditolak',
+            ];
+            return;
         }
+
+        $currentDate = $currentDate->copy()->addDays(rand(1, 2));
+
+        if ($isFinalRequest) {
+            $trackDates[] = [
+                'status'      => RequestStatus::MENUNGGUKONSULTASI->value,
+                'date'        => $currentDate,
+                'action_desc' => 'Menunggu Konsultasi',
+            ];
+            $currentDate = $currentDate->copy()->addDays(rand(2, 3));
+        }
+
+        if ($willBeReturned) {
+            $trackDates[] = [
+                'status'      => RequestStatus::DIKEMBALIKANKEOPERATOR->value,
+                'date'        => $currentDate,
+                'action_desc' => 'Dikembalikan ke Operator',
+            ];
+
+            if ($willBeRejected && $rejectionPoint === 3) {
+                $trackDates[] = [
+                    'status'      => RequestStatus::DITOLAK->value,
+                    'date'        => $currentDate->copy()->addDays(1),
+                    'action_desc' => 'Ditolak',
+                ];
+                return;
+            }
+
+            $currentDate = $currentDate->copy()->addDays(1);
+
+            $trackDates[] = [
+                'status'      => RequestStatus::PROSESOPERATOR->value,
+                'date'        => $currentDate,
+                'action_desc' => 'Diproses Operator',
+            ];
+
+            $currentDate = $currentDate->copy()->addDays(1);
+
+            $trackDates[] = [
+                'status'      => RequestStatus::PROSESKAPRODI->value,
+                'date'        => $currentDate,
+                'action_desc' => 'Diproses Kaprodi',
+            ];
+
+            $currentDate = $currentDate->copy()->addDays(rand(1, 2));
+        }
+
+        $trackDates[] = [
+            'status'      => RequestStatus::DITERUSKANKEOPERATOR->value,
+            'date'        => $currentDate,
+            'action_desc' => 'Diteruskan ke Operator',
+        ];
+
+        if ($willBeRejected && $rejectionPoint === 4) {
+            $trackDates[] = [
+                'status'      => RequestStatus::DITOLAK->value,
+                'date'        => $currentDate->copy()->addDays(1),
+                'action_desc' => 'Ditolak',
+            ];
+            return;
+        }
+
+        $trackDates[] = [
+            'status'      => RequestStatus::SELESAI->value,
+            'date'        => $endDate,
+            'action_desc' => 'Selesai',
+        ];
 
         foreach ($trackDates as $track) {
             $factoryInstance = RequestTrack::factory()->withStatus($track['status']);
 
+            $data = [
+                'tracking_number' => $request->tracking_number,
+                'created_at'      => $track['date'],
+                'updated_at'      => $track['date'],
+                'action_desc'     => $track['action_desc'],
+            ];
+
             if ($type === 'academic') {
-                $factoryInstance->forAcademicRequest($request);
+                $factoryInstance                        = $factoryInstance->forAcademicRequest($request);
+                $data['academic_transcript_request_id'] = $request->id;
+                $data['thesis_transcript_request_id']   = null;
             } else {
-                $factoryInstance->forThesisRequest($request);
+                $factoryInstance                        = $factoryInstance->forThesisRequest($request);
+                $data['academic_transcript_request_id'] = null;
+                $data['thesis_transcript_request_id']   = $request->id;
             }
 
-            $factoryInstance->create([
-                'created_at' => $track['date'],
-                'updated_at' => $track['date'],
-            ]);
+            if (empty($data['academic_transcript_request_id']) && empty($data['thesis_transcript_request_id'])) {
+                throw new \Exception('Track must be linked to a request!');
+            }
+
+            $factoryInstance->create($data);
         }
     }
 }
