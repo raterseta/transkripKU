@@ -13,10 +13,34 @@ class Dashboard extends BaseDashboard
 
     public static function getNavigationBadge(): ?string
     {
-        $academicCount = AcademicTranscriptRequest::where('status', 'diproses_operator')->count();
-        $thesisCount   = ThesisTranscriptRequest::where('status', 'diproses_operator')->count();
 
-        return $academicCount + $thesisCount;
+        $user          = auth()->user();
+        $academicCount = null;
+        $thesisCount   = null;
+
+        if ($user->hasRole('super_admin')) {
+            $academicCount = AcademicTranscriptRequest::whereIn('status', [
+                'diproses_operator',
+                'dikembalikan_ke_operator',
+                'diteruskan_ke_operator'])->count();
+            $thesisCount = ThesisTranscriptRequest::whereIn('status', [
+                'diproses_operator',
+                'dikembalikan_ke_operator',
+                'diteruskan_ke_operator'])->count();
+            return $academicCount + $thesisCount;
+        }
+        if ($user->hasRole('kaprod')) {
+            $academicCount = AcademicTranscriptRequest::whereIn('status', [
+                'diproses_kaprodi',
+                'dikembalikan_ke_kaprodi'])->count();
+            $thesisCount = ThesisTranscriptRequest::whereIn('status', [
+                'diproses_kaprodi',
+                'menunggu_konsultasi',
+                'dikembalikan_ke_kaprodi'])->count();
+            return $academicCount + $thesisCount;
+        }
+
+        return null;
     }
 
     protected static ?string $navigationBadgeTooltip = 'Total Pengajuan Baru';

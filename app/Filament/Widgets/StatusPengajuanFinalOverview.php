@@ -20,7 +20,7 @@ class StatusPengajuanFinalOverview extends BaseWidget
     protected function getStats(): array
     {
         $thesisNew        = ThesisTranscriptRequest::where('status', 'diproses_operator')->count();
-        $thesisProcessing = ThesisTranscriptRequest::where('status', 'diproses_kaprodi')->count();
+        $thesisProcessing = ThesisTranscriptRequest::whereIn('status', ['diproses_kaprodi', 'menunggu_konsultasi', 'dikembalikan_ke_operator', 'dikembalikan_ke_kaprodi', 'diteruskan_ke_operator'])->count();
         $thesisCompleted  = ThesisTranscriptRequest::where('status', 'selesai')->count();
         $thesisRejected   = ThesisTranscriptRequest::where('status', 'ditolak')->count();
 
