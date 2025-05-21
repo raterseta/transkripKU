@@ -7,8 +7,8 @@
     @vite(['resources/css/app.css']) {{-- atau link ke Tailwind CSS --}}
     @livewireStyles
 </head>
-<body class="bg-white min-h-screen flex items-center justify-center bg-gray-100 px-4 text-black w-full">
-    <div class="bg-white rounded-2xl shadow-xl w-[1000px] max-w-md p-6 sm:p-8 text-black">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center px-4 text-black w-full">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 sm:p-8 text-black">
         <div class="text-center mb-6">
             <a href="/">
                 <img src="/images/login.png" alt="Logo Fakultas" class="h-6 mx-auto mb-4">
@@ -23,10 +23,13 @@
                 <x-filament::button 
                     type="submit" 
                     class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold flex items-center justify-center gap-2">
-                        <p class="text-white" wire:loading.remove wire:target="authenticate">Login</p>
-                        <p class="text-white" wire:loading wire:target="authenticate">Loading...</p>
+                    <p class="text-white" wire:loading.remove wire:target="authenticate">Login</p>
+                    <p class="text-white" wire:loading wire:target="authenticate">Loading...</p>
                 </x-filament::button>
-                <p class="font-poppins text-sm font-medium">Back to <a href="/" class="text-blue-500">Home</a>?</p>
+
+                <p class="font-poppins text-sm font-medium text-center">
+                    Back to <a href="/" class="text-blue-500 hover:underline">Home</a>?
+                </p>
             </div>
         </form>
     </div>

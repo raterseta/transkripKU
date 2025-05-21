@@ -7,30 +7,37 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>TranskripKU</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
-<body class="h-full">
+<body class="h-full font-poppins" x-data="{ showPopup: false }">
     <div>
-        <x-navbar-home></x-navbar-home>
+        <x-navbar></x-navbar>
 
-        <main class="justify-center flex items-center bg-[url('/public/images/filkom-50.png')] bg-cover">
-            <div class="flex flex-col items-center text-center py-36 space-y-3">
-                <!-- Text Halaman -->
-                <p class="font-poppins text-xl">Selamat Datang di Website</p>
-                <h1 class="font-poppins font-bold text-4xl">TranskripKU</h1>
+        <!-- Section Utama -->
+        <main class="flex items-center justify-center bg-[url('/public/images/filkom-50.png')] bg-cover bg-center min-h-screen px-4">
+            <div class="text-center max-w-2xl w-full py-20 sm:py-32 space-y-6 rounded-xl">
 
-                <!-- Group Track dan Pengajuan -->
-                <div class="flex flex-row space-x-20 py-16">
-                    <a href="{{ url('/pengajuan-final') }}" class="shadow-sm shadow-black/50 mx-auto box-content bg-orange-500 h-10 rounded-xl flex items-center justify-center text-white">
-                        <button class="px-4 py-2 min-w-[200px]">Lakukan Pengajuan Final</button>
+                <!-- Judul dan Subjudul -->
+                <p class="text-base sm:text-lg text-gray-700">Selamat Datang di Website</p>
+                <h1 class="text-3xl sm:text-5xl font-bold text-gray-900">TranskripKU</h1>
+
+                <!-- Tombol Aksi -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 pt-10">
+                    <a href="{{ url('/pengajuan-final') }}" class="w-full sm:w-auto">
+                        <button class="w-1/2 sm:w-full max-w-3/4 sm:min-w-[200px] px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow shadow-black/30 transition">
+                            Lakukan Pengajuan Final
+                        </button>
                     </a>
-                    <a href="{{ url('/pengajuan') }}" class="text-lg mx-auto box-content bg-orange-500 h-10 flex rounded-xl items-center justify-center shadow-sm shadow-black/50 text-white">
-                        <button class="px-5 min-w-[200px]">Lakukan Pengajuan</button>
+
+                    <a href="{{ url('/pengajuan') }}" class="w-full sm:w-auto">
+                        <button class="w-1/2 sm:w-full max-w-3/4 sm:min-w-[200px] px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl shadow shadow-black/30 transition">
+                            Lakukan Pengajuan
+                        </button>
                     </a>
                 </div>
             </div>
         </main>
     </div>
+
     <x-navbar-footer></x-navbar-footer>
 </body>
 </html>

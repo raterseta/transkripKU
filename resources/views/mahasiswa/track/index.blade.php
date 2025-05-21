@@ -52,8 +52,8 @@
          <img src="/images/truck.svg" alt="" class="h-20 w-20">
         <div class="w-full bg-white shadow-xl shadow-black/50 rounded-2xl px-6 py-8 space-y-4">
           <!-- Input Group -->
-          <form method="GET" action="{{ route('track.show') }}">
-            <div class="space-y-2 text-left font-poppins">
+          <form method="GET" action="{{ route('track.show') }}" class="w-full flex flex-col justify-center items-center">
+            <div class="w-full space-y-2 text-left font-poppins">
               <label for="tracking" class="font-semibold">Masukkan Nomor Tracking Kamu</label>
               <input
                 id="tracking"
@@ -64,8 +64,8 @@
               />
             </div>
 
-            <div class="pt-6 flex justify-center">
-              <button type="submit" class="w-1/6 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md transition font-semibold">
+            <div class="pt-6 flex justify-center w-full">
+              <button type="submit" class="w-full lg:w-1/6 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md transition font-semibold">
                 Lacak
               </button>
             </div>

@@ -1,0 +1,74 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+
+@layer components {
+    nav {
+        @apply bg-[#002849] !important;
+    }
+
+    .fi-sidebar-header {
+        @apply bg-[#002849] !important;
+    }
+
+    .fi-sidebar-nav {
+        @apply bg-gray-200 !important;
+    }
+
+    .fi-panel-admin {
+        @apply bg-blue-950 !important;
+    }
+
+    .fi-breadcrumbs-list {
+        @apply bg-white !important;
+    }
+
+    .fi-pagination {
+        @apply bg-white !important;
+    }
+
+    .fi-input-wrp-input {
+        @apply w-1/2 !important;
+    }
+
+    .fi-fo-rich-editor-toolbar {
+        @apply border border-solid border-gray-300 rounded-t-lg !important;
+    }
+
+    .fi-simple-main-ctn {
+        @apply bg-gray-100 text-black !important;
+    }
+
+    span {
+        @apply text-black !important;
+    }
+
+    .fi-btn-label {
+        @apply text-white !important;
+    }
+
+    .fi-simple-main {
+        @apply bg-gray-100 !important;
+    }
+
+    .fi-input {
+        @apply text-black !important;
+    }
+
+    .fi-input-wrp-input {
+        @apply border border-solid border-gray-300 !important;
+    }
+
+    .fi-input-wrp-suffix {
+        @apply border border-solid border-gray-300 !important;
+    }
+
+    .fi-checkbox-input {
+        @apply border border-solid border-gray-300 !important;
+    }
+
+    .span .fi-btn-label {
+        @apply text-white !important;
+    }
+}
