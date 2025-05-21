@@ -11,15 +11,9 @@
 </head>
 <body class="h-full">
     <div>
-        @auth
-            <x-navbar-admin />
-        @endauth
+        <x-navbar-home></x-navbar-home>
 
-        @guest
-            <x-navbar />
-        @endguest
-
-        <main class="justify-center flex items-center bg-[url('/public/images/filkom-50.png')] bg-cover h-[93dvh]">
+        <main class="justify-center flex items-center bg-[url('/public/images/filkom-50.png')] bg-cover">
             <div class="flex flex-col items-center text-center py-36 space-y-3">
                 <!-- Text Halaman -->
                 <p class="font-poppins text-xl">Selamat Datang di Website</p>

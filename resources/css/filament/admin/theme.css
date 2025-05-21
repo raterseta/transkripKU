@@ -24,14 +24,6 @@
         @apply bg-white !important;
     }
 
-    .fi-simple-main-ctn {
-        @apply bg-blue-950 !important;
-    }
-
-    .fi-simple-main {
-        @apply bg-yellow-500 !important;
-    }
-
     .fi-pagination {
         @apply bg-white !important;
     }
@@ -44,5 +36,39 @@
         @apply border border-solid border-gray-300 rounded-t-lg !important;
     }
 
+    .fi-simple-main-ctn {
+        @apply bg-gray-100 text-black !important;
+    }
 
+    span {
+        @apply text-black !important;
+    }
+
+    .fi-btn-label {
+        @apply text-white !important;
+    }
+
+    .fi-simple-main {
+        @apply bg-gray-100 !important;
+    }
+
+    .fi-input {
+        @apply text-black !important;
+    }
+
+    .fi-input-wrp-input {
+        @apply border border-solid border-gray-300 !important;
+    }
+
+    .fi-input-wrp-suffix {
+        @apply border border-solid border-gray-300 !important;
+    }
+
+    .fi-checkbox-input {
+        @apply border border-solid border-gray-300 !important;
+    }
+
+    .span .fi-btn-label {
+        @apply text-white !important;
+    }
 }
