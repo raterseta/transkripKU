@@ -30,10 +30,18 @@ class RequestTrackController extends Controller
         $firstTrack  = $tracks->first();
         $requestData = $firstTrack->getRequest();
 
+        $createdAt       = $firstTrack->created_at;
+        $now             = now();
+        $duration        = $createdAt->diff($now);
+        $durationInDays  = $duration->days;
+        $durationInHours = $duration->h;
+
         return view('mahasiswa.track.result', [
             'tracks'         => $tracks,
             'trackingNumber' => $tracking_number,
             'requestData'    => $requestData,
+            'durationDays'   => $durationInDays,
+            'durationHours'  => $durationInHours,
         ]);
     }
 

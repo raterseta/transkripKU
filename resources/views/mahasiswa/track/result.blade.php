@@ -18,7 +18,7 @@
     @endguest
     <div class="flex justify-center items-start px-4 sm:px-6 lg:px-8 mt-10 pb-20">
         <div class="flex flex-col w-full max-w-3xl">
-            
+
             <div class="flex flex-col">
                 <div class="pb-6">
                     <nav class="text-gray-500 text-sm font-medium" aria-label="Breadcrumb">
@@ -86,6 +86,9 @@
                         <h2 class="text-2xl font-semibold">Status</h2>
                         <div class="text-right">
                             <p class="text-lg font-medium">Estimasi: 3 hari</p>
+                            <p class="text-sm {{ $durationDays > 3 ? 'text-red-600' : 'text-gray-600' }} mt-1 font-medium">
+                                Diajukan: @if($durationDays > 0){{ $durationDays }} hari @endif @if($durationHours > 0){{ $durationHours }} jam @endif yang lalu
+                            </p>
                         </div>
                     </div>
 
@@ -108,7 +111,7 @@
                                                 @break
 
                                             @case(\App\Enums\RequestStatus::DIKEMBALIKANKEOPERATOR)
-                                                                                            
+
 
                                             @case(\App\Enums\RequestStatus::DIKEMBALIKANKEKAPRODI)
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="size-6 text-white">
@@ -148,7 +151,7 @@
                                 </div>
 
                                 <div class="flex-1">
-                                    
+
 
                                     @switch($track->status)
                                     @case(\App\Enums\RequestStatus::SELESAI)
