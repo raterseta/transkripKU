@@ -9,6 +9,7 @@
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^3.3",
         "doctrine/dbal": "^4.2",
+        "egulias/email-validator": "^4.0",
         "filament/filament": "3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.3",
         "filament/spatie-laravel-settings-plugin": "^3.3",

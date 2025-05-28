@@ -190,9 +190,9 @@
 
             <div style="text-align: center;">
                 @if($requestType === 'academic')
-                    <a href="{{ url('/admin/pengajuan/' . $requestId . '/edit') }}" class="btn">Lihat Detail Pengajuan</a>
+                    <a href="{{ url('/admin/transkrip-akademik/') }}" class="btn">Lihat Detail Pengajuan</a>
                 @else
-                    <a href="{{ url('/admin/pengajuan-final/' . $requestId . '/edit') }}" class="btn">Lihat Detail Pengajuan</a>
+                    <a href="{{ url('/admin/transkrip-final') }}" class="btn">Lihat Detail Pengajuan</a>
                 @endif
             </div>
         </div>

@@ -49,6 +49,24 @@
           </div>
         </div>
 
+        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4 text-center font-poppins">
+              <div class="modal-body">
+                <h5 class="modal-title mb-2 text-red-600" id="errorModalLabel">Terjadi Kesalahan</h5>
+                <div class="text-left">
+                  <ul class="list-disc list-inside text-sm text-gray-700">
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <form id="formPengajuanFinal" method="POST" action="/thesis-request" enctype="multipart/form-data">
           @csrf
 
@@ -76,7 +94,6 @@
 
             <!-- Upload Transkrip + Tombol -->
             <div class="pt-6 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
-
               <div class="w-full sm:w-3/4">
                 <label class="block font-semibold font-poppins">Upload Dokumen Pendukung</label>
                 <input
@@ -94,21 +111,23 @@
                 />
               </div>
 
-              <div class=" flex justify-end">
+              <div class="flex justify-end">
                 <button type="button" id="submitBtn" class="w-full sm:w-auto py-2 px-4 font-semibold text-white transition bg-orange-500 rounded-md hover:bg-orange-600">
                   Submit
                 </button>
               </div>
             </div>
 
-            <!-- Modal Sukses -->
-            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true" data-bs-backdrop="static">
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content p-4 text-center font-poppins">
                   <div class="modal-body">
-                    <h5 class="modal-title mb-2" id="successModalLabel">Pengajuan Berhasil Terkirim</h5>
-                    <p class="pb-3">Nomor tracking dikirim via Email anda</p>
-                    <button type="button" class="btn btn-success border-solid border-orange-500 hover:bg-red-700 bg-orange-500 w-48 mt-3" id="confirmSubmit">Lanjut</button>
+                    <h5 class="modal-title mb-2" id="confirmModalLabel">Konfirmasi Pengajuan</h5>
+                    <p class="pb-3">Apakah Anda yakin ingin mengirim pengajuan transkrip final ini?</p>
+                    <div class="d-flex justify-content-center gap-3">
+                      <button type="button" class="btn btn-secondary" id="cancelSubmit" data-bs-dismiss="modal">Batal</button>
+                      <button type="button" class="btn btn-success bg-orange-500 border-orange-500 hover:bg-orange-600" id="confirmSubmit">Ya, Kirim</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -128,21 +147,55 @@
       const form = document.getElementById('formPengajuanFinal');
       const confirmSubmitButton = document.getElementById('confirmSubmit');
 
+      @if($errors->any())
+        const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        errorModal.show();
+      @endif
+
+      @if(old('student_name'))
+        document.getElementById('student_name').value = "{{ old('student_name') }}";
+      @endif
+      @if(old('student_nim'))
+        document.getElementById('student_nim').value = "{{ old('student_nim') }}";
+      @endif
+      @if(old('student_email'))
+        document.getElementById('student_email').value = "{{ old('student_email') }}";
+      @endif
+      @if(old('student_notes'))
+        document.getElementById('student_notes').value = `{!! old('student_notes') !!}`;
+      @endif
+
       function setLoadingState(isLoading) {
         if (isLoading) {
-          submitButton.disabled = true;
-          submitButton.classList.add('opacity-70', 'cursor-not-allowed');
-          submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Mengirim...';
+          confirmSubmitButton.disabled = true;
+          confirmSubmitButton.classList.add('opacity-70', 'cursor-not-allowed');
+          confirmSubmitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Mengirim...';
+
+          const cancelButton = document.getElementById('cancelSubmit');
+          cancelButton.disabled = true;
+          cancelButton.classList.add('opacity-70', 'cursor-not-allowed');
+
+          const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
+          modal._config.backdrop = 'static';
+          modal._config.keyboard = false;
         } else {
-          submitButton.disabled = false;
-          submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
-          submitButton.innerHTML = 'Submit';
+          confirmSubmitButton.disabled = false;
+          confirmSubmitButton.classList.remove('opacity-70', 'cursor-not-allowed');
+          confirmSubmitButton.innerHTML = 'Ya, Kirim';
+
+          const cancelButton = document.getElementById('cancelSubmit');
+          cancelButton.disabled = false;
+          cancelButton.classList.remove('opacity-70', 'cursor-not-allowed');
+
+          const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
+          modal._config.backdrop = true;
+          modal._config.keyboard = true;
         }
       }
 
       submitButton.addEventListener('click', function () {
         if (form.checkValidity()) {
-          const modal = new bootstrap.Modal(document.getElementById('successModal'));
+          const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
           modal.show();
         } else {
           form.reportValidity();
@@ -151,9 +204,8 @@
 
       confirmSubmitButton.addEventListener('click', function () {
         setLoadingState(true);
+        const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
         form.submit();
-        confirmSubmitButton.disabled = true;
-        confirmSubmitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Memproses...';
       });
     });
   </script>
