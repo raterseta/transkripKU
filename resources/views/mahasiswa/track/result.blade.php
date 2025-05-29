@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full ">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite('resources/css/app.css')
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <title>TranskripKU</title>
-</head>
-<body class="h-full bg-gray-100">
-  <div>
-    @auth
-      <x-navbar-admin-notrack />
-    @endauth
+@extends('layouts.app')
 
-    @guest
-       <x-navbar-notrack />
-    @endguest
+@section('content')
     <div class="flex justify-center items-start px-4 sm:px-6 lg:px-8 mt-10 pb-20">
         <div class="flex flex-col w-full max-w-3xl">
 
@@ -190,7 +175,4 @@
         </div>
     </div>
   </div>
-  <x-navbar-footer />
-</body>
-
-</html>
+@endsection
