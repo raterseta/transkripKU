@@ -70,10 +70,20 @@
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-2xl font-semibold">Status</h2>
                         <div class="text-right">
-                            <p class="text-lg font-medium">Estimasi: 3 hari</p>
-                            <p class="text-sm {{ $durationDays > 3 ? 'text-red-600' : 'text-gray-600' }} mt-1 font-medium">
-                                Diajukan: @if($durationDays > 0){{ $durationDays }} hari @endif @if($durationHours > 0){{ $durationHours }} jam @endif yang lalu
-                            </p>
+                            @if(isset($estimation))
+                                @if($estimation['is_completed'] ?? false)
+                                    <p class="text-lg font-medium text-green-600">✅ Selesai</p>
+                                @elseif($estimation['is_rejected'] ?? false)
+                                    <p class="text-lg font-medium text-red-600">❌ Ditolak</p>
+                                @else
+                                    <p class="text-lg font-medium">
+                                        Estimasi Selesai: {{ $estimation['date'] ? $estimation['date']->format('d M Y') : '-' }}
+                                    </p>
+                                    <p class="text-sm mt-1 font-medium capitalize {{ (str_starts_with($trackingNumber, 'ATR') && $durationDays > 3) || (str_starts_with($trackingNumber, 'TR') && $durationDays > 10) ? 'text-red-600' : 'text-gray-600' }}">
+                                        {{ $processTime }}
+                                    </p>
+                                @endif
+                            @endif
                         </div>
                     </div>
 

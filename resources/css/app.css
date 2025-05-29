@@ -17,3 +17,7 @@
 select:not(.choices) {
     background-image: url(...) !important;
 }
+
+:root {
+    overscroll-behavior: none;
+}

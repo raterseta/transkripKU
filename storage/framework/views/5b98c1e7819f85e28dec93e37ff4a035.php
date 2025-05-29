@@ -68,10 +68,22 @@
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-2xl font-semibold">Status</h2>
                         <div class="text-right">
-                            <p class="text-lg font-medium">Estimasi: 3 hari</p>
-                            <p class="text-sm <?php echo e($durationDays > 3 ? 'text-red-600' : 'text-gray-600'); ?> mt-1 font-medium">
-                                Diajukan: <?php if($durationDays > 0): ?><?php echo e($durationDays); ?> hari <?php endif; ?> <?php if($durationHours > 0): ?><?php echo e($durationHours); ?> jam <?php endif; ?> yang lalu
-                            </p>
+                            <?php if(isset($estimation)): ?>
+                                <?php if($estimation['is_completed'] ?? false): ?>
+                                    <p class="text-lg font-medium text-green-600">✅ Selesai</p>
+                                <?php elseif($estimation['is_rejected'] ?? false): ?>
+                                    <p class="text-lg font-medium text-red-600">❌ Ditolak</p>
+                                <?php else: ?>
+                                    <p class="text-lg font-medium">
+                                        Estimasi Selesai: <?php echo e($estimation['date'] ? $estimation['date']->format('d M Y') : '-'); ?>
+
+                                    </p>
+                                    <p class="text-sm mt-1 font-medium capitalize <?php echo e((str_starts_with($trackingNumber, 'ATR') && $durationDays > 3) || (str_starts_with($trackingNumber, 'TR') && $durationDays > 10) ? 'text-red-600' : 'text-gray-600'); ?>">
+                                        <?php echo e($processTime); ?>
+
+                                    </p>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 

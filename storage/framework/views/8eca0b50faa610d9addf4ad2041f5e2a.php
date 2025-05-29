@@ -48,7 +48,7 @@
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 
-<body class="h-full font-poppins antialiased" x-data="{ showPopup: false }">
+<body class="h-full font-poppins bg-white antialiased" x-data="{ showPopup: false }">
     <div class="min-h-screen">
         <?php if (isset($component)) { $__componentOriginala591787d01fe92c5706972626cdf7231 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala591787d01fe92c5706972626cdf7231 = $attributes; } ?>

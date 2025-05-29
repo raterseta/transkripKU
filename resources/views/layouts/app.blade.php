@@ -47,7 +47,7 @@
     @stack('styles')
 </head>
 
-<body class="h-full font-poppins antialiased" x-data="{ showPopup: false }">
+<body class="h-full font-poppins bg-white antialiased" x-data="{ showPopup: false }">
     <div class="min-h-screen">
         <x-navbar></x-navbar>
 
