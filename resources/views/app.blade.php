@@ -6,12 +6,9 @@
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>TranskripKU</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
 <body class="h-full">
     <div>
-
         <nav class="bg-blue-950" x-data="{ isMobileOpen: false, isLaptopOpen: false }">
             <div class="mx-auto px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">

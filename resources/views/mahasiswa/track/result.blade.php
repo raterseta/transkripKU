@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full ">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite('resources/css/app.css')
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <title>TranskripKU</title>
-</head>
-<body class="h-full bg-gray-100">
-  <div>
-    @auth
-      <x-navbar-admin-notrack />
-    @endauth
+@extends('layouts.app')
 
-    @guest
-       <x-navbar-notrack />
-    @endguest
+@section('content')
     <div class="flex justify-center items-start px-4 sm:px-6 lg:px-8 mt-10 pb-20">
         <div class="flex flex-col w-full max-w-3xl">
-            
+
             <div class="flex flex-col">
                 <div class="pb-6">
                     <nav class="text-gray-500 text-sm font-medium" aria-label="Breadcrumb">
@@ -85,7 +70,20 @@
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-2xl font-semibold">Status</h2>
                         <div class="text-right">
-                            <p class="text-lg font-medium">Estimasi: 3 hari</p>
+                            @if(isset($estimation))
+                                @if($estimation['is_completed'] ?? false)
+                                    <p class="text-lg font-medium text-green-600">✅ Selesai</p>
+                                @elseif($estimation['is_rejected'] ?? false)
+                                    <p class="text-lg font-medium text-red-600">❌ Ditolak</p>
+                                @else
+                                    <p class="text-lg font-medium">
+                                        Estimasi Selesai: {{ $estimation['date'] ? $estimation['date']->format('d M Y') : '-' }}
+                                    </p>
+                                    <p class="text-sm mt-1 font-medium capitalize {{ (str_starts_with($trackingNumber, 'ATR') && $durationDays > 3) || (str_starts_with($trackingNumber, 'TR') && $durationDays > 10) ? 'text-red-600' : 'text-gray-600' }}">
+                                        {{ $processTime }}
+                                    </p>
+                                @endif
+                            @endif
                         </div>
                     </div>
 
@@ -108,7 +106,7 @@
                                                 @break
 
                                             @case(\App\Enums\RequestStatus::DIKEMBALIKANKEOPERATOR)
-                                                                                            
+
 
                                             @case(\App\Enums\RequestStatus::DIKEMBALIKANKEKAPRODI)
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="size-6 text-white">
@@ -148,7 +146,7 @@
                                 </div>
 
                                 <div class="flex-1">
-                                    
+
 
                                     @switch($track->status)
                                     @case(\App\Enums\RequestStatus::SELESAI)
@@ -187,7 +185,4 @@
         </div>
     </div>
   </div>
-  <x-navbar-footer />
-</body>
-
-</html>
+@endsection

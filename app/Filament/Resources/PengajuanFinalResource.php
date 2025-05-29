@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 use App\Enums\RequestStatus;
 use App\Filament\Resources\PengajuanFinalResource\Pages;
 use App\Models\ThesisTranscriptRequest;
+use App\Utils\RequestEstimationUtils;
+use Carbon\Carbon;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -15,7 +17,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class PengajuanFinalResource extends Resource
@@ -32,6 +33,11 @@ class PengajuanFinalResource extends Resource
     protected static ?string $slug = 'transkrip-final';
 
     protected static ?string $label = 'Transkrip Final';
+
+    public static function getEstimatedCompletion($record): array
+    {
+        return RequestEstimationUtils::getEstimatedCompletion($record, 10);
+    }
 
     public static function getNavigationBadge(): ?string
     {
@@ -118,6 +124,44 @@ class PengajuanFinalResource extends Resource
                                         Placeholder::make('updated_at')
                                             ->label('Last modified at')
                                             ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
+                                        Placeholder::make('current_status')
+                                            ->label('Status Saat Ini')
+                                            ->content(function ($record) {
+                                                if (! $record) {
+                                                    return '-';
+                                                }
+
+                                                return $record->status->getLabel();
+                                            }),
+                                        Placeholder::make('consultation_info')
+                                            ->label('Info Konsultasi')
+                                            ->content(function ($record) {
+                                                if (! $record || ! $record->consultation_date) {
+                                                    return '-';
+                                                }
+
+                                                $consultationDate      = Carbon::parse($record->consultation_date);
+                                                $today                 = Carbon::now();
+                                                $daysUntilConsultation = $today->diffInDays($consultationDate, false);
+
+                                                if ($daysUntilConsultation < 0) {
+                                                    return "📅 {$consultationDate->format('d M Y H:i')} (Sudah lewat)";
+                                                } elseif ($daysUntilConsultation == 0) {
+                                                    return "📅 {$consultationDate->format('d M Y H:i')} (Hari ini)";
+                                                } else {
+                                                    return "📅 {$consultationDate->format('d M Y H:i')} ({$daysUntilConsultation} hari lagi)";
+                                                }
+                                            })
+                                            ->visible(fn($record) => $record && $record->consultation_date),
+                                        Placeholder::make('estimated_completion')
+                                            ->label('Estimasi Selesai')
+                                            ->content(fn($record) => RequestEstimationUtils::getEstimatedCompletionDisplay($record, 10)),
+                                        Placeholder::make('processing_time')
+                                            ->label('Lama Proses')
+                                            ->content(fn($record) => RequestEstimationUtils::calculateProcessingTime($record)),
+                                        Placeholder::make('priority_indicator')
+                                            ->label('Tingkat Prioritas')
+                                            ->content(fn($record) => RequestEstimationUtils::getPriorityIndicatorForThesis($record, 10)),
                                     ])
                                     ->columnSpan(1),
                                 Section::make()
@@ -144,7 +188,7 @@ class PengajuanFinalResource extends Resource
                                             })
                                             ->dehydrated(false)
                                             ->columnSpanFull(),
-                                        FileUpload::make('request_ transcript_url')
+                                        FileUpload::make('request_transcript_url')
                                             ->label('Transkrip Mahasiswa')
                                             ->disk('public')
                                             ->directory('thesis_transcript')
@@ -233,20 +277,41 @@ class PengajuanFinalResource extends Resource
                     ->label('Nim')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('created_at')
+                    ->label('Tanggal Pengajuan')
+                    ->dateTime('d M Y')
+                    ->sortable(),
                 TextColumn::make('status')
                     ->label("Status")
                     ->badge()
                     ->color(fn($record) => $record->status->getColor()),
-            ])
-            ->filters([
-                SelectFilter::make('status')
-                    ->options([
-                        'Baru'     => 'Baru',
-                        'Diproses' => 'Diproses',
-                        'Revisi'   => 'Revisi',
-                        'Selesai'  => 'Selesai',
-                    ])
-                    ->attribute('status'),
+                TextColumn::make('priority')
+                    ->label('Prioritas')
+                    ->getStateUsing(function ($record) {
+                        if ($record->status === RequestStatus::SELESAI) {
+                            return "✅ Selesai";
+                        }
+                        if ($record->status === RequestStatus::DITOLAK) {
+                            return "❌ Ditolak";
+                        }
+
+                        $estimation = static::getEstimatedCompletion($record);
+                        if ($estimation['is_overdue']) {
+                            return '🚨 OVERDUE';
+                        } elseif ($estimation['is_urgent']) {
+                            return '⚠️ URGENT';
+                        }
+                        return '✅ Normal';
+                    })
+                    ->color(function ($record) {
+                        $estimation = static::getEstimatedCompletion($record);
+                        if ($estimation['is_overdue']) {
+                            return 'danger';
+                        } elseif ($estimation['is_urgent']) {
+                            return 'warning';
+                        }
+                        return 'success';
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
@@ -281,6 +346,7 @@ class PengajuanFinalResource extends Resource
         }
         return false;
     }
+
     public static function isOperator($record): bool
     {
         $userRole = auth()->user()->roles->pluck('name')->first();

@@ -5,6 +5,7 @@ use App\Enums\RequestStatus;
 use App\Enums\SignatureType;
 use App\Filament\Resources\PengajuanResource\Pages;
 use App\Models\AcademicTranscriptRequest;
+use App\Utils\RequestEstimationUtils;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Placeholder;
@@ -27,6 +28,12 @@ class PengajuanResource extends Resource
     protected static ?string $navigationGroup = 'Permohonan';
     protected static ?string $slug            = 'transkrip-akademik';
     protected static ?string $label           = 'Transkrip Akademik';
+
+    public static function getEstimatedCompletion($record): array
+    {
+        return RequestEstimationUtils::getEstimatedCompletion($record, 3);
+    }
+
     public static function getNavigationBadge(): ?string
     {
         $user = auth()->user();
@@ -123,6 +130,24 @@ class PengajuanResource extends Resource
                                         Placeholder::make('updated_at')
                                             ->label('Last modified at')
                                             ->content(fn($record) => $record->updated_at?->format('d M Y H:i')),
+                                        Placeholder::make('current_status')
+                                            ->label('Status Saat Ini')
+                                            ->content(function ($record) {
+                                                if (! $record) {
+                                                    return '-';
+                                                }
+
+                                                return $record->status->getLabel();
+                                            }),
+                                        Placeholder::make('estimated_completion')
+                                            ->label('Estimasi Selesai')
+                                            ->content(fn($record) => RequestEstimationUtils::getEstimatedCompletionDisplay($record, 3)),
+                                        Placeholder::make('processing_time')
+                                            ->label('Lama Proses')
+                                            ->content(fn($record) => RequestEstimationUtils::calculateProcessingTime($record)),
+                                        Placeholder::make('priority_indicator')
+                                            ->label('Tingkat Prioritas')
+                                            ->content(fn($record) => RequestEstimationUtils::getPriorityIndicator($record, 3)),
                                     ])
                                     ->columnSpan(1),
                                 Section::make()
@@ -220,10 +245,42 @@ class PengajuanResource extends Resource
                     ->label('Nim')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('created_at')
+                    ->label('Tanggal Pengajuan')
+                    ->dateTime('d M Y')
+                    ->sortable(),
                 TextColumn::make('status')
                     ->label("Status")
                     ->badge()
                     ->color(fn($record) => $record->status->getColor()),
+                TextColumn::make('priority')
+                    ->label('Prioritas')
+                    ->getStateUsing(function ($record) {
+
+                        if ($record->status === RequestStatus::SELESAI) {
+                            return "✅ Selesai";
+                        }
+                        if ($record->status === RequestStatus::DITOLAK) {
+                            return "❌ Ditolak";
+                        }
+
+                        $estimation = static::getEstimatedCompletion($record);
+                        if ($estimation['is_overdue']) {
+                            return '🚨 OVERDUE';
+                        } elseif ($estimation['is_urgent']) {
+                            return '⚠️ URGENT';
+                        }
+                        return '✅ Normal';
+                    })
+                    ->color(function ($record) {
+                        $estimation = static::getEstimatedCompletion($record);
+                        if ($estimation['is_overdue']) {
+                            return 'danger';
+                        } elseif ($estimation['is_urgent']) {
+                            return 'warning';
+                        }
+                        return 'success';
+                    }),
             ])
             ->filters([
                 SelectFilter::make('status')
