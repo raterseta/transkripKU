@@ -1,9 +1,24 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en" class="h-full ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @vite('resources/css/app.css')
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <title>TranskripKU</title>
+</head>
+<body class="h-full bg-gray-100">
+  <div>
+    @auth
+      <x-navbar-admin-notrack />
+    @endauth
 
-@section('content')
+    @guest
+       <x-navbar-notrack />
+    @endguest
     <div class="flex justify-center items-start px-4 sm:px-6 lg:px-8 mt-10 pb-20">
         <div class="flex flex-col w-full max-w-3xl">
-
+            
             <div class="flex flex-col">
                 <div class="pb-6">
                     <nav class="text-gray-500 text-sm font-medium" aria-label="Breadcrumb">
@@ -70,20 +85,7 @@
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-2xl font-semibold">Status</h2>
                         <div class="text-right">
-                            @if(isset($estimation))
-                                @if($estimation['is_completed'] ?? false)
-                                    <p class="text-lg font-medium text-green-600">✅ Selesai</p>
-                                @elseif($estimation['is_rejected'] ?? false)
-                                    <p class="text-lg font-medium text-red-600">❌ Ditolak</p>
-                                @else
-                                    <p class="text-lg font-medium">
-                                        Estimasi Selesai: {{ $estimation['date'] ? $estimation['date']->format('d M Y') : '-' }}
-                                    </p>
-                                    <p class="text-sm mt-1 font-medium capitalize {{ (str_starts_with($trackingNumber, 'ATR') && $durationDays > 3) || (str_starts_with($trackingNumber, 'TR') && $durationDays > 10) ? 'text-red-600' : 'text-gray-600' }}">
-                                        {{ $processTime }}
-                                    </p>
-                                @endif
-                            @endif
+                            <p class="text-lg font-medium">Estimasi: 3 hari</p>
                         </div>
                     </div>
 
@@ -106,12 +108,17 @@
                                                 @break
 
                                             @case(\App\Enums\RequestStatus::DIKEMBALIKANKEOPERATOR)
-
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                                </svg>
+                                                @break
+                              
 
                                             @case(\App\Enums\RequestStatus::DIKEMBALIKANKEKAPRODI)
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="size-6 text-white">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                                                 </svg>
+
                                                 @break
 
                                             @case(\App\Enums\RequestStatus::PROSESOPERATOR)
@@ -146,7 +153,7 @@
                                 </div>
 
                                 <div class="flex-1">
-
+                                    
 
                                     @switch($track->status)
                                     @case(\App\Enums\RequestStatus::SELESAI)
@@ -185,4 +192,7 @@
         </div>
     </div>
   </div>
-@endsection
+  <x-navbar-footer />
+</body>
+
+</html>

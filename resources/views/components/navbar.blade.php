@@ -1,6 +1,6 @@
 <nav class="bg-[#002849] font-poppins text-white" x-data="{ isMobileOpen: false }">
     <div class="mx-auto w-full px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-16 items-center justify-between px-6">
+        <div class="relative flex h-16 items-center justify-between sm:px-6 lg:px-6">
             <!-- Logo -->
             <div class="flex flex-1 items-center sm:items-stretch">
                 <a href="{{ url('/') }}" class="flex shrink-0 items-center">

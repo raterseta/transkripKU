@@ -219,7 +219,8 @@ class PengajuanResource extends Resource
                                     ->directory('academic_transcript')
                                     ->preserveFilenames()
                                     ->acceptedFileTypes(['application/pdf'])
-                                    ->maxSize(2048),
+                                    ->maxSize(2048)
+                                    ->default(fn ($record) => $record?->transcript_url),
                             ])
                             ->columnSpan(2)
                             ->collapsible(),

@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('app');
 // });
 
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/download/signed', function () {
+    $path = session('signed_pdf_path');
+
+    if (! $path || ! Storage::disk('public')->exists($path)) {
+        abort(404);
+    }
+
+    return Storage::disk('public')->download($path);
+})->name('download.signed.pdf');
+
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
 });
