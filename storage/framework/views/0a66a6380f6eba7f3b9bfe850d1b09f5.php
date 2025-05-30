@@ -23,7 +23,7 @@
             <!-- Menu items (desktop) -->
             <div class="hidden sm:flex sm:items-center sm:space-x-6">
                 <a href="<?php echo e(url('/track')); ?>">
-                    <button class="text-white font-semibold bg-orange-500 rounded-2xl px-4 py-1 text-sm">Track Pengajuan</button>
+                    <button class="text-white font-medium bg-orange-500 rounded-2xl px-4 py-1 text-sm">Track Pengajuan</button>
                 </a>
                 <a href="<?php echo e(url('/admin/login')); ?>">
                     <img src="<?php echo e(asset('images/user.svg')); ?>" alt="My SVG" class="w-6 h-6" />
